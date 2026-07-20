@@ -1,0 +1,136 @@
+{% assign prompt_total = prompts | size %}
+{% assign settings_values = trmnl.plugin_settings.custom_fields_values %}
+{% assign focus_area = settings_values.focus_area | default: "all" %}
+{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" %}
+{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" %}
+{% assign level_matches = difficulty_levels | where: "key", difficulty %}
+{% assign level_profile = level_matches | first %}
+{% assign pattern_limit = level_profile.pattern_limit | default: 4 %}
+{% assign picks_for_mode = daily_picks[rotation_mode] %}
+{% assign picks_for_focus = picks_for_mode[focus_area] %}
+{% assign pick = picks_for_focus[difficulty] %}
+{% if pick == blank and picks_for_focus.prompt_id != blank %}
+  {% assign pick = picks_for_focus %}
+{% endif %}
+{% if pick == blank %}
+  {% assign pick = daily_picks.smart_shuffle.all.intermediate | default: daily_picks.smart_shuffle.all %}
+{% endif %}
+{% if pick != blank %}
+  {% assign matches = prompts | where: "id", pick.prompt_id %}
+  {% assign p = matches | first %}
+  {% assign drill_number = pick.drill_number | default: pick.position %}
+  {% assign total = pick.pool_size %}
+{% else %}
+  {% assign day = "now" | date: "%j" | plus: 0 %}
+  {% assign legacy_idx = day | modulo: prompt_total %}
+  {% assign p = prompts[legacy_idx] %}
+  {% assign drill_number = legacy_idx | plus: 1 %}
+  {% assign total = prompt_total %}
+{% endif %}
+{% if p == blank %}
+  {% assign p = prompts | first %}
+{% endif %}
+{% assign display_date = display_date | default: rotation_date | default: "now" %}
+
+<div class="layout layout--col gap--space-between">
+
+  <div class="flex w--full gap--medium" style="align-items:center">
+    <div style="display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:3px solid #000;flex-shrink:0">
+      {% case p.mode %}
+      {% when "AI-Integrated Interface" %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><path d="M12 3 L13.8 9.2 L20 11 L13.8 12.8 L12 19 L10.2 12.8 L4 11 L10.2 9.2 Z" fill="#000"/><path d="M19 3.5 L19.6 5.4 L21.5 6 L19.6 6.6 L19 8.5 L18.4 6.6 L16.5 6 L18.4 5.4 Z" fill="#000" stroke="none"/></svg>
+      {% when "Dashboard & Data UX" %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><line x1="5" y1="19" x2="5" y2="12"/><line x1="12" y1="19" x2="12" y2="5"/><line x1="19" y1="19" x2="19" y2="15"/><line x1="2" y1="21.5" x2="22" y2="21.5" stroke-width="2.2"/></svg>
+      {% when "Accessibility Challenge" %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><circle cx="12" cy="4.5" r="2.2" fill="#000" stroke="none"/><path d="M4 9.5 H20"/><path d="M12 9.5 V15"/><path d="M12 15 L8 21.5"/><path d="M12 15 L16 21.5"/></svg>
+      {% when "Enterprise UX" %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><rect x="5" y="3" width="14" height="18.5"/><rect x="8.5" y="6.5" width="2.5" height="2.5" fill="#000" stroke="none"/><rect x="13" y="6.5" width="2.5" height="2.5" fill="#000" stroke="none"/><rect x="8.5" y="11" width="2.5" height="2.5" fill="#000" stroke="none"/><rect x="13" y="11" width="2.5" height="2.5" fill="#000" stroke="none"/><rect x="10.5" y="16.5" width="3" height="5" fill="#000" stroke="none"/></svg>
+      {% when "UX Engineering" %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.6"><path d="M9 5.5 L3.5 12 L9 18.5"/><path d="M15 5.5 L20.5 12 L15 18.5"/></svg>
+      {% else %}
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2"><rect x="2.5" y="3" width="8.5" height="7"/><rect x="13" y="14" width="8.5" height="7"/><path d="M11 6.5 H17.5 V14"/><path d="M15.5 11.5 L17.5 14 L19.5 11.5"/></svg>
+      {% endcase %}
+    </div>
+    <div class="flex flex--col flex--left" style="flex:1;min-width:0">
+      <span class="label label--small">Drill {{ drill_number }} of {{ total }}</span>
+      <span class="label label--underline">{{ p.mode }} &middot; {{ level_profile.label | default: difficulty | capitalize }}</span>
+    </div>
+  </div>
+
+  <span class="title title--large w--full" data-clamp="3">{{ p.problem }}</span>
+  <span class="description w--full" data-clamp="1"><strong>{{ level_profile.label | default: difficulty | capitalize }} scope:</strong> {{ level_profile.scope_note }}</span>
+
+  <div class="divider"></div>
+
+  <div class="columns gap--large">
+    <div class="column col--span-2">
+      <div class="flex flex--col flex--left gap--xsmall w--full">
+        <div class="item">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><circle cx="12" cy="8" r="4"/><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"/></svg></div>
+          <div class="content" style="gap:2px;min-width:0">
+            <span class="label label--small">User</span>
+            <span class="description" data-clamp="1">{{ p.primary_user }}</span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="#000"/></svg></div>
+          <div class="content" style="gap:2px;min-width:0">
+            <span class="label label--small">Goal</span>
+            <span class="description" data-clamp="1">{{ p.business_goal }}</span>
+          </div>
+        </div>
+        {% if p.ai_capability != blank %}
+        <div class="item">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2"><path d="M12 3 L13.8 9.2 L20 11 L13.8 12.8 L12 19 L10.2 12.8 L4 11 L10.2 9.2 Z"/></svg></div>
+          <div class="content" style="gap:2px;min-width:0">
+            <span class="label label--small">AI capability</span>
+            <span class="description" data-clamp="1">{{ p.ai_capability }}</span>
+          </div>
+        </div>
+        {% else %}
+        <div class="item">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><rect x="4.5" y="10.5" width="15" height="10"/><path d="M8 10.5 V7.5 a4 4 0 0 1 8 0 V10.5"/></svg></div>
+          <div class="content" style="gap:2px;min-width:0">
+            <span class="label label--small">Constraint</span>
+            <span class="description" data-clamp="1">{{ p.constraint }}</span>
+          </div>
+        </div>
+        {% endif %}
+        <div class="item">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><path d="M12 3.5 L22 20 L2 20 Z"/><line x1="12" y1="10" x2="12" y2="15"/><circle cx="12" cy="17.5" r="0.6" fill="#000"/></svg></div>
+          <div class="content" style="gap:2px;min-width:0">
+            <span class="label label--small">Watch for</span>
+            <span class="description" data-clamp="1">{{ p.watch_for }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="flex flex--col flex--left gap--xsmall w--full">
+        <span class="label label--small label--underline">Design these</span>
+        {% for pat in p.required_patterns limit: pattern_limit %}
+        <div style="display:flex;align-items:center;gap:8px;max-width:100%">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#000" stroke-width="2.4" style="flex-shrink:0"><rect x="1.5" y="1.5" width="11" height="11"/></svg>
+          <span class="description" data-clamp="1">{{ pat }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex--col flex--left gap--small w--full">
+    <div class="divider"></div>
+    <div class="flex flex--col flex--left w--full" style="gap:3px">
+      <span class="label label--small">Interview focus</span>
+      <span class="description" data-clamp="1">{{ p.interview_focus }}</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="title_bar">
+  <svg class="image" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><path d="M4 20 L5.5 15 L17 3.5 L20.5 7 L9 18.5 Z"/><line x1="15" y1="5.5" x2="18.5" y2="9"/></svg>
+  <span class="title">Design Drill Deck</span>
+  <span class="instance">{{ display_date | date: "%a, %b %-d" }}</span>
+</div>

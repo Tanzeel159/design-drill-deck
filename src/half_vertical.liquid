@@ -1,0 +1,64 @@
+{% assign prompt_total = prompts | size %}
+{% assign settings_values = trmnl.plugin_settings.custom_fields_values %}
+{% assign focus_area = settings_values.focus_area | default: "all" %}
+{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" %}
+{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" %}
+{% assign level_matches = difficulty_levels | where: "key", difficulty %}
+{% assign level_profile = level_matches | first %}
+{% assign pattern_limit = level_profile.compact_pattern_limit | default: 4 %}
+{% assign picks_for_mode = daily_picks[rotation_mode] %}
+{% assign picks_for_focus = picks_for_mode[focus_area] %}
+{% assign pick = picks_for_focus[difficulty] %}
+{% if pick == blank and picks_for_focus.prompt_id != blank %}
+  {% assign pick = picks_for_focus %}
+{% endif %}
+{% if pick == blank %}
+  {% assign pick = daily_picks.smart_shuffle.all.intermediate | default: daily_picks.smart_shuffle.all %}
+{% endif %}
+{% if pick != blank %}
+  {% assign matches = prompts | where: "id", pick.prompt_id %}
+  {% assign p = matches | first %}
+  {% assign drill_number = pick.drill_number | default: pick.position %}
+  {% assign total = pick.pool_size %}
+{% else %}
+  {% assign day = "now" | date: "%j" | plus: 0 %}
+  {% assign legacy_idx = day | modulo: prompt_total %}
+  {% assign p = prompts[legacy_idx] %}
+  {% assign drill_number = legacy_idx | plus: 1 %}
+  {% assign total = prompt_total %}
+{% endif %}
+{% if p == blank %}
+  {% assign p = prompts | first %}
+{% endif %}
+{% assign display_date = display_date | default: rotation_date | default: "now" %}
+
+<div class="layout layout--col gap--space-between">
+  <div class="flex flex--col flex--left gap--xsmall w--full">
+    <span class="label label--small">Drill {{ drill_number }} of {{ total }}</span>
+    <span class="label label--underline">{{ p.mode }} &middot; {{ level_profile.label | default: difficulty | capitalize }}</span>
+    <span class="title title--small" data-clamp="4">{{ p.problem }}</span>
+  </div>
+
+  <div class="item">
+    <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><circle cx="12" cy="8" r="4"/><path d="M4 21 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 21"/></svg></div>
+    <div class="content" style="gap:2px;min-width:0">
+      <span class="label label--small">User</span>
+      <span class="description" data-clamp="1">{{ p.primary_user }}</span>
+    </div>
+  </div>
+
+  <div class="flex flex--col flex--left gap--xsmall w--full">
+    <span class="label label--small label--underline">Design these</span>
+    {% for pat in p.required_patterns limit: pattern_limit %}
+    <div style="display:flex;align-items:center;gap:7px">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="#000" stroke-width="2.4" style="flex-shrink:0"><rect x="1.5" y="1.5" width="11" height="11"/></svg>
+      <span class="description" data-clamp="1">{{ pat }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="title_bar">
+  <svg class="image" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><path d="M4 20 L5.5 15 L17 3.5 L20.5 7 L9 18.5 Z"/><line x1="15" y1="5.5" x2="18.5" y2="9"/></svg>
+  <span class="title">Design Drill Deck</span>
+</div>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Design Drill Deck — TRMNL preview</title>
+<link rel="stylesheet" href="https://trmnl.com/css/latest/plugins.min.css">
+<script src="https://trmnl.com/js/latest/plugins.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/liquidjs@10/dist/liquid.browser.min.js"></script>
+<style>
+  /* Dev-harness chrome only — never ship this CSS to TRMNL */
+  body { margin: 0; padding: 24px; font-family: system-ui, sans-serif; }
+  .harness-toolbar { color: #eee; margin-bottom: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .harness-toolbar select { font-size: 14px; padding: 4px 8px; }
+  .harness-caption { color: #ddd; font-size: 12px; margin: 20px 0 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .harness-error { color: #ff8080; white-space: pre-wrap; font-family: monospace; }
+  .environment { padding: 4px; }
+</style>
+</head>
+<body class="environment trmnl">
+
+<div class="harness-toolbar">
+  <strong>Design Drill Deck</strong>
+  <label>Preview drill:
+    <select id="drill-select"><option value="today">Today's generated pick</option></select>
+  </label>
+  <label>Focus area:
+    <select id="focus-select"></select>
+  </label>
+  <label>Practice level:
+    <select id="difficulty-select"></select>
+  </label>
+  <label>Prompt order:
+    <select id="rotation-select">
+      <option value="smart_shuffle">Smart shuffle</option>
+      <option value="sequential">Sequential</option>
+    </select>
+  </label>
+  <span id="status"></span>
+</div>
+
+<div class="harness-caption">full — 800 × 480</div>
+<div class="screen screen--og screen--1bit">
+  <div class="view view--full" id="view-full"></div>
+</div>
+
+<div class="harness-caption">half_horizontal — in a top/bottom mashup</div>
+<div class="screen screen--og screen--1bit">
+  <div class="mashup mashup--1Tx1B">
+    <div class="mashup-cell"><div class="view view--half_horizontal" id="view-half_horizontal"></div></div>
+    <div class="mashup-cell"><div class="view view--half_horizontal"><div class="layout layout--center"><span class="label">Another plugin</span></div></div></div>
+  </div>
+</div>
+
+<div class="harness-caption">half_vertical — in a left/right mashup</div>
+<div class="screen screen--og screen--1bit">
+  <div class="mashup mashup--1Lx1R">
+    <div class="mashup-cell"><div class="view view--half_vertical" id="view-half_vertical"></div></div>
+    <div class="mashup-cell"><div class="view view--half_vertical"><div class="layout layout--center"><span class="label">Another plugin</span></div></div></div>
+  </div>
+</div>
+
+<div class="harness-caption">quadrant — in a 2×2 mashup</div>
+<div class="screen screen--og screen--1bit">
+  <div class="mashup mashup--2x2">
+    <div class="mashup-cell"><div class="view view--quadrant" id="view-quadrant"></div></div>
+    <div class="mashup-cell"><div class="view view--quadrant"><div class="layout layout--center"><span class="label">Another plugin</span></div></div></div>
+    <div class="mashup-cell"><div class="view view--quadrant"><div class="layout layout--center"><span class="label">Another plugin</span></div></div></div>
+    <div class="mashup-cell"><div class="view view--quadrant"><div class="layout layout--center"><span class="label">Another plugin</span></div></div></div>
+  </div>
+</div>
+
+<script>
+const engine = new liquidjs.Liquid();
+const LAYOUTS = ["full", "half_horizontal", "half_vertical", "quadrant"];
+let templates = {};
+let baseData = null;
+
+function dataForSelection(sel) {
+  const data = JSON.parse(JSON.stringify(baseData));
+  const values = {
+    focus_area: document.getElementById("focus-select").value,
+    difficulty: document.getElementById("difficulty-select").value,
+    rotation_mode: document.getElementById("rotation-select").value
+  };
+  if (sel !== "today") {
+    const index = parseInt(sel, 10);
+    data.daily_picks.preview = { all: {} };
+    data.daily_picks.preview.all[values.difficulty] = {
+        prompt_id: data.prompts[index].id,
+        drill_number: index + 1,
+        position: index + 1,
+        pool_size: data.prompts.length,
+        cycle: 0
+    };
+    values.focus_area = "all";
+    values.rotation_mode = "preview";
+  }
+  data.trmnl = { plugin_settings: { custom_fields_values: values } };
+  return data;
+}
+
+async function renderAll() {
+  const sel = document.getElementById("drill-select").value;
+  const data = dataForSelection(sel);
+  for (const layout of LAYOUTS) {
+    const el = document.getElementById("view-" + layout);
+    try {
+      el.innerHTML = await engine.parseAndRender(templates[layout], data);
+    } catch (e) {
+      el.innerHTML = '<pre class="harness-error">' + e.message + "</pre>";
+    }
+  }
+  // Re-run TRMNL's fitting/clamp engines (data-clamp etc.) on the injected markup
+  if (window.terminalize) { try { await window.terminalize(); } catch (e) { console.warn(e); } }
+}
+
+async function init() {
+  const status = document.getElementById("status");
+  try {
+    baseData = await fetch("../data/daily.json").then(r => r.json());
+    for (const layout of LAYOUTS) {
+      templates[layout] = await fetch("../src/" + layout + ".liquid").then(r => r.text());
+    }
+    const select = document.getElementById("drill-select");
+    const focusSelect = document.getElementById("focus-select");
+    const difficultySelect = document.getElementById("difficulty-select");
+    baseData.scopes.forEach(scope => {
+      const opt = document.createElement("option");
+      opt.value = scope.key;
+      opt.textContent = scope.label + " (" + scope.count + ")";
+      focusSelect.appendChild(opt);
+    });
+    baseData.difficulty_levels.forEach(level => {
+      const opt = document.createElement("option");
+      opt.value = level.key;
+      opt.textContent = level.label;
+      opt.selected = level.key === baseData.default_difficulty;
+      difficultySelect.appendChild(opt);
+    });
+    baseData.prompts.forEach((p, i) => {
+      const opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = (i + 1) + ". " + p.mode + " — " + p.industry;
+      select.appendChild(opt);
+    });
+    select.addEventListener("change", renderAll);
+    focusSelect.addEventListener("change", renderAll);
+    difficultySelect.addEventListener("change", renderAll);
+    document.getElementById("rotation-select").addEventListener("change", renderAll);
+    await renderAll();
+    status.textContent = "✓ " + baseData.rotation_date;
+  } catch (e) {
+    status.innerHTML = '<span class="harness-error">' + e.message + "</span>";
+  }
+}
+init();
+</script>
+</body>
+</html>

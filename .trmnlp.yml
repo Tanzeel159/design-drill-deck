@@ -1,0 +1,7 @@
+---
+watch:
+  - src
+  - .trmnlp.yml
+time_zone: America/Chicago
+custom_fields: {}
+variables: {}
