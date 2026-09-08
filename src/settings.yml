@@ -1,50 +1,74 @@
 ---
-name: Design Drill Deck
 strategy: polling
-polling_verb: GET
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+framework_version: 3.3.1
+serverless_language: ''
 polling_url: https://Tanzeel159.github.io/design-drill-deck/daily.json
 polling_headers: ''
 polling_body: ''
-static_data: ''
-refresh_interval: 60
-dark_mode: 'no'
-no_screen_padding: 'no'
+id: 472162
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
 custom_fields:
-  - keyname: about
-    name: About Design Drill Deck
-    field_type: author_bio
-    category: education,productivity
-    description: A focused product-design interview drill, refreshed once per day.
-  - keyname: focus_area
-    name: Focus area
-    field_type: select
-    description: Practice every category or concentrate on one discipline.
-    options:
-      - All categories: all
-      - Core UX Flow: core_ux_flow
-      - AI-Integrated Interface: ai_integrated_interface
-      - Dashboard & Data UX: dashboard_data_ux
-      - Accessibility Challenge: accessibility_challenge
-      - Enterprise UX: enterprise_ux
-      - UX Engineering: ux_engineering
-      - Information Architecture: information_architecture
-      - Everyday UX: everyday_ux
-      - Dark Patterns: dark_patterns
-    default: all
-  - keyname: difficulty
-    name: Practice level
-    field_type: select
-    description: Changes the expected solution depth while keeping prompts varied.
-    options:
-      - Beginner (focused flow): beginner
-      - Intermediate (flow and edge cases): intermediate
-      - Advanced (systems thinking): advanced
-    default: intermediate
-  - keyname: rotation_mode
-    name: Prompt order
-    field_type: select
-    description: Smart shuffle avoids repeats until every eligible prompt has appeared.
-    options:
-      - Smart shuffle (no repeats): smart_shuffle
-      - Sequential bank order: sequential
-    default: smart_shuffle
+- keyname: about
+  name: About Design Drill Deck
+  field_type: author_bio
+  category: education,productivity
+  description: A focused product-design interview drill, refreshed once per day.
+- keyname: focus_area
+  name: Focus area
+  field_type: select
+  description: Practice every category or concentrate on one discipline.
+  options:
+  - All categories: all
+  - Core UX Flow: core_ux_flow
+  - AI-Integrated Interface: ai_integrated_interface
+  - Dashboard & Data UX: dashboard_data_ux
+  - Accessibility Challenge: accessibility_challenge
+  - Enterprise UX: enterprise_ux
+  - UX Engineering: ux_engineering
+  - Information Architecture: information_architecture
+  - Everyday UX: everyday_ux
+  - Dark Patterns: dark_patterns
+  default: all
+- keyname: difficulty
+  name: Practice level
+  field_type: select
+  description: Changes the expected solution depth while keeping prompts varied.
+  options:
+  - Beginner (focused flow): beginner
+  - Intermediate (flow and edge cases): intermediate
+  - Advanced (systems thinking): advanced
+  default: intermediate
+- keyname: rotation_mode
+  name: Prompt order
+  field_type: select
+  description: Smart shuffle avoids repeats until every eligible prompt has appeared.
+  options:
+  - Smart shuffle (no repeats): smart_shuffle
+  - Sequential bank order: sequential
+  default: smart_shuffle
+name: Design Drill Deck
+description: One clear design challenge, daily
+refresh_interval: 60
