@@ -10,9 +10,28 @@
       "problem": "Design a reorder experience that rebuilds a weekly cart quickly without re-buying items the household no longer needs.",
       "ai_capability": "",
       "watch_for": "Silent substitutions that erode trust in the cart",
-      "required_patterns": ["Smart reorder list", "Editable cart preview", "Substitution controls", "Confirmation state", "Empty state"],
-      "deliverables": ["Core flow", "2-3 screens", "Edge cases", "Tradeoff rationale"],
-      "interview_focus": "Explain how you balanced speed against accidental purchases."
+      "required_patterns": [
+        "Smart reorder list",
+        "Editable cart preview",
+        "Substitution controls",
+        "Confirmation state",
+        "Empty state"
+      ],
+      "deliverables": [
+        "Core flow",
+        "2-3 screens",
+        "Edge cases",
+        "Tradeoff rationale"
+      ],
+      "interview_focus": "Explain how you balanced speed against accidental purchases.",
+      "display_title": "Reorder with care.",
+      "display_brief": "Design a grocery reorder flow that saves time without buying unwanted items again.",
+      "compact_brief": "Redesign grocery reordering to prevent unwanted repeat purchases.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-002",
@@ -24,9 +43,28 @@
       "problem": "Design a hotel booking flow for someone comparing price, commute time to their meeting, cancellation flexibility, and loyalty perks - without opening six tabs.",
       "ai_capability": "",
       "watch_for": "Comparison overload that pushes users back to a spreadsheet",
-      "required_patterns": ["Comparison cards", "Sticky shortlist", "Smart filters", "Saved options", "Empty state"],
-      "deliverables": ["Core flow", "2-3 screens", "Card content hierarchy", "Tradeoff rationale"],
-      "interview_focus": "Walk through how you decided what belongs on the card versus the detail view."
+      "required_patterns": [
+        "Comparison cards",
+        "Sticky shortlist",
+        "Smart filters",
+        "Saved options",
+        "Empty state"
+      ],
+      "deliverables": [
+        "Core flow",
+        "2-3 screens",
+        "Card content hierarchy",
+        "Tradeoff rationale"
+      ],
+      "interview_focus": "Walk through how you decided what belongs on the card versus the detail view.",
+      "display_title": "Compare without tabs.",
+      "display_brief": "Help a traveler compare hotels by price, commute, cancellation, and perks in one place.",
+      "compact_brief": "Help a traveler compare hotels without opening several tabs.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-003",
@@ -38,9 +76,28 @@
       "problem": "Design a listing flow that gets a first-time seller from photos to a published, well-priced listing in one sitting.",
       "ai_capability": "",
       "watch_for": "Price anxiety - sellers stall when asked to pick a number",
-      "required_patterns": ["Camera-first entry", "Progressive form", "Price guidance", "Draft autosave", "Success state"],
-      "deliverables": ["Core flow", "2-3 screens", "Abandonment points map", "Tradeoff rationale"],
-      "interview_focus": "Explain which steps you cut, deferred, or defaulted - and why."
+      "required_patterns": [
+        "Camera-first entry",
+        "Progressive form",
+        "Price guidance",
+        "Draft autosave",
+        "Success state"
+      ],
+      "deliverables": [
+        "Core flow",
+        "2-3 screens",
+        "Abandonment points map",
+        "Tradeoff rationale"
+      ],
+      "interview_focus": "Explain which steps you cut, deferred, or defaulted - and why.",
+      "display_title": "Make the first sale.",
+      "display_brief": "Help a first-time seller turn photos into a clear, fairly priced listing.",
+      "compact_brief": "Help a first-time seller publish a clear, fairly priced listing.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-004",
@@ -52,9 +109,28 @@
       "problem": "Design an AI-assisted intake review flow that helps staff identify missing or risky patient information before appointment scheduling.",
       "ai_capability": "Summarizes patient-submitted forms and flags missing or risky details",
       "watch_for": "Staff over-trusting incorrect AI flags",
-      "required_patterns": ["Review queue", "AI summary panel", "Source citations", "Confidence indicator", "Human override"],
-      "deliverables": ["Core review flow", "2-3 screens", "Safeguards", "Interview explanation"],
-      "interview_focus": "Show exactly what the coordinator sees when the AI is wrong."
+      "required_patterns": [
+        "Review queue",
+        "AI summary panel",
+        "Source citations",
+        "Confidence indicator",
+        "Human override"
+      ],
+      "deliverables": [
+        "Core review flow",
+        "2-3 screens",
+        "Safeguards",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show exactly what the coordinator sees when the AI is wrong.",
+      "display_title": "Help, then verify.",
+      "display_brief": "Design an AI intake review that flags missing patient details before staff schedule a visit.",
+      "compact_brief": "Help clinic staff verify AI flags before scheduling a patient.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-005",
@@ -66,9 +142,29 @@
       "problem": "Design an AI-assisted contract review experience that helps a paralegal identify risky clauses, compare them against firm standards, and prepare notes for an attorney.",
       "ai_capability": "Highlights risky clauses, explains them in plain English, suggests alternative language",
       "watch_for": "Confident-sounding suggestions that miss legal nuance",
-      "required_patterns": ["Clause review queue", "Generated explanation", "Source references", "Edit and reject controls", "Escalation path", "Audit trail"],
-      "deliverables": ["Core review flow", "AI panel design", "Safeguards", "Interview explanation"],
-      "interview_focus": "Defend where the human approval gate sits and what it costs."
+      "required_patterns": [
+        "Clause review queue",
+        "Generated explanation",
+        "Source references",
+        "Edit and reject controls",
+        "Escalation path",
+        "Audit trail"
+      ],
+      "deliverables": [
+        "Core review flow",
+        "AI panel design",
+        "Safeguards",
+        "Interview explanation"
+      ],
+      "interview_focus": "Defend where the human approval gate sits and what it costs.",
+      "display_title": "Review with evidence.",
+      "display_brief": "Help a paralegal check AI-flagged clauses and prepare evidence for an attorney.",
+      "compact_brief": "Help a paralegal verify AI-flagged contract clauses with evidence.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-006",
@@ -80,9 +176,29 @@
       "problem": "Design an AI-assisted fraud review workflow where the analyst can triage flagged transactions, see why each was flagged, and act in seconds.",
       "ai_capability": "Risk-scores transactions and generates a rationale from account signals",
       "watch_for": "Legitimate customers punished by a confident wrong score",
-      "required_patterns": ["Priority queue", "AI rationale panel", "Confidence indicator", "One-tap actions", "Escalation path", "Audit trail"],
-      "deliverables": ["Triage flow", "2-3 screens", "Trust calibration design", "Interview explanation"],
-      "interview_focus": "Explain how the interface earns calibrated trust - not blind trust."
+      "required_patterns": [
+        "Priority queue",
+        "AI rationale panel",
+        "Confidence indicator",
+        "One-tap actions",
+        "Escalation path",
+        "Audit trail"
+      ],
+      "deliverables": [
+        "Triage flow",
+        "2-3 screens",
+        "Trust calibration design",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how the interface earns calibrated trust - not blind trust.",
+      "display_title": "Explain the flag.",
+      "display_brief": "Help a fraud analyst see why a transaction was flagged and choose the right action.",
+      "compact_brief": "Help an analyst understand and act on a flagged transaction.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-007",
@@ -94,9 +210,29 @@
       "problem": "Design a dashboard that helps the manager identify which delayed shipments need action now versus which can wait.",
       "ai_capability": "",
       "watch_for": "A wall of equally-urgent red that helps no one",
-      "required_patterns": ["Priority ranking", "Severity labels", "Drilldown", "Status filters", "Escalation action", "Loading and error states"],
-      "deliverables": ["Dashboard layout", "Prioritization logic", "Key states", "Hierarchy rationale"],
-      "interview_focus": "Justify your information hierarchy for a 5-minute glance."
+      "required_patterns": [
+        "Priority ranking",
+        "Severity labels",
+        "Drilldown",
+        "Status filters",
+        "Escalation action",
+        "Loading and error states"
+      ],
+      "deliverables": [
+        "Dashboard layout",
+        "Prioritization logic",
+        "Key states",
+        "Hierarchy rationale"
+      ],
+      "interview_focus": "Justify your information hierarchy for a 5-minute glance.",
+      "display_title": "What needs action?",
+      "display_brief": "Help a shipping manager separate delays that need action now from those that can wait.",
+      "compact_brief": "Help a manager decide which delayed shipments need action now.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-008",
@@ -108,9 +244,28 @@
       "problem": "Design a weekly product-health dashboard that separates noise from what needs a decision this week.",
       "ai_capability": "",
       "watch_for": "Vanity metrics crowding out actionable ones",
-      "required_patterns": ["KPI cards with targets", "Anomaly flags", "Trend sparklines", "Drilldown", "Annotations"],
-      "deliverables": ["Dashboard layout", "Metric selection rationale", "Key states", "Interview explanation"],
-      "interview_focus": "Explain what you left off the dashboard and why."
+      "required_patterns": [
+        "KPI cards with targets",
+        "Anomaly flags",
+        "Trend sparklines",
+        "Drilldown",
+        "Annotations"
+      ],
+      "deliverables": [
+        "Dashboard layout",
+        "Metric selection rationale",
+        "Key states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain what you left off the dashboard and why.",
+      "display_title": "Find the real signal.",
+      "display_brief": "Design a product dashboard that turns this week's metrics into a clear decision.",
+      "compact_brief": "Turn a noisy weekly product dashboard into one clear decision.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-009",
@@ -122,9 +277,28 @@
       "problem": "Design a home energy view that turns raw usage data into one or two behavior changes worth making this week.",
       "ai_capability": "",
       "watch_for": "Charts that inform but never change behavior",
-      "required_patterns": ["Plain-language insights", "Cost framing", "Comparison baseline", "Single recommended action", "Progress state"],
-      "deliverables": ["Main view", "Insight-to-action design", "Key states", "Interview explanation"],
-      "interview_focus": "Show how you translated data into a decision, not a chart."
+      "required_patterns": [
+        "Plain-language insights",
+        "Cost framing",
+        "Comparison baseline",
+        "Single recommended action",
+        "Progress state"
+      ],
+      "deliverables": [
+        "Main view",
+        "Insight-to-action design",
+        "Key states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how you translated data into a decision, not a chart.",
+      "display_title": "Make energy useful.",
+      "display_brief": "Turn home energy usage into one or two practical changes a household can make.",
+      "compact_brief": "Turn home energy data into one practical behavior change.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-010",
@@ -136,9 +310,29 @@
       "problem": "Design a bill payment confirmation flow that clearly communicates amount, due date, account, confirmation, and how to fix mistakes.",
       "ai_capability": "",
       "watch_for": "Anxiety-inducing ambiguity about whether money actually moved",
-      "required_patterns": ["Review step", "Plain-language labels", "Large touch targets", "Error prevention", "Confirmation receipt", "Undo and support path"],
-      "deliverables": ["2-3 screens", "Accessibility decisions", "Error states", "Interview explanation"],
-      "interview_focus": "Walk through the flow as someone with low vision and low confidence."
+      "required_patterns": [
+        "Review step",
+        "Plain-language labels",
+        "Large touch targets",
+        "Error prevention",
+        "Confirmation receipt",
+        "Undo and support path"
+      ],
+      "deliverables": [
+        "2-3 screens",
+        "Accessibility decisions",
+        "Error states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Walk through the flow as someone with low vision and low confidence.",
+      "display_title": "Pay with confidence.",
+      "display_brief": "Make the amount, due date, account, and way to fix a payment mistake unmistakable.",
+      "compact_brief": "Make a bill payment easy to verify and a mistake easy to fix.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-011",
@@ -150,9 +344,28 @@
       "problem": "Design a trip-planning and live-guidance flow that a screen reader user can operate confidently, including when a delay forces a replan.",
       "ai_capability": "",
       "watch_for": "Visual-only status cues (color dots, map pins) carrying critical meaning",
-      "required_patterns": ["Logical heading structure", "Announced live updates", "Descriptive step labels", "Replan flow", "Offline fallback"],
-      "deliverables": ["Trip flow", "Non-visual interaction model", "Disruption states", "Interview explanation"],
-      "interview_focus": "Describe the screen-reader experience out loud, stop by stop."
+      "required_patterns": [
+        "Logical heading structure",
+        "Announced live updates",
+        "Descriptive step labels",
+        "Replan flow",
+        "Offline fallback"
+      ],
+      "deliverables": [
+        "Trip flow",
+        "Non-visual interaction model",
+        "Disruption states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Describe the screen-reader experience out loud, stop by stop.",
+      "display_title": "Reroute with confidence.",
+      "display_brief": "Help a screen reader user follow a trip and recover when a delay changes the route.",
+      "compact_brief": "Help a screen reader user replan a trip after a delay.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-012",
@@ -164,9 +377,29 @@
       "problem": "Design a multi-step benefits application that prevents errors up front and makes recovery obvious when documents are missing.",
       "ai_capability": "",
       "watch_for": "Dead ends where the user can't tell what's wrong or what to do next",
-      "required_patterns": ["Progress indicator", "Plain-language help", "Inline validation", "Save and resume", "Document checklist", "Error recovery path"],
-      "deliverables": ["Application flow", "2-3 screens", "Failure-path design", "Interview explanation"],
-      "interview_focus": "Explain how the design fails gracefully - that's the real test."
+      "required_patterns": [
+        "Progress indicator",
+        "Plain-language help",
+        "Inline validation",
+        "Save and resume",
+        "Document checklist",
+        "Error recovery path"
+      ],
+      "deliverables": [
+        "Application flow",
+        "2-3 screens",
+        "Failure-path design",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how the design fails gracefully - that's the real test.",
+      "display_title": "Keep the path open.",
+      "display_brief": "A document is missing. Design a benefits form that helps people recover without losing progress.",
+      "compact_brief": "Help a benefits applicant recover from a missing document.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-013",
@@ -178,9 +411,28 @@
       "problem": "Design a roles-and-permissions experience where an admin can confidently answer: who can do what, and why?",
       "ai_capability": "",
       "watch_for": "A checkbox grid nobody can reason about",
-      "required_patterns": ["Role templates", "Effective-permissions preview", "Diff and confirm before apply", "Search by person or capability", "Audit trail"],
-      "deliverables": ["Core screens", "Mental-model rationale", "High-stakes states", "Interview explanation"],
-      "interview_focus": "Show how the admin verifies a change did what they intended."
+      "required_patterns": [
+        "Role templates",
+        "Effective-permissions preview",
+        "Diff and confirm before apply",
+        "Search by person or capability",
+        "Audit trail"
+      ],
+      "deliverables": [
+        "Core screens",
+        "Mental-model rationale",
+        "High-stakes states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how the admin verifies a change did what they intended.",
+      "display_title": "Who can do what?",
+      "display_brief": "Help an admin understand who has access, what they can do, and why.",
+      "compact_brief": "Help an admin understand and change a person's permissions.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-014",
@@ -192,9 +444,29 @@
       "problem": "Design an approval workflow where routine requests move fast and unusual ones get real scrutiny.",
       "ai_capability": "",
       "watch_for": "Rubber-stamping - the interface making approve the path of least attention",
-      "required_patterns": ["Triage queue", "Policy-check summary", "Exception highlighting", "Delegation", "Decision notes", "Audit trail"],
-      "deliverables": ["Approval flow", "2-3 screens", "Attention design rationale", "Interview explanation"],
-      "interview_focus": "Explain how the design directs attention to the 5% that matters."
+      "required_patterns": [
+        "Triage queue",
+        "Policy-check summary",
+        "Exception highlighting",
+        "Delegation",
+        "Decision notes",
+        "Audit trail"
+      ],
+      "deliverables": [
+        "Approval flow",
+        "2-3 screens",
+        "Attention design rationale",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how the design directs attention to the 5% that matters.",
+      "display_title": "Give risks attention.",
+      "display_brief": "Design approvals so routine requests move quickly and unusual ones get real scrutiny.",
+      "compact_brief": "Speed up routine approvals while keeping unusual requests visible.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-015",
@@ -206,9 +478,29 @@
       "problem": "Design an import experience that turns 800 validation errors into a manageable, fixable job instead of a wall of failure.",
       "ai_capability": "",
       "watch_for": "Error lists that scale visually but not cognitively",
-      "required_patterns": ["Field mapping", "Validation summary by type", "Bulk-fix actions", "Partial import choice", "Progress and resume", "Result report"],
-      "deliverables": ["Import flow", "Error-handling screens", "Recovery states", "Interview explanation"],
-      "interview_focus": "Walk through the moment the user sees 800 errors - then what?"
+      "required_patterns": [
+        "Field mapping",
+        "Validation summary by type",
+        "Bulk-fix actions",
+        "Partial import choice",
+        "Progress and resume",
+        "Result report"
+      ],
+      "deliverables": [
+        "Import flow",
+        "Error-handling screens",
+        "Recovery states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Walk through the moment the user sees 800 errors - then what?",
+      "display_title": "800 errors. One plan.",
+      "display_brief": "Turn a failed data import into a manageable sequence of fixes.",
+      "compact_brief": "Turn hundreds of data-import errors into manageable fixes.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-016",
@@ -220,9 +512,29 @@
       "problem": "Design a structured status composer with sections for progress, blockers, decisions, and next steps - as a real component, not just a screen.",
       "ai_capability": "",
       "watch_for": "States you forgot to design: autosave conflicts, half-filled sections, stale drafts",
-      "required_patterns": ["Structured input", "Autosave", "Validation", "Preview", "Empty, error, and loading states", "Component API sketch"],
-      "deliverables": ["Screen concept", "Component breakdown", "State model", "Implementation-aware rationale"],
-      "interview_focus": "Present the state model like you'd hand it to an engineer - because you are one."
+      "required_patterns": [
+        "Structured input",
+        "Autosave",
+        "Validation",
+        "Preview",
+        "Empty, error, and loading states",
+        "Component API sketch"
+      ],
+      "deliverables": [
+        "Screen concept",
+        "Component breakdown",
+        "State model",
+        "Implementation-aware rationale"
+      ],
+      "interview_focus": "Present the state model like you'd hand it to an engineer - because you are one.",
+      "display_title": "Make status useful.",
+      "display_brief": "Build a reusable composer for progress, blockers, decisions, and next steps.",
+      "compact_brief": "Design a reusable status composer for progress and blockers.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-017",
@@ -234,9 +546,29 @@
       "problem": "Design a theme builder that lets a non-designer pick brand colors and typography while the system quietly guarantees accessible, coherent results.",
       "ai_capability": "",
       "watch_for": "Freedom that lets users build something broken",
-      "required_patterns": ["Token-based controls", "Live preview", "Contrast guardrails", "Sensible defaults", "Reset and undo", "Token export"],
-      "deliverables": ["Builder screen", "Guardrail design", "Token structure", "Interview explanation"],
-      "interview_focus": "Explain where you constrained the user on purpose."
+      "required_patterns": [
+        "Token-based controls",
+        "Live preview",
+        "Contrast guardrails",
+        "Sensible defaults",
+        "Reset and undo",
+        "Token export"
+      ],
+      "deliverables": [
+        "Builder screen",
+        "Guardrail design",
+        "Token structure",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain where you constrained the user on purpose.",
+      "display_title": "A theme that works.",
+      "display_brief": "Help a non-designer choose colors and type while keeping the result accessible.",
+      "compact_brief": "Help a non-designer build an accessible visual theme.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-018",
@@ -248,9 +580,29 @@
       "problem": "Design a notification preferences center that helps users tune signal from noise without reading a settings matrix like a tax form.",
       "ai_capability": "",
       "watch_for": "The all-or-nothing trap: users flip the master switch and disappear",
-      "required_patterns": ["Grouped defaults", "Per-channel overrides", "Digest option", "Preview of consequences", "Bulk actions", "Saved-state feedback"],
-      "deliverables": ["Preferences screen", "Component structure", "Scaling rationale", "Interview explanation"],
-      "interview_focus": "Show how the component scales when event types double."
+      "required_patterns": [
+        "Grouped defaults",
+        "Per-channel overrides",
+        "Digest option",
+        "Preview of consequences",
+        "Bulk actions",
+        "Saved-state feedback"
+      ],
+      "deliverables": [
+        "Preferences screen",
+        "Component structure",
+        "Scaling rationale",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how the component scales when event types double.",
+      "display_title": "Quiet the noise.",
+      "display_brief": "Help people choose useful notifications without deciphering a settings matrix.",
+      "compact_brief": "Make notification preferences understandable and easy to change.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-019",
@@ -262,9 +614,29 @@
       "problem": "Design the information architecture for a learning library so people can browse by goal, search in their own words, and confidently choose what to learn next.",
       "ai_capability": "",
       "watch_for": "A taxonomy that mirrors the company org chart instead of the learner's mental model",
-      "required_patterns": ["Navigation model", "User-centered taxonomy", "Search and filters", "Content labels", "No-result recovery", "Findability test plan"],
-      "deliverables": ["Sitemap", "Taxonomy rationale", "Key browse/search screen", "Validation plan"],
-      "interview_focus": "Defend your grouping and labels using a card-sort or tree-test plan."
+      "required_patterns": [
+        "Navigation model",
+        "User-centered taxonomy",
+        "Search and filters",
+        "Content labels",
+        "No-result recovery",
+        "Findability test plan"
+      ],
+      "deliverables": [
+        "Sitemap",
+        "Taxonomy rationale",
+        "Key browse/search screen",
+        "Validation plan"
+      ],
+      "interview_focus": "Defend your grouping and labels using a card-sort or tree-test plan.",
+      "display_title": "Find your next lesson.",
+      "display_brief": "Organize a learning library around goals and the words learners actually use.",
+      "compact_brief": "Help learners find their next lesson using their own words.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-020",
@@ -276,9 +648,29 @@
       "problem": "Reorganize a patient portal so people can distinguish information to read from actions to complete, without needing to understand the hospital's departments.",
       "ai_capability": "",
       "watch_for": "One inbox that mixes urgent care tasks with receipts and informational updates",
-      "required_patterns": ["Content inventory", "Task-versus-reference model", "Cross-linking", "Priority labels", "Wayfinding", "Governance rules"],
-      "deliverables": ["Content model", "Navigation structure", "Portal home concept", "Migration rationale"],
-      "interview_focus": "Show how a new result becomes findable today and six months later."
+      "required_patterns": [
+        "Content inventory",
+        "Task-versus-reference model",
+        "Cross-linking",
+        "Priority labels",
+        "Wayfinding",
+        "Governance rules"
+      ],
+      "deliverables": [
+        "Content model",
+        "Navigation structure",
+        "Portal home concept",
+        "Migration rationale"
+      ],
+      "interview_focus": "Show how a new result becomes findable today and six months later.",
+      "display_title": "Read it. Or act on it.",
+      "display_brief": "Organize a patient portal so information and required actions are easy to tell apart.",
+      "compact_brief": "Separate things to read from actions to take in a patient portal.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-021",
@@ -290,9 +682,29 @@
       "problem": "Design the information architecture for an enterprise knowledge hub that helps employees find the authoritative answer and understand why it applies to them.",
       "ai_capability": "",
       "watch_for": "Search results that rank popular but obsolete documents above the current source of truth",
-      "required_patterns": ["Metadata model", "Synonyms and aliases", "Authority signals", "Permission-aware navigation", "Lifecycle states", "Content governance"],
-      "deliverables": ["Metadata schema", "Navigation and search model", "Result-detail concept", "Governance workflow"],
-      "interview_focus": "Explain how your structure survives regional variants, renamed policies, and stale content."
+      "required_patterns": [
+        "Metadata model",
+        "Synonyms and aliases",
+        "Authority signals",
+        "Permission-aware navigation",
+        "Lifecycle states",
+        "Content governance"
+      ],
+      "deliverables": [
+        "Metadata schema",
+        "Navigation and search model",
+        "Result-detail concept",
+        "Governance workflow"
+      ],
+      "interview_focus": "Explain how your structure survives regional variants, renamed policies, and stale content.",
+      "display_title": "Which answer is right?",
+      "display_brief": "Help employees find the authoritative answer and understand why it applies to them.",
+      "compact_brief": "Help an employee find a trustworthy answer in a knowledge hub.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-022",
@@ -304,9 +716,29 @@
       "problem": "Design a recurring meal-delivery flow that lets a caregiver adjust recipients, dietary needs, dates, and quantities without rebuilding every order.",
       "ai_capability": "",
       "watch_for": "A convenient default sending the wrong meal to the wrong person",
-      "required_patterns": ["Recurring order overview", "Recipient profiles", "Schedule editor", "Dietary safeguards", "Change summary", "Confirmation state"],
-      "deliverables": ["Core flow", "2-3 screens", "Change and cancellation states", "Tradeoff rationale"],
-      "interview_focus": "Explain how the design makes repetition fast without hiding consequential changes."
+      "required_patterns": [
+        "Recurring order overview",
+        "Recipient profiles",
+        "Schedule editor",
+        "Dietary safeguards",
+        "Change summary",
+        "Confirmation state"
+      ],
+      "deliverables": [
+        "Core flow",
+        "2-3 screens",
+        "Change and cancellation states",
+        "Tradeoff rationale"
+      ],
+      "interview_focus": "Explain how the design makes repetition fast without hiding consequential changes.",
+      "display_title": "Change one meal.",
+      "display_brief": "Help a caregiver adjust recurring meal deliveries without rebuilding every order.",
+      "compact_brief": "Help a caregiver change a recurring meal order without starting over.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-023",
@@ -318,9 +750,29 @@
       "problem": "Design a group ticket-buying flow where one organizer can propose seats, collect decisions, and complete the purchase before availability changes.",
       "ai_capability": "",
       "watch_for": "Unclear ownership when a hold expires or one person drops out",
-      "required_patterns": ["Seat proposal", "Temporary hold state", "Invite and response status", "Payment coordination", "Expiry recovery", "Purchase confirmation"],
-      "deliverables": ["Group flow", "2-3 screens", "Expiry states", "Coordination rationale"],
-      "interview_focus": "Show what happens when one person has not responded and the hold is about to expire."
+      "required_patterns": [
+        "Seat proposal",
+        "Temporary hold state",
+        "Invite and response status",
+        "Payment coordination",
+        "Expiry recovery",
+        "Purchase confirmation"
+      ],
+      "deliverables": [
+        "Group flow",
+        "2-3 screens",
+        "Expiry states",
+        "Coordination rationale"
+      ],
+      "interview_focus": "Show what happens when one person has not responded and the hold is about to expire.",
+      "display_title": "Get everyone seated.",
+      "display_brief": "Help a group choose seats and finish buying tickets before availability changes.",
+      "compact_brief": "Help a group agree on seats before tickets sell out.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-024",
@@ -332,9 +784,29 @@
       "problem": "Design a temporary access flow for guests, cleaners, or delivery workers that is fast to create and easy to revoke.",
       "ai_capability": "",
       "watch_for": "Access remaining active longer or reaching more doors than intended",
-      "required_patterns": ["Access type selection", "Date and door scope", "Guest handoff", "Active access list", "Revoke action", "Entry history"],
-      "deliverables": ["Core flow", "2-3 screens", "Expiry and failure states", "Security rationale"],
-      "interview_focus": "Explain how the design keeps temporary access understandable after several passes exist."
+      "required_patterns": [
+        "Access type selection",
+        "Date and door scope",
+        "Guest handoff",
+        "Active access list",
+        "Revoke action",
+        "Entry history"
+      ],
+      "deliverables": [
+        "Core flow",
+        "2-3 screens",
+        "Expiry and failure states",
+        "Security rationale"
+      ],
+      "interview_focus": "Explain how the design keeps temporary access understandable after several passes exist.",
+      "display_title": "Let the right person in.",
+      "display_brief": "Make temporary home access easy to create, understand, and revoke.",
+      "compact_brief": "Make temporary home access easy to grant and revoke.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-025",
@@ -346,9 +818,29 @@
       "problem": "Design an AI-assisted support workspace that summarizes the case, finds relevant policy, and drafts a response while keeping the agent accountable.",
       "ai_capability": "Summarizes the conversation, retrieves policy, and proposes a resolution",
       "watch_for": "A polished draft concealing an outdated or inapplicable policy",
-      "required_patterns": ["Case summary", "Evidence links", "Policy citations", "Editable draft", "Approval gate", "Decision record"],
-      "deliverables": ["Resolution flow", "AI workspace", "Trust safeguards", "Interview explanation"],
-      "interview_focus": "Show how the agent notices, corrects, and records a wrong policy recommendation."
+      "required_patterns": [
+        "Case summary",
+        "Evidence links",
+        "Policy citations",
+        "Editable draft",
+        "Approval gate",
+        "Decision record"
+      ],
+      "deliverables": [
+        "Resolution flow",
+        "AI workspace",
+        "Trust safeguards",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how the agent notices, corrects, and records a wrong policy recommendation.",
+      "display_title": "Keep the agent in charge.",
+      "display_brief": "Help a support agent verify an AI summary, check policy, and edit a draft reply.",
+      "compact_brief": "Help support agents verify and edit an AI-drafted reply.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-026",
@@ -360,9 +852,29 @@
       "problem": "Design an AI-assisted lesson adaptation flow that creates reading-level variants while helping the teacher verify facts, tone, and learning objectives.",
       "ai_capability": "Rewrites lesson material and explains major changes",
       "watch_for": "Simplification removing essential meaning or introducing factual errors",
-      "required_patterns": ["Source lesson view", "Variant comparison", "Change explanation", "Fact-check cues", "Edit controls", "Publish approval"],
-      "deliverables": ["Adaptation flow", "Comparison screen", "Safeguards", "Interview explanation"],
-      "interview_focus": "Explain how the teacher can verify quality without rereading every sentence."
+      "required_patterns": [
+        "Source lesson view",
+        "Variant comparison",
+        "Change explanation",
+        "Fact-check cues",
+        "Edit controls",
+        "Publish approval"
+      ],
+      "deliverables": [
+        "Adaptation flow",
+        "Comparison screen",
+        "Safeguards",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how the teacher can verify quality without rereading every sentence.",
+      "display_title": "Adapt without distortion.",
+      "display_brief": "Help a teacher verify facts and learning goals in an AI-adapted lesson.",
+      "compact_brief": "Help a teacher verify an AI-adapted lesson before sharing it.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-027",
@@ -374,9 +886,29 @@
       "problem": "Design an AI-assisted applicant review flow that groups candidates by job evidence and makes ranking assumptions visible and challengeable.",
       "ai_capability": "Extracts role evidence and suggests a review order",
       "watch_for": "Proxy signals recreating bias behind an apparently neutral score",
-      "required_patterns": ["Evidence-based queue", "Criteria controls", "Source excerpts", "Uncertainty indicator", "Override and notes", "Fairness audit"],
-      "deliverables": ["Review flow", "Criteria model", "Bias safeguards", "Interview explanation"],
-      "interview_focus": "Show how a recruiter investigates and overturns a questionable ranking."
+      "required_patterns": [
+        "Evidence-based queue",
+        "Criteria controls",
+        "Source excerpts",
+        "Uncertainty indicator",
+        "Override and notes",
+        "Fairness audit"
+      ],
+      "deliverables": [
+        "Review flow",
+        "Criteria model",
+        "Bias safeguards",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how a recruiter investigates and overturns a questionable ranking.",
+      "display_title": "Challenge the ranking.",
+      "display_brief": "Help hiring staff inspect job evidence and challenge AI ranking assumptions.",
+      "compact_brief": "Help hiring staff question AI rankings using job evidence.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-028",
@@ -388,9 +920,29 @@
       "problem": "Design a donor-health dashboard that helps a fundraising director decide who needs attention and what action to take next.",
       "ai_capability": "",
       "watch_for": "High-value donors dominating the view while retention risk stays hidden",
-      "required_patterns": ["Retention signals", "Priority segments", "Reason-for-risk detail", "Outreach queue", "Outcome tracking", "Data freshness state"],
-      "deliverables": ["Dashboard layout", "Prioritization logic", "Key states", "Hierarchy rationale"],
-      "interview_focus": "Explain how the dashboard turns limited outreach capacity into a defensible priority list."
+      "required_patterns": [
+        "Retention signals",
+        "Priority segments",
+        "Reason-for-risk detail",
+        "Outreach queue",
+        "Outcome tracking",
+        "Data freshness state"
+      ],
+      "deliverables": [
+        "Dashboard layout",
+        "Prioritization logic",
+        "Key states",
+        "Hierarchy rationale"
+      ],
+      "interview_focus": "Explain how the dashboard turns limited outreach capacity into a defensible priority list.",
+      "display_title": "Who needs a call?",
+      "display_brief": "Help a fundraiser spot donors who need attention and choose a useful next action.",
+      "compact_brief": "Help a fundraiser see which donors need attention next.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-029",
@@ -402,9 +954,29 @@
       "problem": "Design a post-launch dashboard that tells a creator what worked, what underperformed, and what to try in the next release.",
       "ai_capability": "",
       "watch_for": "Engagement totals encouraging shallow comparisons across unequal audiences",
-      "required_patterns": ["Goal-based summary", "Normalized comparisons", "Audience breakdown", "Content timeline", "Next-action insight", "Data caveats"],
-      "deliverables": ["Dashboard layout", "Metric model", "Insight states", "Interview explanation"],
-      "interview_focus": "Show how you prevent vanity metrics from becoming the product's advice."
+      "required_patterns": [
+        "Goal-based summary",
+        "Normalized comparisons",
+        "Audience breakdown",
+        "Content timeline",
+        "Next-action insight",
+        "Data caveats"
+      ],
+      "deliverables": [
+        "Dashboard layout",
+        "Metric model",
+        "Insight states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how you prevent vanity metrics from becoming the product's advice.",
+      "display_title": "Learn from the launch.",
+      "display_brief": "Show a creator what worked, what did not, and what to try in the next release.",
+      "compact_brief": "Turn launch results into a useful decision for the next release.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-030",
@@ -416,9 +988,29 @@
       "problem": "Design an operations dashboard that separates likely leaks from bad sensor readings and helps assign the right field response.",
       "ai_capability": "",
       "watch_for": "False precision causing crews to chase unreliable alerts",
-      "required_patterns": ["Map and list coordination", "Confidence cues", "Severity ranking", "Sensor history", "Crew assignment", "Resolved-state feedback"],
-      "deliverables": ["Dashboard layout", "Alert logic", "Uncertainty states", "Operational rationale"],
-      "interview_focus": "Explain how the supervisor chooses action when severity is high but confidence is low."
+      "required_patterns": [
+        "Map and list coordination",
+        "Confidence cues",
+        "Severity ranking",
+        "Sensor history",
+        "Crew assignment",
+        "Resolved-state feedback"
+      ],
+      "deliverables": [
+        "Dashboard layout",
+        "Alert logic",
+        "Uncertainty states",
+        "Operational rationale"
+      ],
+      "interview_focus": "Explain how the supervisor chooses action when severity is high but confidence is low.",
+      "display_title": "A leak or a bad sensor?",
+      "display_brief": "Help an operator distinguish likely leaks from faulty readings and assign a response.",
+      "compact_brief": "Help an operator distinguish leaks from faulty sensor readings.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-031",
@@ -430,9 +1022,30 @@
       "problem": "Design a live-session experience that combines captions, speaker identity, slides, and recovery when transcription quality drops.",
       "ai_capability": "",
       "watch_for": "Critical meaning disappearing when captions lag behind slide changes",
-      "required_patterns": ["Live captions", "Speaker labels", "Caption delay status", "Transcript navigation", "Correction reporting", "Fallback channel"],
-      "deliverables": ["Session view", "Failure states", "Accessibility rationale", "Interview explanation"],
-      "interview_focus": "Walk through what the attendee experiences when captions fail during an important announcement."
+      "required_patterns": [
+        "Live captions",
+        "Speaker labels",
+        "Caption delay status",
+        "Transcript navigation",
+        "Correction reporting",
+        "Fallback channel"
+      ],
+      "deliverables": [
+        "Session view",
+        "Failure states",
+        "Accessibility rationale",
+        "Interview explanation"
+      ],
+      "interview_focus": "Walk through what the attendee experiences when captions fail during an important announcement.",
+      "display_title": "Keep the conversation clear.",
+      "render_layout": "poster",
+      "display_brief": "Combine captions, speakers, and slides so people can recover when transcription falters.",
+      "compact_brief": "Help people follow a live session when captions become unreliable.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-032",
@@ -444,9 +1057,29 @@
       "problem": "Design a telehealth check-in and call experience that minimizes precise gestures and supports recovery from audio or camera problems.",
       "ai_capability": "",
       "watch_for": "Small transient controls making essential actions physically unreachable",
-      "required_patterns": ["Device check", "Large stable controls", "Keyboard sequence", "Permission recovery", "Alternative communication", "Rejoin state"],
-      "deliverables": ["Check-in flow", "Call controls", "Failure states", "Accessibility explanation"],
-      "interview_focus": "Describe the complete flow without relying on touch or pointer precision."
+      "required_patterns": [
+        "Device check",
+        "Large stable controls",
+        "Keyboard sequence",
+        "Permission recovery",
+        "Alternative communication",
+        "Rejoin state"
+      ],
+      "deliverables": [
+        "Check-in flow",
+        "Call controls",
+        "Failure states",
+        "Accessibility explanation"
+      ],
+      "interview_focus": "Describe the complete flow without relying on touch or pointer precision.",
+      "display_title": "Join without precision.",
+      "display_brief": "Make telehealth easy to join with limited dexterity, including camera and audio recovery.",
+      "compact_brief": "Make a telehealth call easy to join with limited dexterity.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-033",
@@ -458,9 +1091,29 @@
       "problem": "Design a claim-submission flow that reduces memory burden, explains progress clearly, and makes returning after a break effortless.",
       "ai_capability": "",
       "watch_for": "A technically complete checklist that overwhelms users into stopping",
-      "required_patterns": ["Plain-language steps", "Save and resume", "Evidence checklist", "Progress recap", "Review before submit", "Assisted support path"],
-      "deliverables": ["Submission flow", "Return experience", "Cognitive load rationale", "Interview explanation"],
-      "interview_focus": "Show how the user understands what is done, what is next, and what can wait."
+      "required_patterns": [
+        "Plain-language steps",
+        "Save and resume",
+        "Evidence checklist",
+        "Progress recap",
+        "Review before submit",
+        "Assisted support path"
+      ],
+      "deliverables": [
+        "Submission flow",
+        "Return experience",
+        "Cognitive load rationale",
+        "Interview explanation"
+      ],
+      "interview_focus": "Show how the user understands what is done, what is next, and what can wait.",
+      "display_title": "Come back with confidence.",
+      "display_brief": "Help someone pause an insurance claim and return without remembering every detail.",
+      "compact_brief": "Help someone resume an insurance claim after a break.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-034",
@@ -472,9 +1125,29 @@
       "problem": "Design an incident command workspace that keeps ownership, decisions, system status, and stakeholder updates aligned during an outage.",
       "ai_capability": "",
       "watch_for": "A busy activity stream obscuring the current plan and accountable owner",
-      "required_patterns": ["Incident timeline", "Role ownership", "Current hypothesis", "Action tracker", "Decision log", "Stakeholder update"],
-      "deliverables": ["Command workspace", "State model", "Handoff states", "Interview explanation"],
-      "interview_focus": "Explain how a new responder gets oriented in under two minutes."
+      "required_patterns": [
+        "Incident timeline",
+        "Role ownership",
+        "Current hypothesis",
+        "Action tracker",
+        "Decision log",
+        "Stakeholder update"
+      ],
+      "deliverables": [
+        "Command workspace",
+        "State model",
+        "Handoff states",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how a new responder gets oriented in under two minutes.",
+      "display_title": "Keep the team aligned.",
+      "display_brief": "Bring incident ownership, decisions, status, and stakeholder updates into one clear workspace.",
+      "compact_brief": "Keep incident ownership and decisions clear during an outage.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-035",
@@ -486,9 +1159,29 @@
       "problem": "Design a vendor-onboarding workflow that shows what is blocked, who owns the next step, and which evidence can be reused.",
       "ai_capability": "",
       "watch_for": "A single progress percentage hiding a critical compliance blocker",
-      "required_patterns": ["Requirements by owner", "Evidence reuse", "Dependency status", "Review queue", "Exception handling", "Approval record"],
-      "deliverables": ["Onboarding flow", "Status overview", "Exception states", "Governance rationale"],
-      "interview_focus": "Show how the vendor manager distinguishes waiting from genuinely blocked."
+      "required_patterns": [
+        "Requirements by owner",
+        "Evidence reuse",
+        "Dependency status",
+        "Review queue",
+        "Exception handling",
+        "Approval record"
+      ],
+      "deliverables": [
+        "Onboarding flow",
+        "Status overview",
+        "Exception states",
+        "Governance rationale"
+      ],
+      "interview_focus": "Show how the vendor manager distinguishes waiting from genuinely blocked.",
+      "display_title": "Unblock the next step.",
+      "display_brief": "Show what blocks vendor onboarding, who owns it, and which evidence can be reused.",
+      "compact_brief": "Help a team identify and unblock the next vendor-onboarding step.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-036",
@@ -500,9 +1193,29 @@
       "problem": "Design a shift-planning experience that helps an operations planner resolve coverage gaps without creating hidden fairness or compliance problems.",
       "ai_capability": "",
       "watch_for": "A schedule that looks complete while repeatedly disadvantaging the same workers",
-      "required_patterns": ["Coverage view", "Constraint explanation", "Conflict resolution", "Fairness signals", "Change comparison", "Publish and notify"],
-      "deliverables": ["Planning workspace", "Conflict states", "Fairness model", "Interview explanation"],
-      "interview_focus": "Explain how the planner evaluates the consequences of an apparently easy fix."
+      "required_patterns": [
+        "Coverage view",
+        "Constraint explanation",
+        "Conflict resolution",
+        "Fairness signals",
+        "Change comparison",
+        "Publish and notify"
+      ],
+      "deliverables": [
+        "Planning workspace",
+        "Conflict states",
+        "Fairness model",
+        "Interview explanation"
+      ],
+      "interview_focus": "Explain how the planner evaluates the consequences of an apparently easy fix.",
+      "display_title": "Cover the shift fairly.",
+      "display_brief": "Help a planner fill staffing gaps without hiding fairness or compliance problems.",
+      "compact_brief": "Help a planner fill a shift gap while making fairness visible.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-037",
@@ -514,9 +1227,29 @@
       "problem": "Design a reusable data-table component for filtering, selecting, editing, and safely applying changes across hundreds of records.",
       "ai_capability": "",
       "watch_for": "Selection state becoming ambiguous after filters or pages change",
-      "required_patterns": ["Persistent selection", "Bulk action bar", "Inline validation", "Change preview", "Undo", "Component state API"],
-      "deliverables": ["Table concept", "Component anatomy", "State model", "Implementation rationale"],
-      "interview_focus": "Explain exactly what remains selected when the user changes a filter."
+      "required_patterns": [
+        "Persistent selection",
+        "Bulk action bar",
+        "Inline validation",
+        "Change preview",
+        "Undo",
+        "Component state API"
+      ],
+      "deliverables": [
+        "Table concept",
+        "Component anatomy",
+        "State model",
+        "Implementation rationale"
+      ],
+      "interview_focus": "Explain exactly what remains selected when the user changes a filter.",
+      "display_title": "Change many. Safely.",
+      "display_brief": "Design a reusable table for filtering, selecting, editing, and safely changing many records.",
+      "compact_brief": "Design safe bulk editing for a reusable data table.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-038",
@@ -528,9 +1261,29 @@
       "problem": "Design a component migration assistant that helps teams find deprecated usage, understand replacements, and track rollout safely.",
       "ai_capability": "",
       "watch_for": "A migration checklist ignoring visual or behavioral differences",
-      "required_patterns": ["Usage inventory", "Replacement guidance", "Compatibility status", "Before-after preview", "Progress tracking", "Exception notes"],
-      "deliverables": ["Migration dashboard", "Component model", "Edge states", "Implementation explanation"],
-      "interview_focus": "Show how a team decides whether a replacement is truly equivalent."
+      "required_patterns": [
+        "Usage inventory",
+        "Replacement guidance",
+        "Compatibility status",
+        "Before-after preview",
+        "Progress tracking",
+        "Exception notes"
+      ],
+      "deliverables": [
+        "Migration dashboard",
+        "Component model",
+        "Edge states",
+        "Implementation explanation"
+      ],
+      "interview_focus": "Show how a team decides whether a replacement is truly equivalent.",
+      "display_title": "Make the upgrade clear.",
+      "display_brief": "Help teams find old components, understand replacements, and track a safe migration.",
+      "compact_brief": "Help teams replace deprecated components without losing track.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-039",
@@ -542,9 +1295,29 @@
       "problem": "Design an offline-first inspection form component that saves evidence locally, communicates sync state, and resolves conflicting edits.",
       "ai_capability": "",
       "watch_for": "A reassuring saved message referring only to unsynced local data",
-      "required_patterns": ["Local save state", "Offline indicator", "Attachment queue", "Sync progress", "Conflict resolution", "Retry controls"],
-      "deliverables": ["Inspection flow", "State machine", "Conflict UI", "Implementation rationale"],
-      "interview_focus": "Explain every state between tapping save offline and confirmed server sync."
+      "required_patterns": [
+        "Local save state",
+        "Offline indicator",
+        "Attachment queue",
+        "Sync progress",
+        "Conflict resolution",
+        "Retry controls"
+      ],
+      "deliverables": [
+        "Inspection flow",
+        "State machine",
+        "Conflict UI",
+        "Implementation rationale"
+      ],
+      "interview_focus": "Explain every state between tapping save offline and confirmed server sync.",
+      "display_title": "Save before you sync.",
+      "display_brief": "Design an inspection form that saves offline, shows sync state, and resolves conflicts.",
+      "compact_brief": "Help inspectors save offline and resolve conflicting edits.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-040",
@@ -556,9 +1329,29 @@
       "problem": "Design the information architecture for a city services site organized around resident needs rather than government departments.",
       "ai_capability": "",
       "watch_for": "Everyday tasks hidden behind official language and agency boundaries",
-      "required_patterns": ["Top-task taxonomy", "Audience pathways", "Plain-language labels", "Cross-department search", "Related services", "Governance model"],
-      "deliverables": ["Sitemap", "Taxonomy rationale", "Findability screen", "Validation plan"],
-      "interview_focus": "Defend how someone finds the right service without knowing who provides it."
+      "required_patterns": [
+        "Top-task taxonomy",
+        "Audience pathways",
+        "Plain-language labels",
+        "Cross-department search",
+        "Related services",
+        "Governance model"
+      ],
+      "deliverables": [
+        "Sitemap",
+        "Taxonomy rationale",
+        "Findability screen",
+        "Validation plan"
+      ],
+      "interview_focus": "Defend how someone finds the right service without knowing who provides it.",
+      "display_title": "Start with a resident.",
+      "display_brief": "Organize city services around what residents need, rather than department names.",
+      "compact_brief": "Organize a city services site around residents' needs.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-041",
@@ -570,9 +1363,29 @@
       "problem": "Design the information architecture for a streaming home experience that supports personal taste, shared viewing, age suitability, and unfinished content.",
       "ai_capability": "",
       "watch_for": "Recommendation rows becoming an endless taxonomy with no clear wayfinding",
-      "required_patterns": ["Profile model", "Content taxonomy", "Contextual browse paths", "Continue-watching rules", "Suitability labels", "Search recovery"],
-      "deliverables": ["Navigation model", "Content hierarchy", "Home concept", "Research plan"],
-      "interview_focus": "Explain how the structure changes when the intent is family viewing rather than personal viewing."
+      "required_patterns": [
+        "Profile model",
+        "Content taxonomy",
+        "Contextual browse paths",
+        "Continue-watching rules",
+        "Suitability labels",
+        "Search recovery"
+      ],
+      "deliverables": [
+        "Navigation model",
+        "Content hierarchy",
+        "Home concept",
+        "Research plan"
+      ],
+      "interview_focus": "Explain how the structure changes when the intent is family viewing rather than personal viewing.",
+      "display_title": "Choose together.",
+      "display_brief": "Organize a streaming home for personal taste, shared viewing, ages, and unfinished shows.",
+      "compact_brief": "Help a household find something suitable to watch together.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-042",
@@ -584,9 +1397,426 @@
       "problem": "Design the information architecture for developer documentation so users can learn a concept, complete a task, and recover from an error without losing context.",
       "ai_capability": "",
       "watch_for": "Search mixing obsolete versions and concept pages with current task guidance",
-      "required_patterns": ["Documentation taxonomy", "Version model", "Task-based navigation", "Reference cross-links", "Error lookup", "Content governance"],
-      "deliverables": ["Documentation map", "Navigation model", "Task page concept", "Validation plan"],
-      "interview_focus": "Show how a developer moves between a guide, reference, and error explanation while staying on the right version."
+      "required_patterns": [
+        "Documentation taxonomy",
+        "Version model",
+        "Task-based navigation",
+        "Reference cross-links",
+        "Error lookup",
+        "Content governance"
+      ],
+      "deliverables": [
+        "Documentation map",
+        "Navigation model",
+        "Task page concept",
+        "Validation plan"
+      ],
+      "interview_focus": "Show how a developer moves between a guide, reference, and error explanation while staying on the right version.",
+      "display_title": "Find the way forward.",
+      "display_brief": "Connect concepts, instructions, and troubleshooting so developers can recover without losing context.",
+      "compact_brief": "Connect developer guides and troubleshooting without dead ends.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-043",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Think of an app you used today. Identify one confusing step and sketch a clearer alternative.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Fix one frustrating step.",
+      "render_layout": "poster",
+      "display_brief": "Think of an app you used today. Identify one confusing step and sketch a clearer alternative.",
+      "compact_brief": "Find one confusing step in an app. Sketch a clearer alternative.",
+      "visual_key": "friction",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-044",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Notice a form that asks for the same information twice. Redesign it to remove that extra work.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Why enter it twice?",
+      "display_brief": "Notice a form that asks for the same information twice. Redesign it to remove that extra work.",
+      "compact_brief": "Find repeated data entry. Redesign the flow to remove it.",
+      "visual_key": "friction",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-045",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a label you had to interpret. Rewrite it and show how you would check understanding.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make the label make sense.",
+      "display_brief": "Find a label you had to interpret. Rewrite it and show how you would check understanding.",
+      "compact_brief": "Find a confusing label. Rewrite it in words users understand.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-046",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Recall an action with unclear feedback. Design a state that confirms what happened and what comes next.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Show what just happened.",
+      "display_brief": "Recall an action with unclear feedback. Design a state that confirms what happened and what comes next.",
+      "compact_brief": "Find unclear feedback. Show what happened and what comes next.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-047",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a search with no useful results. Help the person recover without starting over.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Remove a dead end.",
+      "display_brief": "Find a search with no useful results. Help the person recover without starting over.",
+      "compact_brief": "Find an unhelpful empty search. Design a useful next step.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-048",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Recall an everyday mistake in an interface. Design a clear, low-effort way to undo it.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make a mistake fixable.",
+      "display_brief": "Recall an everyday mistake in an interface. Design a clear, low-effort way to undo it.",
+      "compact_brief": "Find an interface mistake that is hard to undo. Make recovery easy.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-049",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a screen that pressures people to accept. Make accepting and declining equally clear.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make saying no easy.",
+      "display_brief": "Find a screen that pressures people to accept. Make accepting and declining equally clear.",
+      "compact_brief": "Find a pressured choice. Make accepting and declining equally clear.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-050",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Notice a checkout that reveals fees late. Redesign it so the total is clear before commitment.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Show the full price.",
+      "display_brief": "Notice a checkout that reveals fees late. Redesign it so the total is clear before commitment.",
+      "compact_brief": "Find late checkout fees. Show the full price before commitment.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-051",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a difficult cancellation flow. Redesign it so people can leave without unnecessary obstacles.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Let people leave.",
+      "display_brief": "Find a difficult cancellation flow. Redesign it so people can leave without unnecessary obstacles.",
+      "compact_brief": "Find a difficult cancellation flow. Remove unnecessary obstacles.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-052",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find preselected or bundled consent. Design separate, understandable choices people control.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make consent a choice.",
+      "display_brief": "Find preselected or bundled consent. Design separate, understandable choices people control.",
+      "compact_brief": "Find bundled consent. Give people separate, understandable choices.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-053",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a countdown or scarcity claim that pressures a decision. Offer truthful, useful context instead.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Remove the false urgency.",
+      "display_brief": "Find a countdown or scarcity claim that pressures a decision. Offer truthful, useful context instead.",
+      "compact_brief": "Find pressure from urgency cues. Replace it with truthful context.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-054",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a request for more personal data than a task needs. Explain the purpose and make extras optional.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Explain what is shared.",
+      "display_brief": "Find a request for more personal data than a task needs. Explain the purpose and make extras optional.",
+      "compact_brief": "Find excessive data collection. Explain it and make extras optional.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     }
   ]
 }

@@ -1,6 +1,10 @@
 # Design Drill Deck
 
+**Local redesign preview (September 2026):** 54 curated exercises, eight reusable illustrations, readable Visual Brief/Poster layouts, and optional capped API generation. Start with [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md). This redesign has not been pushed or installed on the live device. The original implementation notes below describe the earlier release.
+
 A TRMNL plugin that shows one realistic product-design interview drill per day. The 42-prompt bank spans Core UX, AI-Integrated Interfaces, Dashboard/Data UX, Accessibility, Enterprise UX, UX Engineering, and Information Architecture.
+
+For design decisions, review history, and current recipe status, see [`PROJECT.md`](PROJECT.md). Questions about plugin setup and custom fields: [TRMNL custom plugin form builder](https://help.trmnl.com/en/articles/10513740-custom-plugin-form-builder#h_02dd8f84a9).
 
 ## Prompt source
 
@@ -94,6 +98,8 @@ python -m http.server 4173
 
 Then open <http://localhost:4173/design-drill-deck/preview/>. The toolbar can preview every prompt, focus area, practice level, and rotation mode.
 
+The preview also supports deep links for automated checks: `?device=x-portrait&drill=4&level=advanced` preselects the toolbar, and `?empty=1` simulates an empty feed to exercise the layouts' fallback state. Icon stroke weights and layout fitting are verified against the OG 1-bit and TRMNL X 4-bit fixtures in this preview; re-check on physical hardware after any icon change.
+
 ## Deploying the feed
 
 1. Create a GitHub repository named `design-drill-deck` and push this project.
@@ -106,11 +112,16 @@ GitHub may disable scheduled workflows in public repositories after extended ina
 
 ## Installing in TRMNL
 
-Import or create the private plugin using the files in `src/`. The important settings are already defined in `settings.yml`:
+The daily JSON feed is published from GitHub Pages. The Liquid markup must also be pasted into the private plugin (Pages does not update device layouts).
 
-- Strategy: `Polling`
-- Polling URL: the deployed GitHub Pages `daily.json`
-- Background refresh interval: `60` minutes (not displayed in the drill)
-- Layouts: `full`, `half_horizontal`, `half_vertical`, and `quadrant`
+1. Confirm `https://Tanzeel159.github.io/design-drill-deck/daily.json` returns JSON.
+2. In TRMNL, open the private plugin (or create one) and set:
+   - Strategy: `Polling`
+   - Polling URL: `https://Tanzeel159.github.io/design-drill-deck/daily.json`
+   - Refresh interval: `60` minutes
+3. Paste `src/shared.liquid` into **Shared**. TRMNL prepends this file to every view.
+4. Paste the four views: `full.liquid`, `half_horizontal.liquid`, `half_vertical.liquid`, `quadrant.liquid`.
+5. Copy `src/settings.yml` into the plugin form (focus area, practice level, prompt order). The form now includes Everyday UX and Dark Patterns.
+6. Save, force a refresh, and check OG plus TRMNL X portrait.
 
-After installation, users choose their focus area, practice level, and prompt order in the plugin settings form.
+A packed copy of those six files is built locally as `dist/design-drill-deck-trmnl.zip` (gitignored). Custom-field help: [plugin form builder](https://help.trmnl.com/en/articles/10513740-custom-plugin-form-builder#h_02dd8f84a9).

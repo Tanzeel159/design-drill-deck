@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "rotation_date": "2026-07-20",
-  "display_date": "2026-07-20T12:00:00",
+  "rotation_date": "2026-09-08",
+  "display_date": "2026-09-08T12:00:00",
   "timezone": "America/Chicago",
   "anchor_date": "2026-07-20",
-  "source_sha256": "834a45d7cba3333906d817b2ed453d89faf20bee298b054f63e9f07b6f675115",
+  "source_sha256": "aa4fa76f29d6b3d30cea7bea350e1521e7ece7bc13f61e0c420afc7644d2db0c",
   "default_rotation_mode": "smart_shuffle",
   "default_difficulty": "intermediate",
   "difficulty_levels": [
@@ -34,7 +34,7 @@
     {
       "key": "all",
       "label": "All categories",
-      "count": 42
+      "count": 54
     },
     {
       "key": "core_ux_flow",
@@ -70,378 +70,480 @@
       "key": "information_architecture",
       "label": "Information Architecture",
       "count": 6
+    },
+    {
+      "key": "everyday_ux",
+      "label": "Everyday UX",
+      "count": 6
+    },
+    {
+      "key": "dark_patterns",
+      "label": "Dark Patterns",
+      "count": 6
     }
   ],
   "daily_picks": {
     "smart_shuffle": {
       "all": {
         "beginner": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-048",
+          "drill_number": 48,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         },
         "intermediate": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-001",
+          "drill_number": 1,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         },
         "advanced": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-032",
+          "drill_number": 32,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         }
       },
       "core_ux_flow": {
         "beginner": {
-          "prompt_id": "ddd-023",
-          "drill_number": 5,
-          "position": 1,
+          "prompt_id": "ddd-001",
+          "drill_number": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-023",
-          "drill_number": 5,
-          "position": 1,
+          "prompt_id": "ddd-002",
+          "drill_number": 2,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-024",
-          "drill_number": 6,
-          "position": 1,
+          "prompt_id": "ddd-023",
+          "drill_number": 5,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "ai_integrated_interface": {
         "beginner": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-006",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-005",
+          "drill_number": 2,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-025",
+          "drill_number": 4,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "dashboard_data_ux": {
         "beginner": {
-          "prompt_id": "ddd-030",
-          "drill_number": 6,
-          "position": 1,
+          "prompt_id": "ddd-007",
+          "drill_number": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
           "prompt_id": "ddd-030",
           "drill_number": 6,
-          "position": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-028",
-          "drill_number": 4,
-          "position": 1,
+          "prompt_id": "ddd-029",
+          "drill_number": 5,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "accessibility_challenge": {
         "beginner": {
-          "prompt_id": "ddd-031",
-          "drill_number": 4,
-          "position": 1,
+          "prompt_id": "ddd-032",
+          "drill_number": 5,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-011",
-          "drill_number": 2,
-          "position": 1,
+          "prompt_id": "ddd-033",
+          "drill_number": 6,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-031",
-          "drill_number": 4,
-          "position": 1,
+          "prompt_id": "ddd-012",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "enterprise_ux": {
         "beginner": {
-          "prompt_id": "ddd-015",
-          "drill_number": 3,
-          "position": 1,
-          "pool_size": 6,
-          "cycle": 0
-        },
-        "intermediate": {
-          "prompt_id": "ddd-015",
-          "drill_number": 3,
-          "position": 1,
-          "pool_size": 6,
-          "cycle": 0
-        },
-        "advanced": {
           "prompt_id": "ddd-035",
           "drill_number": 5,
-          "position": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
+        },
+        "intermediate": {
+          "prompt_id": "ddd-036",
+          "drill_number": 6,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "advanced": {
+          "prompt_id": "ddd-036",
+          "drill_number": 6,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
         }
       },
       "ux_engineering": {
         "beginner": {
           "prompt_id": "ddd-018",
           "drill_number": 3,
-          "position": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-039",
-          "drill_number": 6,
-          "position": 1,
+          "prompt_id": "ddd-038",
+          "drill_number": 5,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-039",
-          "drill_number": 6,
-          "position": 1,
+          "prompt_id": "ddd-018",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "information_architecture": {
         "beginner": {
-          "prompt_id": "ddd-019",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-042",
+          "drill_number": 6,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-040",
-          "drill_number": 4,
-          "position": 1,
+          "prompt_id": "ddd-019",
+          "drill_number": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
           "prompt_id": "ddd-040",
           "drill_number": 4,
-          "position": 1,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
+        }
+      },
+      "everyday_ux": {
+        "beginner": {
+          "prompt_id": "ddd-048",
+          "drill_number": 6,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "intermediate": {
+          "prompt_id": "ddd-046",
+          "drill_number": 4,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "advanced": {
+          "prompt_id": "ddd-044",
+          "drill_number": 2,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        }
+      },
+      "dark_patterns": {
+        "beginner": {
+          "prompt_id": "ddd-053",
+          "drill_number": 5,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "intermediate": {
+          "prompt_id": "ddd-049",
+          "drill_number": 1,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "advanced": {
+          "prompt_id": "ddd-053",
+          "drill_number": 5,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
         }
       }
     },
     "sequential": {
       "all": {
         "beginner": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-054",
+          "drill_number": 54,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         },
         "intermediate": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-054",
+          "drill_number": 54,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         },
         "advanced": {
-          "prompt_id": "ddd-004",
-          "drill_number": 4,
-          "position": 1,
-          "pool_size": 42,
+          "prompt_id": "ddd-054",
+          "drill_number": 54,
+          "position": 51,
+          "pool_size": 54,
           "cycle": 0
         }
       },
       "core_ux_flow": {
         "beginner": {
-          "prompt_id": "ddd-001",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-003",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-001",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-003",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-001",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-003",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "ai_integrated_interface": {
         "beginner": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-006",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-006",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-004",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-006",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "dashboard_data_ux": {
         "beginner": {
-          "prompt_id": "ddd-007",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-009",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-007",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-009",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-007",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-009",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "accessibility_challenge": {
         "beginner": {
-          "prompt_id": "ddd-010",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-012",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-010",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-012",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-010",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-012",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "enterprise_ux": {
         "beginner": {
-          "prompt_id": "ddd-013",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-015",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-013",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-015",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-013",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-015",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "ux_engineering": {
         "beginner": {
-          "prompt_id": "ddd-016",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-018",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-016",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-018",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-016",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-018",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         }
       },
       "information_architecture": {
         "beginner": {
-          "prompt_id": "ddd-019",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-021",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "intermediate": {
-          "prompt_id": "ddd-019",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-021",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
         },
         "advanced": {
-          "prompt_id": "ddd-019",
-          "drill_number": 1,
-          "position": 1,
+          "prompt_id": "ddd-021",
+          "drill_number": 3,
+          "position": 3,
           "pool_size": 6,
-          "cycle": 0
+          "cycle": 8
+        }
+      },
+      "everyday_ux": {
+        "beginner": {
+          "prompt_id": "ddd-045",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "intermediate": {
+          "prompt_id": "ddd-045",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "advanced": {
+          "prompt_id": "ddd-045",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        }
+      },
+      "dark_patterns": {
+        "beginner": {
+          "prompt_id": "ddd-051",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "intermediate": {
+          "prompt_id": "ddd-051",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
+        },
+        "advanced": {
+          "prompt_id": "ddd-051",
+          "drill_number": 3,
+          "position": 3,
+          "pool_size": 6,
+          "cycle": 8
         }
       }
     }
@@ -470,7 +572,15 @@
         "Edge cases",
         "Tradeoff rationale"
       ],
-      "interview_focus": "Explain how you balanced speed against accidental purchases."
+      "interview_focus": "Explain how you balanced speed against accidental purchases.",
+      "display_title": "Reorder with care.",
+      "display_brief": "Design a grocery reorder flow that saves time without buying unwanted items again.",
+      "compact_brief": "Redesign grocery reordering to prevent unwanted repeat purchases.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-002",
@@ -495,7 +605,15 @@
         "Card content hierarchy",
         "Tradeoff rationale"
       ],
-      "interview_focus": "Walk through how you decided what belongs on the card versus the detail view."
+      "interview_focus": "Walk through how you decided what belongs on the card versus the detail view.",
+      "display_title": "Compare without tabs.",
+      "display_brief": "Help a traveler compare hotels by price, commute, cancellation, and perks in one place.",
+      "compact_brief": "Help a traveler compare hotels without opening several tabs.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-003",
@@ -520,7 +638,15 @@
         "Abandonment points map",
         "Tradeoff rationale"
       ],
-      "interview_focus": "Explain which steps you cut, deferred, or defaulted - and why."
+      "interview_focus": "Explain which steps you cut, deferred, or defaulted - and why.",
+      "display_title": "Make the first sale.",
+      "display_brief": "Help a first-time seller turn photos into a clear, fairly priced listing.",
+      "compact_brief": "Help a first-time seller publish a clear, fairly priced listing.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-004",
@@ -545,7 +671,15 @@
         "Safeguards",
         "Interview explanation"
       ],
-      "interview_focus": "Show exactly what the coordinator sees when the AI is wrong."
+      "interview_focus": "Show exactly what the coordinator sees when the AI is wrong.",
+      "display_title": "Help, then verify.",
+      "display_brief": "Design an AI intake review that flags missing patient details before staff schedule a visit.",
+      "compact_brief": "Help clinic staff verify AI flags before scheduling a patient.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-005",
@@ -571,7 +705,15 @@
         "Safeguards",
         "Interview explanation"
       ],
-      "interview_focus": "Defend where the human approval gate sits and what it costs."
+      "interview_focus": "Defend where the human approval gate sits and what it costs.",
+      "display_title": "Review with evidence.",
+      "display_brief": "Help a paralegal check AI-flagged clauses and prepare evidence for an attorney.",
+      "compact_brief": "Help a paralegal verify AI-flagged contract clauses with evidence.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-006",
@@ -597,7 +739,15 @@
         "Trust calibration design",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how the interface earns calibrated trust - not blind trust."
+      "interview_focus": "Explain how the interface earns calibrated trust - not blind trust.",
+      "display_title": "Explain the flag.",
+      "display_brief": "Help a fraud analyst see why a transaction was flagged and choose the right action.",
+      "compact_brief": "Help an analyst understand and act on a flagged transaction.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-007",
@@ -623,7 +773,15 @@
         "Key states",
         "Hierarchy rationale"
       ],
-      "interview_focus": "Justify your information hierarchy for a 5-minute glance."
+      "interview_focus": "Justify your information hierarchy for a 5-minute glance.",
+      "display_title": "What needs action?",
+      "display_brief": "Help a shipping manager separate delays that need action now from those that can wait.",
+      "compact_brief": "Help a manager decide which delayed shipments need action now.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-008",
@@ -648,7 +806,15 @@
         "Key states",
         "Interview explanation"
       ],
-      "interview_focus": "Explain what you left off the dashboard and why."
+      "interview_focus": "Explain what you left off the dashboard and why.",
+      "display_title": "Find the real signal.",
+      "display_brief": "Design a product dashboard that turns this week's metrics into a clear decision.",
+      "compact_brief": "Turn a noisy weekly product dashboard into one clear decision.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-009",
@@ -673,7 +839,15 @@
         "Key states",
         "Interview explanation"
       ],
-      "interview_focus": "Show how you translated data into a decision, not a chart."
+      "interview_focus": "Show how you translated data into a decision, not a chart.",
+      "display_title": "Make energy useful.",
+      "display_brief": "Turn home energy usage into one or two practical changes a household can make.",
+      "compact_brief": "Turn home energy data into one practical behavior change.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-010",
@@ -699,7 +873,15 @@
         "Error states",
         "Interview explanation"
       ],
-      "interview_focus": "Walk through the flow as someone with low vision and low confidence."
+      "interview_focus": "Walk through the flow as someone with low vision and low confidence.",
+      "display_title": "Pay with confidence.",
+      "display_brief": "Make the amount, due date, account, and way to fix a payment mistake unmistakable.",
+      "compact_brief": "Make a bill payment easy to verify and a mistake easy to fix.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-011",
@@ -724,7 +906,15 @@
         "Disruption states",
         "Interview explanation"
       ],
-      "interview_focus": "Describe the screen-reader experience out loud, stop by stop."
+      "interview_focus": "Describe the screen-reader experience out loud, stop by stop.",
+      "display_title": "Reroute with confidence.",
+      "display_brief": "Help a screen reader user follow a trip and recover when a delay changes the route.",
+      "compact_brief": "Help a screen reader user replan a trip after a delay.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-012",
@@ -750,7 +940,15 @@
         "Failure-path design",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how the design fails gracefully - that's the real test."
+      "interview_focus": "Explain how the design fails gracefully - that's the real test.",
+      "display_title": "Keep the path open.",
+      "display_brief": "A document is missing. Design a benefits form that helps people recover without losing progress.",
+      "compact_brief": "Help a benefits applicant recover from a missing document.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-013",
@@ -775,7 +973,15 @@
         "High-stakes states",
         "Interview explanation"
       ],
-      "interview_focus": "Show how the admin verifies a change did what they intended."
+      "interview_focus": "Show how the admin verifies a change did what they intended.",
+      "display_title": "Who can do what?",
+      "display_brief": "Help an admin understand who has access, what they can do, and why.",
+      "compact_brief": "Help an admin understand and change a person's permissions.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-014",
@@ -801,7 +1007,15 @@
         "Attention design rationale",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how the design directs attention to the 5% that matters."
+      "interview_focus": "Explain how the design directs attention to the 5% that matters.",
+      "display_title": "Give risks attention.",
+      "display_brief": "Design approvals so routine requests move quickly and unusual ones get real scrutiny.",
+      "compact_brief": "Speed up routine approvals while keeping unusual requests visible.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-015",
@@ -827,7 +1041,15 @@
         "Recovery states",
         "Interview explanation"
       ],
-      "interview_focus": "Walk through the moment the user sees 800 errors - then what?"
+      "interview_focus": "Walk through the moment the user sees 800 errors - then what?",
+      "display_title": "800 errors. One plan.",
+      "display_brief": "Turn a failed data import into a manageable sequence of fixes.",
+      "compact_brief": "Turn hundreds of data-import errors into manageable fixes.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-016",
@@ -853,7 +1075,15 @@
         "State model",
         "Implementation-aware rationale"
       ],
-      "interview_focus": "Present the state model like you'd hand it to an engineer - because you are one."
+      "interview_focus": "Present the state model like you'd hand it to an engineer - because you are one.",
+      "display_title": "Make status useful.",
+      "display_brief": "Build a reusable composer for progress, blockers, decisions, and next steps.",
+      "compact_brief": "Design a reusable status composer for progress and blockers.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-017",
@@ -879,7 +1109,15 @@
         "Token structure",
         "Interview explanation"
       ],
-      "interview_focus": "Explain where you constrained the user on purpose."
+      "interview_focus": "Explain where you constrained the user on purpose.",
+      "display_title": "A theme that works.",
+      "display_brief": "Help a non-designer choose colors and type while keeping the result accessible.",
+      "compact_brief": "Help a non-designer build an accessible visual theme.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-018",
@@ -905,7 +1143,15 @@
         "Scaling rationale",
         "Interview explanation"
       ],
-      "interview_focus": "Show how the component scales when event types double."
+      "interview_focus": "Show how the component scales when event types double.",
+      "display_title": "Quiet the noise.",
+      "display_brief": "Help people choose useful notifications without deciphering a settings matrix.",
+      "compact_brief": "Make notification preferences understandable and easy to change.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-019",
@@ -931,7 +1177,15 @@
         "Key browse/search screen",
         "Validation plan"
       ],
-      "interview_focus": "Defend your grouping and labels using a card-sort or tree-test plan."
+      "interview_focus": "Defend your grouping and labels using a card-sort or tree-test plan.",
+      "display_title": "Find your next lesson.",
+      "display_brief": "Organize a learning library around goals and the words learners actually use.",
+      "compact_brief": "Help learners find their next lesson using their own words.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-020",
@@ -957,7 +1211,15 @@
         "Portal home concept",
         "Migration rationale"
       ],
-      "interview_focus": "Show how a new result becomes findable today and six months later."
+      "interview_focus": "Show how a new result becomes findable today and six months later.",
+      "display_title": "Read it. Or act on it.",
+      "display_brief": "Organize a patient portal so information and required actions are easy to tell apart.",
+      "compact_brief": "Separate things to read from actions to take in a patient portal.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-021",
@@ -983,7 +1245,15 @@
         "Result-detail concept",
         "Governance workflow"
       ],
-      "interview_focus": "Explain how your structure survives regional variants, renamed policies, and stale content."
+      "interview_focus": "Explain how your structure survives regional variants, renamed policies, and stale content.",
+      "display_title": "Which answer is right?",
+      "display_brief": "Help employees find the authoritative answer and understand why it applies to them.",
+      "compact_brief": "Help an employee find a trustworthy answer in a knowledge hub.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-022",
@@ -1009,7 +1279,15 @@
         "Change and cancellation states",
         "Tradeoff rationale"
       ],
-      "interview_focus": "Explain how the design makes repetition fast without hiding consequential changes."
+      "interview_focus": "Explain how the design makes repetition fast without hiding consequential changes.",
+      "display_title": "Change one meal.",
+      "display_brief": "Help a caregiver adjust recurring meal deliveries without rebuilding every order.",
+      "compact_brief": "Help a caregiver change a recurring meal order without starting over.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-023",
@@ -1035,7 +1313,15 @@
         "Expiry states",
         "Coordination rationale"
       ],
-      "interview_focus": "Show what happens when one person has not responded and the hold is about to expire."
+      "interview_focus": "Show what happens when one person has not responded and the hold is about to expire.",
+      "display_title": "Get everyone seated.",
+      "display_brief": "Help a group choose seats and finish buying tickets before availability changes.",
+      "compact_brief": "Help a group agree on seats before tickets sell out.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-024",
@@ -1061,7 +1347,15 @@
         "Expiry and failure states",
         "Security rationale"
       ],
-      "interview_focus": "Explain how the design keeps temporary access understandable after several passes exist."
+      "interview_focus": "Explain how the design keeps temporary access understandable after several passes exist.",
+      "display_title": "Let the right person in.",
+      "display_brief": "Make temporary home access easy to create, understand, and revoke.",
+      "compact_brief": "Make temporary home access easy to grant and revoke.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-025",
@@ -1087,7 +1381,15 @@
         "Trust safeguards",
         "Interview explanation"
       ],
-      "interview_focus": "Show how the agent notices, corrects, and records a wrong policy recommendation."
+      "interview_focus": "Show how the agent notices, corrects, and records a wrong policy recommendation.",
+      "display_title": "Keep the agent in charge.",
+      "display_brief": "Help a support agent verify an AI summary, check policy, and edit a draft reply.",
+      "compact_brief": "Help support agents verify and edit an AI-drafted reply.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-026",
@@ -1113,7 +1415,15 @@
         "Safeguards",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how the teacher can verify quality without rereading every sentence."
+      "interview_focus": "Explain how the teacher can verify quality without rereading every sentence.",
+      "display_title": "Adapt without distortion.",
+      "display_brief": "Help a teacher verify facts and learning goals in an AI-adapted lesson.",
+      "compact_brief": "Help a teacher verify an AI-adapted lesson before sharing it.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-027",
@@ -1139,7 +1449,15 @@
         "Bias safeguards",
         "Interview explanation"
       ],
-      "interview_focus": "Show how a recruiter investigates and overturns a questionable ranking."
+      "interview_focus": "Show how a recruiter investigates and overturns a questionable ranking.",
+      "display_title": "Challenge the ranking.",
+      "display_brief": "Help hiring staff inspect job evidence and challenge AI ranking assumptions.",
+      "compact_brief": "Help hiring staff question AI rankings using job evidence.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-028",
@@ -1165,7 +1483,15 @@
         "Key states",
         "Hierarchy rationale"
       ],
-      "interview_focus": "Explain how the dashboard turns limited outreach capacity into a defensible priority list."
+      "interview_focus": "Explain how the dashboard turns limited outreach capacity into a defensible priority list.",
+      "display_title": "Who needs a call?",
+      "display_brief": "Help a fundraiser spot donors who need attention and choose a useful next action.",
+      "compact_brief": "Help a fundraiser see which donors need attention next.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-029",
@@ -1191,7 +1517,15 @@
         "Insight states",
         "Interview explanation"
       ],
-      "interview_focus": "Show how you prevent vanity metrics from becoming the product's advice."
+      "interview_focus": "Show how you prevent vanity metrics from becoming the product's advice.",
+      "display_title": "Learn from the launch.",
+      "display_brief": "Show a creator what worked, what did not, and what to try in the next release.",
+      "compact_brief": "Turn launch results into a useful decision for the next release.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-030",
@@ -1217,7 +1551,15 @@
         "Uncertainty states",
         "Operational rationale"
       ],
-      "interview_focus": "Explain how the supervisor chooses action when severity is high but confidence is low."
+      "interview_focus": "Explain how the supervisor chooses action when severity is high but confidence is low.",
+      "display_title": "A leak or a bad sensor?",
+      "display_brief": "Help an operator distinguish likely leaks from faulty readings and assign a response.",
+      "compact_brief": "Help an operator distinguish leaks from faulty sensor readings.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-031",
@@ -1243,7 +1585,16 @@
         "Accessibility rationale",
         "Interview explanation"
       ],
-      "interview_focus": "Walk through what the attendee experiences when captions fail during an important announcement."
+      "interview_focus": "Walk through what the attendee experiences when captions fail during an important announcement.",
+      "display_title": "Keep the conversation clear.",
+      "render_layout": "poster",
+      "display_brief": "Combine captions, speakers, and slides so people can recover when transcription falters.",
+      "compact_brief": "Help people follow a live session when captions become unreliable.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-032",
@@ -1269,7 +1620,15 @@
         "Failure states",
         "Accessibility explanation"
       ],
-      "interview_focus": "Describe the complete flow without relying on touch or pointer precision."
+      "interview_focus": "Describe the complete flow without relying on touch or pointer precision.",
+      "display_title": "Join without precision.",
+      "display_brief": "Make telehealth easy to join with limited dexterity, including camera and audio recovery.",
+      "compact_brief": "Make a telehealth call easy to join with limited dexterity.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-033",
@@ -1295,7 +1654,15 @@
         "Cognitive load rationale",
         "Interview explanation"
       ],
-      "interview_focus": "Show how the user understands what is done, what is next, and what can wait."
+      "interview_focus": "Show how the user understands what is done, what is next, and what can wait.",
+      "display_title": "Come back with confidence.",
+      "display_brief": "Help someone pause an insurance claim and return without remembering every detail.",
+      "compact_brief": "Help someone resume an insurance claim after a break.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-034",
@@ -1321,7 +1688,15 @@
         "Handoff states",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how a new responder gets oriented in under two minutes."
+      "interview_focus": "Explain how a new responder gets oriented in under two minutes.",
+      "display_title": "Keep the team aligned.",
+      "display_brief": "Bring incident ownership, decisions, status, and stakeholder updates into one clear workspace.",
+      "compact_brief": "Keep incident ownership and decisions clear during an outage.",
+      "visual_key": "overload",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-035",
@@ -1347,7 +1722,15 @@
         "Exception states",
         "Governance rationale"
       ],
-      "interview_focus": "Show how the vendor manager distinguishes waiting from genuinely blocked."
+      "interview_focus": "Show how the vendor manager distinguishes waiting from genuinely blocked.",
+      "display_title": "Unblock the next step.",
+      "display_brief": "Show what blocks vendor onboarding, who owns it, and which evidence can be reused.",
+      "compact_brief": "Help a team identify and unblock the next vendor-onboarding step.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-036",
@@ -1373,7 +1756,15 @@
         "Fairness model",
         "Interview explanation"
       ],
-      "interview_focus": "Explain how the planner evaluates the consequences of an apparently easy fix."
+      "interview_focus": "Explain how the planner evaluates the consequences of an apparently easy fix.",
+      "display_title": "Cover the shift fairly.",
+      "display_brief": "Help a planner fill staffing gaps without hiding fairness or compliance problems.",
+      "compact_brief": "Help a planner fill a shift gap while making fairness visible.",
+      "visual_key": "comparison",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-037",
@@ -1399,7 +1790,15 @@
         "State model",
         "Implementation rationale"
       ],
-      "interview_focus": "Explain exactly what remains selected when the user changes a filter."
+      "interview_focus": "Explain exactly what remains selected when the user changes a filter.",
+      "display_title": "Change many. Safely.",
+      "display_brief": "Design a reusable table for filtering, selecting, editing, and safely changing many records.",
+      "compact_brief": "Design safe bulk editing for a reusable data table.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-038",
@@ -1425,7 +1824,15 @@
         "Edge states",
         "Implementation explanation"
       ],
-      "interview_focus": "Show how a team decides whether a replacement is truly equivalent."
+      "interview_focus": "Show how a team decides whether a replacement is truly equivalent.",
+      "display_title": "Make the upgrade clear.",
+      "display_brief": "Help teams find old components, understand replacements, and track a safe migration.",
+      "compact_brief": "Help teams replace deprecated components without losing track.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-039",
@@ -1451,7 +1858,15 @@
         "Conflict UI",
         "Implementation rationale"
       ],
-      "interview_focus": "Explain every state between tapping save offline and confirmed server sync."
+      "interview_focus": "Explain every state between tapping save offline and confirmed server sync.",
+      "display_title": "Save before you sync.",
+      "display_brief": "Design an inspection form that saves offline, shows sync state, and resolves conflicts.",
+      "compact_brief": "Help inspectors save offline and resolve conflicting edits.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-040",
@@ -1477,7 +1892,15 @@
         "Findability screen",
         "Validation plan"
       ],
-      "interview_focus": "Defend how someone finds the right service without knowing who provides it."
+      "interview_focus": "Defend how someone finds the right service without knowing who provides it.",
+      "display_title": "Start with a resident.",
+      "display_brief": "Organize city services around what residents need, rather than department names.",
+      "compact_brief": "Organize a city services site around residents' needs.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-041",
@@ -1503,7 +1926,15 @@
         "Home concept",
         "Research plan"
       ],
-      "interview_focus": "Explain how the structure changes when the intent is family viewing rather than personal viewing."
+      "interview_focus": "Explain how the structure changes when the intent is family viewing rather than personal viewing.",
+      "display_title": "Choose together.",
+      "display_brief": "Organize a streaming home for personal taste, shared viewing, ages, and unfinished shows.",
+      "compact_brief": "Help a household find something suitable to watch together.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     },
     {
       "id": "ddd-042",
@@ -1529,7 +1960,412 @@
         "Task page concept",
         "Validation plan"
       ],
-      "interview_focus": "Show how a developer moves between a guide, reference, and error explanation while staying on the right version."
+      "interview_focus": "Show how a developer moves between a guide, reference, and error explanation while staying on the right version.",
+      "display_title": "Find the way forward.",
+      "display_brief": "Connect concepts, instructions, and troubleshooting so developers can recover without losing context.",
+      "compact_brief": "Connect developer guides and troubleshooting without dead ends.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-043",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Think of an app you used today. Identify one confusing step and sketch a clearer alternative.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Fix one frustrating step.",
+      "render_layout": "poster",
+      "display_brief": "Think of an app you used today. Identify one confusing step and sketch a clearer alternative.",
+      "compact_brief": "Find one confusing step in an app. Sketch a clearer alternative.",
+      "visual_key": "friction",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-044",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Notice a form that asks for the same information twice. Redesign it to remove that extra work.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Why enter it twice?",
+      "display_brief": "Notice a form that asks for the same information twice. Redesign it to remove that extra work.",
+      "compact_brief": "Find repeated data entry. Redesign the flow to remove it.",
+      "visual_key": "friction",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-045",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a label you had to interpret. Rewrite it and show how you would check understanding.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make the label make sense.",
+      "display_brief": "Find a label you had to interpret. Rewrite it and show how you would check understanding.",
+      "compact_brief": "Find a confusing label. Rewrite it in words users understand.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-046",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Recall an action with unclear feedback. Design a state that confirms what happened and what comes next.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Show what just happened.",
+      "display_brief": "Recall an action with unclear feedback. Design a state that confirms what happened and what comes next.",
+      "compact_brief": "Find unclear feedback. Show what happened and what comes next.",
+      "visual_key": "progress",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-047",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a search with no useful results. Help the person recover without starting over.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Remove a dead end.",
+      "display_brief": "Find a search with no useful results. Help the person recover without starting over.",
+      "compact_brief": "Find an unhelpful empty search. Design a useful next step.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-048",
+      "mode": "Everyday UX",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Recall an everyday mistake in an interface. Design a clear, low-effort way to undo it.",
+      "ai_capability": "",
+      "watch_for": "Personal taste mistaken for a usability problem",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make a mistake fixable.",
+      "display_brief": "Recall an everyday mistake in an interface. Design a clear, low-effort way to undo it.",
+      "compact_brief": "Find an interface mistake that is hard to undo. Make recovery easy.",
+      "visual_key": "recovery",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-049",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a screen that pressures people to accept. Make accepting and declining equally clear.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make saying no easy.",
+      "display_brief": "Find a screen that pressures people to accept. Make accepting and declining equally clear.",
+      "compact_brief": "Find a pressured choice. Make accepting and declining equally clear.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-050",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Notice a checkout that reveals fees late. Redesign it so the total is clear before commitment.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Show the full price.",
+      "display_brief": "Notice a checkout that reveals fees late. Redesign it so the total is clear before commitment.",
+      "compact_brief": "Find late checkout fees. Show the full price before commitment.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-051",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a difficult cancellation flow. Redesign it so people can leave without unnecessary obstacles.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Let people leave.",
+      "display_brief": "Find a difficult cancellation flow. Redesign it so people can leave without unnecessary obstacles.",
+      "compact_brief": "Find a difficult cancellation flow. Remove unnecessary obstacles.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-052",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find preselected or bundled consent. Design separate, understandable choices people control.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Make consent a choice.",
+      "display_brief": "Find preselected or bundled consent. Design separate, understandable choices people control.",
+      "compact_brief": "Find bundled consent. Give people separate, understandable choices.",
+      "visual_key": "choice",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-053",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a countdown or scarcity claim that pressures a decision. Offer truthful, useful context instead.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Remove the false urgency.",
+      "display_brief": "Find a countdown or scarcity claim that pressures a decision. Offer truthful, useful context instead.",
+      "compact_brief": "Find pressure from urgency cues. Replace it with truthful context.",
+      "visual_key": "trust",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
+    },
+    {
+      "id": "ddd-054",
+      "mode": "Dark Patterns",
+      "industry": "Everyday digital products",
+      "primary_user": "A person using an everyday app or website",
+      "business_goal": "Help people complete their task with confidence",
+      "constraint": "Use an example you observed; explain assumptions without inventing evidence.",
+      "problem": "Find a request for more personal data than a task needs. Explain the purpose and make extras optional.",
+      "ai_capability": "",
+      "watch_for": "Replacing one pressured choice with another",
+      "required_patterns": [
+        "Observed example",
+        "User impact",
+        "Alternative design",
+        "Validation approach",
+        "Recovery state",
+        "Tradeoff"
+      ],
+      "deliverables": [
+        "Describe the observation",
+        "Sketch the alternative",
+        "Explain how to evaluate it"
+      ],
+      "interview_focus": "Explain who benefits, what improves, and how you would know.",
+      "display_title": "Explain what is shared.",
+      "display_brief": "Find a request for more personal data than a task needs. Explain the purpose and make extras optional.",
+      "compact_brief": "Find excessive data collection. Explain it and make extras optional.",
+      "visual_key": "access",
+      "provenance": {
+        "source": "curated",
+        "version": "2"
+      }
     }
   ]
 }

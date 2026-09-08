@@ -1,0 +1,50 @@
+name: Preview generated prompt batch (manual only)
+on:
+  workflow_dispatch:
+    inputs:
+      live:
+        description: Use the generation API instead of the offline fixture
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: prompt-generation-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Restore local generation budget and saved queue
+        uses: actions/cache/restore@v4
+        with:
+          path: .runtime
+          key: generation-preview-${{ github.run_id }}
+          restore-keys: generation-preview-
+      - name: Generate preview only
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python scripts/generate_prompts.py ${{ inputs.live && '--live' || '--mock' }}
+      - name: Save budget and queue
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .runtime
+          key: generation-preview-${{ github.run_id }}
+      - name: Downloadable preview data
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-prompts-preview
+          path: .runtime/*.json
+          include-hidden-files: true
+      # Deliberately no schedule, commits, Pages deployment, or TRMNL update.

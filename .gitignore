@@ -4,3 +4,14 @@ __pycache__/
 _site/
 .agents/
 .claude/
+node_modules/
+.env
+.env.*
+!.env.example
+.runtime/
+qa/
+dist/
+preview/vendor/plugins.css
+preview/vendor/plugins.js
+preview/vendor/liquid.js
+preview/vendor/fonts/

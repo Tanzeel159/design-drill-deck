@@ -105,19 +105,35 @@ def validate_templates() -> None:
     for layout in LAYOUTS:
         path = ROOT / "src" / f"{layout}.liquid"
         require(path.exists(), f"Missing layout: {path.name}")
-        source = path.read_text(encoding="utf-8")
+        source = (ROOT / 'src' / 'shared.liquid').read_text(encoding='utf-8') + path.read_text(encoding="utf-8")
         for fragment in required_fragments:
             require(fragment in source, f"{path.name} is missing {fragment!r}")
         require(
             "timebox_minutes" not in source,
             f"{path.name} must not expose exercise timing",
         )
+        require(
+            "style=" not in source,
+            f"{path.name} must use TRMNL framework classes instead of inline styles",
+        )
+        require(
+            "lg:" in source,
+            f"{path.name} must include a large-screen adaptation for TRMNL X",
+        )
+        require(
+            "portrait:" in source,
+            f"{path.name} must include a portrait adaptation",
+        )
 
-    preview = (ROOT / "preview" / "index.html").read_text(encoding="utf-8")
+    preview = (ROOT / "preview" / "index.html").read_text(encoding="utf-8") + (ROOT / 'preview' / 'studio.js').read_text(encoding='utf-8')
     require("../data/daily.json" in preview, "Preview must load the generated daily feed")
     require(
         "timebox_minutes" not in preview,
         "Preview must not expose exercise timing",
+    )
+    require(
+        "screen--lg" in preview and "screen--portrait" in preview,
+        "Preview must include TRMNL X landscape and portrait fixtures",
     )
 
 

@@ -1,0 +1,238 @@
+{
+  "prompts": [
+    {
+      "mode": "Core UX Flow",
+      "industry": "Everyday products",
+      "primary_user": "Library visitor",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Branches have different opening hours.",
+      "problem": "Help a library visitor reserve an available book and choose a convenient pickup branch.",
+      "ai_capability": "",
+      "watch_for": "Showing a closed branch as available.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Reserve a book nearby.",
+      "display_brief": "Help a library visitor reserve an available book and choose a convenient pickup branch.",
+      "compact_brief": "Help a library visitor reserve a book at a nearby branch.",
+      "visual_key": "comparison"
+    },
+    {
+      "mode": "AI-Integrated Interface",
+      "industry": "Everyday products",
+      "primary_user": "Person writing an important email",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "The writer must approve the final wording.",
+      "problem": "Help someone compare an AI email rewrite with their original before deciding what to send.",
+      "ai_capability": "Suggests alternative wording for an email",
+      "watch_for": "A rewrite that changes the intended meaning.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Show what changed.",
+      "display_brief": "Help someone compare an AI email rewrite with their original before deciding what to send.",
+      "compact_brief": "Help someone compare an AI email rewrite before sending it.",
+      "visual_key": "trust"
+    },
+    {
+      "mode": "Dashboard & Data UX",
+      "industry": "Everyday products",
+      "primary_user": "Food-bank coordinator",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Supply counts may lag behind recent distributions.",
+      "problem": "Help a food-bank coordinator see which essential supplies need replenishing before the next pickup.",
+      "ai_capability": "",
+      "watch_for": "Treating an old count as a current stock level.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Know what to restock.",
+      "display_brief": "Help a food-bank coordinator see which essential supplies need replenishing before the next pickup.",
+      "compact_brief": "Help a food bank identify supplies to restock before pickup.",
+      "visual_key": "overload"
+    },
+    {
+      "mode": "Accessibility Challenge",
+      "industry": "Everyday products",
+      "primary_user": "Person who cannot hear an appliance alarm",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Do not rely on sound or color alone.",
+      "problem": "Design an appliance alert that people can understand without hearing the alarm.",
+      "ai_capability": "",
+      "watch_for": "An alert with no way to resolve the problem.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Make the alert visible.",
+      "display_brief": "Design an appliance alert that people can understand without hearing the alarm.",
+      "compact_brief": "Make an appliance alert understandable without sound.",
+      "visual_key": "access"
+    },
+    {
+      "mode": "Enterprise UX",
+      "industry": "Everyday products",
+      "primary_user": "Teammate taking over an unfinished project",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Some decisions have not been documented.",
+      "problem": "Help a departing teammate hand off unfinished work with clear ownership and next steps.",
+      "ai_capability": "",
+      "watch_for": "A handoff without enough context to act.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Hand over the work.",
+      "display_brief": "Help a departing teammate hand off unfinished work with clear ownership and next steps.",
+      "compact_brief": "Help a teammate hand off unfinished work with clear ownership.",
+      "visual_key": "progress"
+    },
+    {
+      "mode": "UX Engineering",
+      "industry": "Everyday products",
+      "primary_user": "Person uploading several large files",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "The network may disconnect mid-upload.",
+      "problem": "Build a reusable upload component that explains progress, interruption, retry, and completion.",
+      "ai_capability": "",
+      "watch_for": "Reporting success before every file is saved.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Upload without doubt.",
+      "display_brief": "Build a reusable upload component that explains progress, interruption, retry, and completion.",
+      "compact_brief": "Build an upload component with clear progress and recovery.",
+      "visual_key": "recovery"
+    },
+    {
+      "mode": "Information Architecture",
+      "industry": "Everyday products",
+      "primary_user": "Visitor browsing a museum archive",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Objects may belong to several themes.",
+      "problem": "Organize a museum archive so visitors can find objects without knowing curatorial terminology.",
+      "ai_capability": "",
+      "watch_for": "Labels only maintainers understand.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Find the right collection.",
+      "display_brief": "Organize a museum archive so visitors can find objects without knowing curatorial terminology.",
+      "compact_brief": "Help visitors find museum objects without specialist terminology.",
+      "visual_key": "comparison"
+    },
+    {
+      "mode": "Everyday UX",
+      "industry": "Everyday products",
+      "primary_user": "Person learning an unfamiliar interface",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Use an observed example and state your assumptions.",
+      "problem": "Notice an action hidden behind an unfamiliar gesture. Sketch a discoverable alternative.",
+      "ai_capability": "",
+      "watch_for": "Assuming everyone knows the same gestures.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Reveal the hidden action.",
+      "display_brief": "Notice an action hidden behind an unfamiliar gesture. Sketch a discoverable alternative.",
+      "compact_brief": "Find an action hidden by a gesture. Make it discoverable.",
+      "visual_key": "friction"
+    },
+    {
+      "mode": "Dark Patterns",
+      "industry": "Everyday products",
+      "primary_user": "Person deciding whether to start a trial",
+      "business_goal": "Help people complete the task with confidence",
+      "constraint": "Explain the offer without manipulating the decision.",
+      "problem": "Find a free-trial offer with unclear renewal terms. Show the charge and cancellation choices up front.",
+      "ai_capability": "",
+      "watch_for": "Hiding renewal charges behind a free offer.",
+      "required_patterns": [
+        "Clear starting point",
+        "Informed choice",
+        "Feedback",
+        "Recovery"
+      ],
+      "deliverables": [
+        "Sketch the flow",
+        "Show a recovery state",
+        "Explain one tradeoff"
+      ],
+      "interview_focus": "Explain what changed for the person and how you would evaluate it.",
+      "display_title": "Make the trial honest.",
+      "display_brief": "Find a free-trial offer with unclear renewal terms. Show the charge and cancellation choices up front.",
+      "compact_brief": "Find unclear trial renewal terms. Make charges and cancellation clear.",
+      "visual_key": "choice"
+    }
+  ]
+}

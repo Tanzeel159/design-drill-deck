@@ -1,0 +1,76 @@
+<style>
+/* Shared plugin styles. Fixed readable type; content adapts, not font fitting. */
+.trmnl .ddd-card { --ddd-pad:32px; --ddd-title:64px; --ddd-leading:1.03; --ddd-body:26px; --ddd-label:20px; --ddd-footer:18px; --ddd-gap:24px; display:flex; flex-direction:column; gap:var(--ddd-gap); width:100%; height:100%; padding:var(--ddd-pad); background:#fff; color:#000; font-family:"Inter Variable",Inter,sans-serif; box-sizing:border-box; }
+.trmnl .ddd-card * { box-sizing:border-box; }
+.trmnl .ddd-kicker { margin:0; flex:none; font-size:var(--ddd-label); line-height:1.3; font-weight:700; }
+.trmnl .ddd-main { display:flex; align-items:center; gap:28px; flex:1; min-height:0; }
+.trmnl .ddd-copy { display:flex; flex-direction:column; justify-content:center; gap:var(--ddd-gap); flex:1; min-width:0; }
+.trmnl .ddd-title { margin:0; padding:0; color:#000; font-family:inherit; font-size:var(--ddd-title); line-height:var(--ddd-leading); font-weight:900; letter-spacing:-.035em; overflow-wrap:break-word; }
+.trmnl .ddd-brief { margin:0; color:#000; font-family:inherit; font-size:var(--ddd-body); line-height:1.31; font-weight:500; text-wrap:pretty; }
+.trmnl .ddd-art { width:30%; flex:none; display:flex; align-items:center; justify-content:center; }
+.trmnl .ddd-art svg { display:block; width:100%; height:auto; max-height:100%; }
+.trmnl .ddd-footer { display:flex; justify-content:space-between; gap:12px; flex:none; border-top:2px solid #000; padding-top:10px; font-size:var(--ddd-footer); line-height:1.2; font-weight:700; }
+.trmnl .ddd-footer span:last-child { white-space:nowrap; }
+.trmnl .ddd-poster .ddd-art { display:none; }
+.trmnl .ddd-poster .ddd-copy { max-width:100%; }
+.trmnl .ddd-hh { --ddd-pad:18px; --ddd-title:38px; --ddd-body:22px; --ddd-label:16px; --ddd-footer:16px; --ddd-gap:10px; }
+.trmnl .ddd-hh .ddd-art,.trmnl .ddd-hv .ddd-art,.trmnl .ddd-q .ddd-art { display:none; }
+.trmnl .ddd-hv { --ddd-pad:24px; --ddd-title:44px; --ddd-body:24px; --ddd-label:17px; --ddd-footer:16px; --ddd-gap:18px; }
+.trmnl .ddd-q { --ddd-pad:16px; --ddd-title:26px; --ddd-leading:1.18; --ddd-label:16px; --ddd-footer:15px; --ddd-gap:10px; }
+.trmnl .ddd-q .ddd-title { font-weight:700; letter-spacing:-.015em; }
+.trmnl .ddd-q .ddd-footer { padding-top:7px; }
+.trmnl .ddd-empty .ddd-title { font-size:var(--ddd-title); }
+/* lg: sizing is deliberate for TRMNL X; portrait: changes composition. */
+.trmnl .screen--lg .ddd-full { --ddd-pad:40px; --ddd-title:78px; --ddd-body:34px; --ddd-label:26px; --ddd-footer:22px; --ddd-gap:32px; }
+.trmnl .screen--lg .ddd-full .ddd-main { gap:40px; }
+.trmnl .screen--lg.screen--portrait .ddd-full { --ddd-pad:36px; --ddd-title:72px; --ddd-body:32px; --ddd-label:24px; --ddd-footer:21px; --ddd-gap:28px; }
+.trmnl .screen--portrait .ddd-full .ddd-main { flex-direction:column; justify-content:center; }
+.trmnl .screen--portrait .ddd-full .ddd-copy { flex:none; width:100%; }
+.trmnl .screen--portrait .ddd-full .ddd-art { width:38%; max-height:34%; }
+.trmnl .screen--lg .ddd-hh { --ddd-pad:22px; --ddd-title:46px; --ddd-body:26px; --ddd-label:19px; --ddd-footer:18px; --ddd-gap:12px; }
+.trmnl .screen--lg .ddd-hv { --ddd-pad:26px; --ddd-title:52px; --ddd-body:28px; --ddd-label:20px; --ddd-footer:19px; --ddd-gap:20px; }
+.trmnl .screen--lg .ddd-q { --ddd-pad:18px; --ddd-title:32px; --ddd-label:18px; --ddd-footer:17px; --ddd-gap:12px; }
+.trmnl .screen--portrait .ddd-hh,.trmnl .screen--portrait .ddd-hv,.trmnl .screen--portrait .ddd-q { justify-content:space-between; }
+
+</style>
+{% assign prompt_total = prompts | size %}
+{% assign settings_values = trmnl.plugin_settings.custom_fields_values %}
+{% assign focus_area = settings_values.focus_area | default: "all" %}
+{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" %}
+{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" %}
+{% assign level_matches = difficulty_levels | where: "key", difficulty %}
+{% assign level_profile = level_matches | first %}
+{% assign pattern_limit = level_profile.pattern_limit | default: 4 %}
+{% assign picks_for_mode = daily_picks[rotation_mode] %}
+{% assign picks_for_focus = picks_for_mode[focus_area] %}
+{% assign pick = picks_for_focus[difficulty] %}
+{% if pick == blank and picks_for_focus.prompt_id != blank %}
+  {% assign pick = picks_for_focus %}
+{% endif %}
+{% if pick == blank %}
+  {% assign pick = daily_picks.smart_shuffle.all.intermediate | default: daily_picks.smart_shuffle.all %}
+{% endif %}
+{% if pick != blank %}
+  {% assign matches = prompts | where: "id", pick.prompt_id %}
+  {% assign p = matches | first %}
+  {% assign drill_number = pick.drill_number | default: pick.position %}
+  {% assign total = pick.pool_size %}
+{% else %}
+  {% assign day = "now" | date: "%j" | plus: 0 %}
+  {% assign legacy_idx = day | modulo: prompt_total %}
+  {% assign p = prompts[legacy_idx] %}
+  {% assign drill_number = legacy_idx | plus: 1 %}
+  {% assign total = prompt_total %}
+{% endif %}
+{% if p == blank %}
+  {% assign p = prompts | first %}
+{% endif %}
+{% assign display_date = display_date | default: rotation_date | default: "now" %}
+
+{% capture card_art %}{% case p.visual_key %}{% when "recovery" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><rect x="60" y="14" width="138" height="164" rx="10" fill="white" stroke="black" stroke-width="7"/><path d="M90 56h78M90 80h56M90 104h62" stroke="black" stroke-width="7"/><circle cx="177" cy="162" r="36" fill="black"/><path d="M163 148l28 28m0-28l-28 28" stroke="white" stroke-width="7"/><path d="M82 198H45v50h164m-22-21l23 21-23 21" fill="none" stroke="black" stroke-width="8" stroke-linejoin="round"/></svg>{% when "comparison" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><path d="M126 251V163C126 132 52 145 52 99V42m0 0L27 69m25-27 25 27M126 164c0-32 76-19 76-65V42m0 0-25 27m25-27 25 27" fill="none" stroke="black" stroke-width="12" stroke-linejoin="round"/><circle cx="126" cy="247" r="17" fill="black"/></svg>{% when "trust" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><circle cx="110" cy="115" r="76" fill="white" stroke="black" stroke-width="12"/><path d="m165 172 59 70" stroke="black" stroke-width="22"/><path d="m71 115 27 27 48-56" fill="none" stroke="black" stroke-width="13" stroke-linejoin="round"/></svg>{% when "access" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><path d="M45 248V95a83 83 0 0 1 166 0v153" fill="none" stroke="black" stroke-width="9"/><path d="M73 247V97a55 55 0 0 1 110 0v150Z" fill="black"/><path d="m98 108 69-28v165l-69 21Z" fill="white" stroke="black" stroke-width="6"/><circle cx="149" cy="180" r="6" fill="black"/><path d="M27 249h204" stroke="black" stroke-width="9"/></svg>{% when "progress" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><path d="M23 246v-63h63v-65h65V54h72" fill="none" stroke="black" stroke-width="14"/><path d="m196 29 27 25-27 25" fill="none" stroke="black" stroke-width="12"/><circle cx="34" cy="129" r="24" fill="black"/></svg>{% when "overload" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><path d="M20 62h216l-81 105v64l-54 29v-93Z" fill="none" stroke="black" stroke-width="10" stroke-linejoin="round"/><circle cx="61" cy="29" r="10" fill="black"/><circle cx="123" cy="29" r="10" fill="black"/><circle cx="185" cy="29" r="10" fill="black"/></svg>{% when "friction" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><path d="M25 237V85h71v112h49V38h77" stroke="black" fill="none" stroke-width="17" stroke-linejoin="round"/><path d="m195 13 27 25-27 25" stroke="black" fill="none" stroke-width="12"/><circle cx="25" cy="240" r="15" fill="black"/></svg>{% when "choice" %}<svg xmlns="http://www.w3.org/2000/svg" width="256" height="276" viewBox="0 0 256 276" aria-hidden="true"><rect x="21" y="39" width="213" height="83" rx="9" fill="white" stroke="black" stroke-width="9"/><rect x="21" y="153" width="213" height="83" rx="9" fill="white" stroke="black" stroke-width="9"/><path d="m53 80 17 17 33-35M58 180l29 29m0-29-29 29" fill="none" stroke="black" stroke-width="9"/><path d="M129 82h72M129 196h72" stroke="black" stroke-width="9"/></svg>{% endcase %}{% endcapture %}
+{% assign card_title = p.display_title | default: p.problem %}
+{% assign card_brief = p.display_brief | default: p.problem %}
+{% assign card_compact = p.compact_brief | default: card_brief %}
+{% assign card_style = p.render_layout | default: 'visual' %}
+{% assign stripped_art = card_art | strip %}
+{% if stripped_art == blank %}{% assign card_style = 'poster' %}{% endif %}

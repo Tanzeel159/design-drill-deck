@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 from datetime import date, timedelta
+from pathlib import Path
 
 from scripts.generate_daily import (
     ANCHOR_DATE,
@@ -115,7 +116,7 @@ class DailyFeedTests(unittest.TestCase):
         )
 
     def test_bank_has_balanced_category_coverage(self) -> None:
-        self.assertEqual(len(self.prompts), 42)
+        self.assertEqual(len(self.prompts), 54)
         category_sizes = {
             scope: len(prompts)
             for scope, prompts in self.pools.items()
@@ -142,6 +143,26 @@ class DailyFeedTests(unittest.TestCase):
             ["beginner"]["pool_size"],
             6,
         )
+
+
+class TemplateQualityTests(unittest.TestCase):
+    layouts = ("full", "half_horizontal", "half_vertical", "quadrant")
+    source_dir = Path(__file__).resolve().parents[1] / "src"
+
+    def test_templates_use_framework_classes_only(self) -> None:
+        for layout in self.layouts:
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertNotIn("style=", source, layout)
+
+    def test_every_layout_adapts_to_large_and_portrait_screens(self) -> None:
+        for layout in self.layouts:
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("lg:", source, layout)
+            self.assertIn("portrait:", source, layout)
 
 
 if __name__ == "__main__":

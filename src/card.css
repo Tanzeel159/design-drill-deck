@@ -1,0 +1,32 @@
+/* Shared plugin styles. Fixed readable type; content adapts, not font fitting. */
+.trmnl .ddd-card { --ddd-pad:32px; --ddd-title:64px; --ddd-leading:1.03; --ddd-body:26px; --ddd-label:20px; --ddd-footer:18px; --ddd-gap:24px; display:flex; flex-direction:column; gap:var(--ddd-gap); width:100%; height:100%; padding:var(--ddd-pad); background:#fff; color:#000; font-family:"Inter Variable",Inter,sans-serif; box-sizing:border-box; }
+.trmnl .ddd-card * { box-sizing:border-box; }
+.trmnl .ddd-kicker { margin:0; flex:none; font-size:var(--ddd-label); line-height:1.3; font-weight:700; }
+.trmnl .ddd-main { display:flex; align-items:center; gap:28px; flex:1; min-height:0; }
+.trmnl .ddd-copy { display:flex; flex-direction:column; justify-content:center; gap:var(--ddd-gap); flex:1; min-width:0; }
+.trmnl .ddd-title { margin:0; padding:0; color:#000; font-family:inherit; font-size:var(--ddd-title); line-height:var(--ddd-leading); font-weight:900; letter-spacing:-.035em; overflow-wrap:break-word; }
+.trmnl .ddd-brief { margin:0; color:#000; font-family:inherit; font-size:var(--ddd-body); line-height:1.31; font-weight:500; text-wrap:pretty; }
+.trmnl .ddd-art { width:30%; flex:none; display:flex; align-items:center; justify-content:center; }
+.trmnl .ddd-art svg { display:block; width:100%; height:auto; max-height:100%; }
+.trmnl .ddd-footer { display:flex; justify-content:space-between; gap:12px; flex:none; border-top:2px solid #000; padding-top:10px; font-size:var(--ddd-footer); line-height:1.2; font-weight:700; }
+.trmnl .ddd-footer span:last-child { white-space:nowrap; }
+.trmnl .ddd-poster .ddd-art { display:none; }
+.trmnl .ddd-poster .ddd-copy { max-width:100%; }
+.trmnl .ddd-hh { --ddd-pad:18px; --ddd-title:38px; --ddd-body:22px; --ddd-label:16px; --ddd-footer:16px; --ddd-gap:10px; }
+.trmnl .ddd-hh .ddd-art,.trmnl .ddd-hv .ddd-art,.trmnl .ddd-q .ddd-art { display:none; }
+.trmnl .ddd-hv { --ddd-pad:24px; --ddd-title:44px; --ddd-body:24px; --ddd-label:17px; --ddd-footer:16px; --ddd-gap:18px; }
+.trmnl .ddd-q { --ddd-pad:16px; --ddd-title:26px; --ddd-leading:1.18; --ddd-label:16px; --ddd-footer:15px; --ddd-gap:10px; }
+.trmnl .ddd-q .ddd-title { font-weight:700; letter-spacing:-.015em; }
+.trmnl .ddd-q .ddd-footer { padding-top:7px; }
+.trmnl .ddd-empty .ddd-title { font-size:var(--ddd-title); }
+/* lg: sizing is deliberate for TRMNL X; portrait: changes composition. */
+.trmnl .screen--lg .ddd-full { --ddd-pad:40px; --ddd-title:78px; --ddd-body:34px; --ddd-label:26px; --ddd-footer:22px; --ddd-gap:32px; }
+.trmnl .screen--lg .ddd-full .ddd-main { gap:40px; }
+.trmnl .screen--lg.screen--portrait .ddd-full { --ddd-pad:36px; --ddd-title:72px; --ddd-body:32px; --ddd-label:24px; --ddd-footer:21px; --ddd-gap:28px; }
+.trmnl .screen--portrait .ddd-full .ddd-main { flex-direction:column; justify-content:center; }
+.trmnl .screen--portrait .ddd-full .ddd-copy { flex:none; width:100%; }
+.trmnl .screen--portrait .ddd-full .ddd-art { width:38%; max-height:34%; }
+.trmnl .screen--lg .ddd-hh { --ddd-pad:22px; --ddd-title:46px; --ddd-body:26px; --ddd-label:19px; --ddd-footer:18px; --ddd-gap:12px; }
+.trmnl .screen--lg .ddd-hv { --ddd-pad:26px; --ddd-title:52px; --ddd-body:28px; --ddd-label:20px; --ddd-footer:19px; --ddd-gap:20px; }
+.trmnl .screen--lg .ddd-q { --ddd-pad:18px; --ddd-title:32px; --ddd-label:18px; --ddd-footer:17px; --ddd-gap:12px; }
+.trmnl .screen--portrait .ddd-hh,.trmnl .screen--portrait .ddd-hv,.trmnl .screen--portrait .ddd-q { justify-content:space-between; }

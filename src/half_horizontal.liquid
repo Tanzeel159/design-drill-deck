@@ -1,53 +1,14 @@
-{% assign prompt_total = prompts | size %}
-{% assign settings_values = trmnl.plugin_settings.custom_fields_values %}
-{% assign focus_area = settings_values.focus_area | default: "all" %}
-{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" %}
-{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" %}
-{% assign level_matches = difficulty_levels | where: "key", difficulty %}
-{% assign level_profile = level_matches | first %}
-{% assign pattern_limit = level_profile.compact_pattern_limit | default: 4 %}
-{% assign picks_for_mode = daily_picks[rotation_mode] %}
-{% assign picks_for_focus = picks_for_mode[focus_area] %}
-{% assign pick = picks_for_focus[difficulty] %}
-{% if pick == blank and picks_for_focus.prompt_id != blank %}
-  {% assign pick = picks_for_focus %}
-{% endif %}
-{% if pick == blank %}
-  {% assign pick = daily_picks.smart_shuffle.all.intermediate | default: daily_picks.smart_shuffle.all %}
-{% endif %}
-{% if pick != blank %}
-  {% assign matches = prompts | where: "id", pick.prompt_id %}
-  {% assign p = matches | first %}
-  {% assign drill_number = pick.drill_number | default: pick.position %}
-  {% assign total = pick.pool_size %}
-{% else %}
-  {% assign day = "now" | date: "%j" | plus: 0 %}
-  {% assign legacy_idx = day | modulo: prompt_total %}
-  {% assign p = prompts[legacy_idx] %}
-  {% assign drill_number = legacy_idx | plus: 1 %}
-  {% assign total = prompt_total %}
-{% endif %}
+<!-- Shared markup supplies selection and styles, including lg: and portrait: adaptations. -->
+<article class="ddd-card ddd-hh ddd-{{ card_style }}" data-card-id="{{ p.id | escape }}">
 {% if p == blank %}
-  {% assign p = prompts | first %}
-{% endif %}
-{% assign display_date = display_date | default: rotation_date | default: "now" %}
+  <p class="ddd-kicker">Design Drill Deck</p>
+  <div class="ddd-main"><div class="ddd-copy"><h1 class="ddd-title">No drill available.</h1></div></div>
+{% else %}
+  <p class="ddd-kicker">{{ p.mode | escape }} · {{ level_profile.label | default: difficulty | capitalize | escape }}</p>
+  <div class="ddd-main">
+    <div class="ddd-copy"><h1 class="ddd-title">{{ card_title | escape }}</h1><p class="ddd-brief">{{ card_compact | escape }}</p></div>
 
-<div class="layout layout--col gap--small">
-  <div class="flex w--full gap--medium" style="align-items:center">
-    <div class="flex flex--col flex--left" style="flex:1;min-width:0">
-      <span class="label label--small">Drill {{ drill_number }} of {{ total }}</span>
-      <span class="label label--underline">{{ p.mode }} &middot; {{ level_profile.label | default: difficulty | capitalize }}</span>
-    </div>
   </div>
-
-  <span class="title title--medium w--full" data-clamp="2">{{ p.problem }}</span>
-
-  {% assign compact_patterns = p.required_patterns | slice: 0, pattern_limit %}
-  <span class="description w--full" data-clamp="1">{{ compact_patterns | join: " &middot; " }}</span>
-</div>
-
-<div class="title_bar">
-  <svg class="image" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4"><path d="M4 20 L5.5 15 L17 3.5 L20.5 7 L9 18.5 Z"/><line x1="15" y1="5.5" x2="18.5" y2="9"/></svg>
-  <span class="title">Design Drill Deck</span>
-  <span class="instance">{{ display_date | date: "%a, %b %-d" }}</span>
-</div>
+{% endif %}
+  <footer class="ddd-footer"><span>Design Drill Deck</span><span>{{ display_date | date: "%b %-d" }}</span></footer>
+</article>

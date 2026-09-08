@@ -28,6 +28,8 @@ custom_fields:
       - Enterprise UX: enterprise_ux
       - UX Engineering: ux_engineering
       - Information Architecture: information_architecture
+      - Everyday UX: everyday_ux
+      - Dark Patterns: dark_patterns
     default: all
   - keyname: difficulty
     name: Practice level

@@ -12,6 +12,10 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Iterable
 from zoneinfo import ZoneInfo
+try:
+    from scripts.cards import validate_card
+except ModuleNotFoundError:
+    from cards import validate_card
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,6 +99,7 @@ def load_prompts(path: Path = DEFAULT_SOURCE) -> list[dict[str, Any]]:
         if prompt_id in seen_ids:
             raise ValueError(f"Duplicate prompt id: {prompt_id}")
         seen_ids.add(prompt_id)
+        validate_card(prompt)
         if not isinstance(prompt["required_patterns"], list):
             raise ValueError(f"Prompt {prompt_id} required_patterns must be an array")
         if len(prompt["primary_user"]) > MAX_PRIMARY_USER_LENGTH:
