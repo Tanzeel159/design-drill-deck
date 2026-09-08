@@ -3,7 +3,7 @@ strategy: polling
 no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
-polling_verb: ''
+polling_verb: get
 framework_version: 3.3.1
 serverless_language: ''
 polling_url: https://Tanzeel159.github.io/design-drill-deck/daily.json
@@ -70,5 +70,5 @@ custom_fields:
   - Sequential bank order: sequential
   default: smart_shuffle
 name: Design Drill Deck
-description: ''
+description: One clear design challenge, daily
 refresh_interval: 60
