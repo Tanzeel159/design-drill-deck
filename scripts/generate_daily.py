@@ -75,7 +75,8 @@ def slugify(value: str) -> str:
 
 
 def source_digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def load_prompts(path: Path = DEFAULT_SOURCE) -> list[dict[str, Any]]:

@@ -4,7 +4,7 @@
   "display_date": "2026-09-08T12:00:00",
   "timezone": "America/Chicago",
   "anchor_date": "2026-07-20",
-  "source_sha256": "aa4fa76f29d6b3d30cea7bea350e1521e7ece7bc13f61e0c420afc7644d2db0c",
+  "source_sha256": "308b868c118a437ed8c6a19493e5aa30cf18fb711624e29095edc7e2a12c4334",
   "default_rotation_mode": "smart_shuffle",
   "default_difficulty": "intermediate",
   "difficulty_levels": [
