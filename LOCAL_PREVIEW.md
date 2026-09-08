@@ -63,7 +63,7 @@ If a process is forcibly terminated, a `.runtime/*.lock` may remain. Only remove
 
 The matching editable designs are on [02 · Local implementation in Figma](https://www.figma.com/design/GdHCyZDIvAsd1p17ICo5ha?node-id=11-14), including the new categories, three mashups, and both X orientations. The kitchen wording is updated only in the concept gallery. Browser rendering remains the authority for exact text wrapping.
 
-Edit `src/card.css`, `src/selection.liquid`, and `assets/visuals.json`, then run `python scripts/build_layouts.py`. This assembles `shared.liquid` and the four views. Shared is prepended to each view, matching TRMNL's documented renderer. There are no inline style attributes in the device layouts.
+Edit the native Framework class choices in `scripts/build_layouts.py`, selection in `src/selection.liquid`, and drawings in `assets/visuals.json`. Run `python scripts/build_layouts.py` to assemble Shared and the four views. Shared is prepended to each view, matching TRMNL's renderer. The exported markup contains no style attributes or embedded stylesheets. The former `src/card.css` is no longer used.
 
 TRMNL X uses a logical 1040 × 780 canvas at a 1.8 scale. X typography is specified in logical pixels, not physical panel pixels. Preview images should be judged at native size and on hardware.
 
@@ -78,3 +78,9 @@ The browser gate checks every curated card at six device configurations, empty s
 Local review on 2026-09-08: 29 unit tests passed; project/schema validation passed; all 324 curated prompt/device combinations passed the browser fit gate. The nine-card mock batch passed validation and browser checks; rerunning the saved batch made zero requests. Native-device legibility still needs the later on-device review, and live API generation has not been exercised.
 
 The manual-only generation workflow produces preview artifacts. It has no schedule or deployment step. Its cache is a preview convenience, not durable production accounting; production activation must replace it with durable state. No workflow has been dispatched, no commits pushed, and no live TRMNL configuration changed as part of this local build.
+
+## Export for TRMNL
+
+Run `npm run export:trmnl` to rebuild the layouts, validate the six required files, and write `design-drill-deck-trmnl.zip` at the project root with a flat archive layout. After local approval, in TRMNL open **Plugins → Private Plugins → Import new** and select that ZIP. The export contains the current polling URL in `settings.yml`; it does not include `.runtime`, `.env`, the prompt bank, preview files, or credentials. Make layout changes in `scripts/build_layouts.py`; exporting regenerates the four view templates.
+
+All four views use the native Framework `title_bar` as a sibling of `layout`, with the standard patterned background and plugin name, without a footer icon. The date appears where space allows. Native fonts are bundled only for the local preview; TRMNL supplies them on the device.

@@ -113,7 +113,7 @@ def validate_templates() -> None:
             f"{path.name} must not expose exercise timing",
         )
         require(
-            "style=" not in source,
+            "style=" not in source and "<style" not in source.lower(),
             f"{path.name} must use TRMNL framework classes instead of inline styles",
         )
         require(

@@ -28,8 +28,19 @@ function auditCard(){
   }
   const main=root.querySelector('.ddd-main'),copy=root.querySelector('.ddd-copy');
   if(main&&copy){const m=main.getBoundingClientRect(),c=copy.getBoundingClientRect();if(c.top<m.top-1||c.bottom>m.bottom+1)errors.push('Copy exceeds main area');}
-  const footer=root.querySelector('.ddd-footer');
-  if(footer){const spans=[...footer.children];if(spans.length>1&&spans[0].getBoundingClientRect().right>spans[1].getBoundingClientRect().left-2)errors.push('Footer overlaps');}
+  const view=root.parentElement,footer=view.querySelector(':scope > .title_bar');
+  if(!footer)errors.push('Native title bar missing');
+  else{
+    const v=view.getBoundingClientRect(),f=footer.getBoundingClientRect();
+    if(bounds.bottom>f.top+1)errors.push('Layout overlaps title bar');
+    if(f.bottom>v.bottom+1||f.right>v.right+1||f.left<v.left-1)errors.push('Title bar outside view');
+    const children=[...footer.children];
+    children.forEach((el,i)=>{
+      const r=el.getBoundingClientRect();
+      if(r.left<f.left-1||r.right>f.right+1||r.top<f.top-1||r.bottom>f.bottom+1)errors.push('Title bar content outside bar');
+      if(i&&children[i-1].getBoundingClientRect().right>r.left-1)errors.push('Title bar content overlaps');
+    });
+  }
   return errors;
 }
 async function renderCard(device,prompt,level='intermediate',forceLayout){
@@ -41,9 +52,13 @@ async function renderCard(device,prompt,level='intermediate',forceLayout){
   $('device-zoom').innerHTML=deviceMarkup(config);
   const view=$('active-view');view.innerHTML=await engine.parseAndRender(shared+templates[config.layout],data);
   await document.fonts.ready;
-  const root=view.querySelector('.ddd-card');
+  let root=view.querySelector('.ddd-card');
   let errors=auditCard();
-  if(errors.length&&config.layout==='full'&&!forceLayout){root.classList.add('ddd-poster');errors=auditCard();}
+  if(errors.length&&config.layout==='full'&&!forceLayout&&prompt){
+    data.prompts[0].render_layout='poster';
+    view.innerHTML=await engine.parseAndRender(shared+templates[config.layout],data);
+    await document.fonts.ready;root=view.querySelector('.ddd-card');errors=auditCard();
+  }
   const variant=root.classList.contains('ddd-poster')?'Poster':'Visual Brief';
   return {errors,variant,device,promptId:prompt?.id||null};
 }

@@ -1,14 +1,16 @@
-<!-- Shared markup supplies selection and styles, including lg: and portrait: adaptations. -->
-<article class="ddd-card ddd-q ddd-{{ card_style }}" data-card-id="{{ p.id | escape }}">
+<!-- Native Framework sizing and lg: / portrait: composition; ddd-* hooks are for inspection only. -->
+<article class="ddd-card ddd-q ddd-{{ card_style }} layout flex flex--col flex--stretch-x gap p--4 text--black text--left" data-card-id="{{ p.id | escape }}">
 {% if p == blank %}
-  <p class="ddd-kicker">Design Drill Deck</p>
-  <div class="ddd-main"><div class="ddd-copy"><h1 class="ddd-title">No drill available.</h1></div></div>
+  <p class="ddd-kicker label label--large text--bold m--0 flex-none w--full">Design Drill Deck</p>
+  <div class="ddd-main flex flex--row flex--left flex--center-y gap--large flex-auto h--min-0 w--full"><div class="ddd-copy flex flex--col flex--stretch-x flex--center-y gap flex-auto w--min-0"><h1 class="ddd-title font--xlarge text--bold m--0 w--full">No drill available.</h1></div></div>
 {% else %}
-  <p class="ddd-kicker">{{ level_profile.label | default: difficulty | capitalize | escape }}</p>
-  <div class="ddd-main">
-    <div class="ddd-copy"><h1 class="ddd-title">{{ card_compact | escape }}</h1></div>
+  <p class="ddd-kicker label label--large text--bold m--0 flex-none w--full">{{ level_profile.label | default: difficulty | capitalize | escape }}</p>
+  <div class="ddd-main flex flex--row flex--left flex--center-y gap--large flex-auto h--min-0 w--full">
+    <div class="ddd-copy flex flex--col flex--stretch-x flex--center-y gap flex-auto w--min-0"><h1 class="ddd-title font--xlarge text--bold m--0 w--full">{{ card_compact | escape }}</h1></div>
 
   </div>
 {% endif %}
-  <footer class="ddd-footer"><span>Design Drill Deck</span></footer>
 </article>
+<div class="title_bar ddd-footer">
+  <span class="title">Design Drill Deck</span>
+</div>

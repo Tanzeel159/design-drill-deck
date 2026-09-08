@@ -1,14 +1,16 @@
-<!-- Shared markup supplies selection and styles, including lg: and portrait: adaptations. -->
-<article class="ddd-card ddd-hv ddd-{{ card_style }}" data-card-id="{{ p.id | escape }}">
+<!-- Native Framework sizing and lg: / portrait: composition; ddd-* hooks are for inspection only. -->
+<article class="ddd-card ddd-hv ddd-{{ card_style }} layout flex flex--col flex--stretch-x gap--large p--6 text--black text--left" data-card-id="{{ p.id | escape }}">
 {% if p == blank %}
-  <p class="ddd-kicker">Design Drill Deck</p>
-  <div class="ddd-main"><div class="ddd-copy"><h1 class="ddd-title">No drill available.</h1><p class="ddd-brief">Try again on the next refresh.</p></div></div>
+  <p class="ddd-kicker label label--large text--bold m--0 flex-none w--full">Design Drill Deck</p>
+  <div class="ddd-main flex flex--row flex--left flex--center-y gap--large flex-auto h--min-0 w--full"><div class="ddd-copy flex flex--col flex--stretch-x flex--center-y gap--large flex-auto w--min-0"><h1 class="ddd-title font--xxlarge text--bold m--0 w--full">No drill available.</h1><p class="ddd-brief font--xlarge m--0 w--full">Try again on the next refresh.</p></div></div>
 {% else %}
-  <p class="ddd-kicker">{{ p.mode | escape }} · {{ level_profile.label | default: difficulty | capitalize | escape }}</p>
-  <div class="ddd-main">
-    <div class="ddd-copy"><h1 class="ddd-title">{{ card_title | escape }}</h1><p class="ddd-brief">{{ card_compact | escape }}</p></div>
+  <p class="ddd-kicker label label--large text--bold m--0 flex-none w--full">{{ p.mode | escape }} · {{ level_profile.label | default: difficulty | capitalize | escape }}</p>
+  <div class="ddd-main flex flex--row flex--left flex--center-y gap--large flex-auto h--min-0 w--full">
+    <div class="ddd-copy flex flex--col flex--stretch-x flex--center-y gap--large flex-auto w--min-0"><h1 class="ddd-title font--xxlarge text--bold m--0 w--full">{{ card_title | escape }}</h1><p class="ddd-brief font--xlarge m--0 w--full">{{ card_compact | escape }}</p></div>
 
   </div>
 {% endif %}
-  <footer class="ddd-footer"><span>Design Drill Deck</span><span>{{ display_date | date: "%b %-d" }}</span></footer>
 </article>
+<div class="title_bar ddd-footer">
+  <span class="title">Design Drill Deck</span><span class="instance">{{ display_date | date: "%b %-d" }}</span>
+</div>

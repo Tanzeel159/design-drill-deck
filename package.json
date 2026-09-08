@@ -2,7 +2,8 @@
   "name": "design-drill-deck-local-studio",
   "private": true,
   "scripts": {
-    "test:layout": "node scripts/browser_check.cjs --screenshots"
+    "test:layout": "node scripts/browser_check.cjs --screenshots",
+    "export:trmnl": "python scripts/export_plugin.py"
   },
   "devDependencies": {
     "liquidjs": "^10.29.0",
