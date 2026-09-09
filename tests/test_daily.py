@@ -155,6 +155,94 @@ class TemplateQualityTests(unittest.TestCase):
                 encoding="utf-8"
             )
             self.assertNotIn("style=", source, layout)
+            self.assertNotIn("font--", source, layout)
+            self.assertNotIn("ddd-", source, layout)
+            self.assertNotIn("data-card-id", source, layout)
+            self.assertIn('class="title_bar"', source, layout)
+            self.assertNotIn("{% render 'title_bar'", source, layout)
+
+    def test_half_horizontal_stays_to_three_fields(self) -> None:
+        source = (self.source_dir / "half_horizontal.liquid").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("data-clamp", source)
+        self.assertIn("p.constraint", source)
+        self.assertNotIn("Produce:", source)
+        self.assertNotIn("p.business_goal", source)
+        self.assertNotIn("p.primary_user", source)
+
+    def test_quadrant_hint_is_large_screen_only(self) -> None:
+        source = (self.source_dir / "quadrant.liquid").read_text(encoding="utf-8")
+        self.assertIn("hidden lg:block", source)
+        self.assertIn("complete drill", source)
+
+    def test_full_inlines_title_bar_html(self) -> None:
+        source = (self.source_dir / "full.liquid").read_text(encoding="utf-8")
+        self.assertIn('<div class="title_bar">', source)
+        self.assertIn('<span class="title">Design Drill Deck</span>', source)
+        self.assertIn('class="instance"', source)
+        self.assertNotIn("{% render 'title_bar'", source)
+        self.assertNotIn("sm:flex--col", source)
+
+    def test_select_values_are_lowercased(self) -> None:
+        selection = (self.source_dir / "selection.liquid").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("| downcase", selection)
+        self.assertIn("stores select values lowercase", selection)
+
+    def test_layout_root_does_not_repeat_flex_col(self) -> None:
+        for layout in self.layouts:
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertNotIn("layout layout--col flex flex--col", source, layout)
+
+    def test_kicker_falls_back_when_mode_is_missing(self) -> None:
+        shared = (self.source_dir / "shared.liquid").read_text(encoding="utf-8")
+        self.assertIn("card_mode", shared)
+        self.assertIn("p.mode | default: scope_profile.label", shared)
+        full = (self.source_dir / "full.liquid").read_text(encoding="utf-8")
+        hv = (self.source_dir / "half_vertical.liquid").read_text(encoding="utf-8")
+        self.assertIn("card_mode", full)
+        self.assertIn("card_mode", hv)
+        self.assertNotIn("p.mode | escape", full)
+        self.assertNotIn("p.mode | escape", hv)
+
+    def test_modulo_fallback_documents_empty_feed(self) -> None:
+        selection = (self.source_dir / "selection.liquid").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("malformed or empty", selection)
+        self.assertIn("prompt_total > 0", selection)
+        self.assertIn("assign feed_empty", selection)
+        self.assertIn("p == blank and prompt_total > 0", selection)
+
+    def test_empty_state_uses_feed_flag(self) -> None:
+        for layout in self.layouts:
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("feed_empty or p == blank", source, layout)
+            self.assertIn("No prompts loaded.", source, layout)
+
+    def test_full_context_row_stacks_in_portrait(self) -> None:
+        source = (self.source_dir / "full.liquid").read_text(encoding="utf-8")
+        self.assertIn("portrait:flex--col", source)
+        self.assertIn("portrait:w--full", source)
+        self.assertIn("divider--v portrait:hidden", source)
+        self.assertIn("stroke-width=\"2\"", source)
+        self.assertNotIn("stroke-width=\"6\"", source)
+
+    def test_every_layout_uses_title_bar_and_layout_class(self) -> None:
+        for layout in self.layouts:
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn('class="title_bar"', source, layout)
+            self.assertNotIn("{% render 'title_bar'", source, layout)
+            self.assertRegex(source, r'class="layout(\s|")', layout)
+            self.assertIn("layout--col", source, layout)
 
     def test_every_layout_adapts_to_large_and_portrait_screens(self) -> None:
         for layout in self.layouts:

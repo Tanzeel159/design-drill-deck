@@ -1,4 +1,9 @@
 ---
+# Polling feed: GET polling_url (GitHub Pages daily.json).
+# The JSON is already shaped for Liquid — a serverless transform is optional
+# (src/transform.js). Merge variables used by shared.liquid:
+#   prompts, daily_picks, difficulty_levels, display_date, rotation_date,
+#   default_difficulty, default_rotation_mode
 strategy: polling
 no_screen_padding: 'no'
 dark_mode: 'no'
@@ -9,7 +14,7 @@ serverless_language: ''
 polling_url: https://Tanzeel159.github.io/design-drill-deck/daily.json
 polling_headers: ''
 polling_body: ''
-id: 472162
+id: 472554
 oauth_enabled: 'false'
 oauth_pkce_enabled: 'no'
 oauth_authorize_url: ''
@@ -39,9 +44,10 @@ custom_fields:
 - keyname: focus_area
   name: Focus area
   field_type: select
-  description: Practice every category or concentrate on one discipline.
+  description: Choose a discipline, or practice all nine categories. Labels are for display; the saved value is the lowercase category key.
+  help_text: All categories rotates through Core UX, AI interfaces, dashboards, accessibility, enterprise, UX engineering, IA, everyday UX, and dark patterns. Pick one discipline to stay in that pool. The plugin stores the option’s key in lowercase (for example core_ux_flow) to match the daily deck.
   options:
-  - All categories: all
+  - All categories: all_categories
   - Core UX Flow: core_ux_flow
   - AI-Integrated Interface: ai_integrated_interface
   - Dashboard & Data UX: dashboard_data_ux
@@ -51,7 +57,7 @@ custom_fields:
   - Information Architecture: information_architecture
   - Everyday UX: everyday_ux
   - Dark Patterns: dark_patterns
-  default: all
+  default: all_categories
 - keyname: difficulty
   name: Practice level
   field_type: select

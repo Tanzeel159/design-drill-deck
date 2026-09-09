@@ -1,51 +1,121 @@
 """Assemble views with native TRMNL Framework classes and no embedded CSS."""
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def native_view(suffix):
-    compact = suffix != 'full'
-    pad = 'p--4' if suffix in ('hh', 'q') else 'p--6'
-    gap = 'gap' if suffix in ('hh', 'q') else 'gap--large'
-    title_size = {'full': 'font--xxxlarge', 'hh': 'title title--large',
-                  'hv': 'font--xxlarge', 'q': 'font--xlarge'}[suffix]
-    body_size = 'description description--xlarge' if suffix == 'hh' else 'font--xlarge'
-    root_classes = f'layout flex flex--col flex--stretch-x {gap} {pad} text--black text--left'
-    main_classes = 'flex flex--row flex--left flex--center-y gap--large flex-auto h--min-0 w--full'
-    copy_classes = f'flex flex--col flex--stretch-x flex--center-y {gap} flex-auto w--min-0'
-    if not compact:
-        main_classes += ' portrait:flex--col portrait:flex--center'
-        copy_classes += ' portrait:flex-none portrait:w--full'
-    title_classes = f'ddd-title {title_size} text--bold m--0 w--full'
-    brief_classes = f'ddd-brief {body_size} m--0 w--full'
-    header_classes = 'ddd-kicker label label--large text--bold m--0 flex-none w--full'
-    category = '{{ level_profile.label | default: difficulty | capitalize | escape }}'
-    if suffix not in ('q', 'hh'):
-        category = '{{ p.mode | escape }} · ' + category
-    heading = 'card_compact' if suffix == 'q' else 'card_title'
-    brief_key = 'card_compact' if compact else 'card_brief'
-    brief = '' if suffix == 'q' else f'<p class="{brief_classes}">{{{{ {brief_key} | escape }}}}</p>'
-    art = '' if compact else '''{% if card_style != 'poster' %}<div class="ddd-art flex flex--center flex-none w--48 lg:w--64 portrait:w--64">{{ card_art }}</div>{% endif %}'''
-    date = '' if suffix == 'q' else '<span class="instance">{{ display_date | date: "%b %-d" }}</span>'
-    help_text = '' if suffix in ('q', 'hh') else f'<p class="{brief_classes}">Try again on the next refresh.</p>'
-    return f'''<!-- Native Framework sizing and lg: / portrait: composition; ddd-* hooks are for inspection only. -->
-<article class="ddd-card ddd-{suffix} ddd-{{{{ card_style }}}} {root_classes}" data-card-id="{{{{ p.id | escape }}}}">
-{{% if p == blank %}}
-  <p class="{header_classes}">Design Drill Deck</p>
-  <div class="ddd-main {main_classes}"><div class="ddd-copy {copy_classes}"><h1 class="{title_classes}">No drill available.</h1>{help_text}</div></div>
-{{% else %}}
-  <p class="{header_classes}">{category}</p>
-  <div class="ddd-main {main_classes}">
-    <div class="ddd-copy {copy_classes}"><h1 class="{title_classes}">{{{{ {heading} | escape }}}}</h1>{brief}</div>
-    {art}
+    full = suffix == 'full'
+    # .label is nowrap inline-flex; wrapping copy must use description/title.
+    kicker_class = 'description lg:description--large text--bold m--0 w--full'
+    field_label = 'title title--small text--bold m--0'
+    body = 'description description--large lg:description--xlarge m--0 w--full'
+    icons = {
+        'user': '<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',
+        'goal': '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+        'constraint': '<rect x="5" y="10" width="14" height="12" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/>'
+    }
+
+    def field(name, value, key, clamp=None):
+        icon = ''
+        if key in icons:
+            icon = (
+                f'<svg class="flex-none" xmlns="http://www.w3.org/2000/svg" width="24" height="24" '
+                f'viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" '
+                f'stroke-linecap="round" stroke-linejoin="round">{icons[key]}</svg>'
+            )
+        heading = f'<div class="flex flex--row flex--left flex--center-y gap--small w--full">{icon}<h2 class="{field_label}">{name}</h2></div>'
+        clamp_attr = f' data-clamp="{clamp}"' if clamp else ''
+        return (
+            f'<div class="flex flex--col flex--stretch-x gap--xsmall w--full w--min-0">{heading}'
+            f'<p class="{body}"{clamp_attr}>{{{{ {value} | escape }}}}</p></div>'
+        )
+
+    def inline(name, value, clamp=None):
+        clamp_attr = f' data-clamp="{clamp}"' if clamp else ''
+        return (
+            f'<p class="{body}"{clamp_attr}><strong>{name}</strong> '
+            f'{{{{ {value} | escape }}}}</p>'
+        )
+
+    title = 'title title--xlarge lg:title--xxlarge portrait:title--xlarge' if full else 'title title--large lg:title--xlarge portrait:title--large'
+    kicker_text = '{{ card_mode | escape }} · {{ level_profile.label | default: difficulty | capitalize | escape }}' if suffix in ('full', 'hv') else '{{ level_profile.label | default: difficulty | capitalize | escape }} practice'
+    hh_clamp = ' data-clamp="2"' if suffix == 'hh' else ''
+    heading = f'<h1 class="{title} text--bold m--0 w--full"{hh_clamp}>{{{{ card_title | escape }}}}</h1>'
+    brief_class = 'description description--xlarge m--0 w--full' if full else body
+    brief_key = 'card_brief' if full else 'card_compact'
+    brief = f'<p class="{brief_class}"{hh_clamp}>{{{{ {brief_key} | escape }}}}</p>'
+    art = '{% if stripped_art != blank %}<div class="w--20 lg:w--40 flex-none">{{ card_art }}</div>{% endif %}'
+    scope = field('Your task', 'card_scope_short', 'scope', 2)
+    if full:
+        context_items = [
+            ('Who it is for', 'p.primary_user', 'user'),
+            ('Goal', 'p.business_goal', 'goal'),
+            ('Constraint', 'p.constraint', 'constraint'),
+        ]
+        context_parts = []
+        for index, item in enumerate(context_items):
+            if index:
+                context_parts.append('<div class="divider divider--v portrait:hidden"></div>')
+            context_parts.append(
+                f'<div class="flex flex--col flex--stretch-x w--1/3 portrait:w--full w--min-0">{field(*item, clamp=2)}</div>'
+            )
+        context = ''.join(context_parts)
+        content = f'''<div class="flex flex--row flex--left flex--center-y gap--large w--full portrait:flex--col">{art}<div class="flex flex--col flex--stretch-x gap--small flex-auto w--min-0">{heading}{brief}</div></div>
+  <div class="divider w--full"></div>
+  <div class="flex flex--row flex--left flex--top gap--medium w--full portrait:flex--col">{context}</div>
+  <div class="divider w--full"></div>
+  <div class="flex flex--row flex--left flex--top gap--large w--full portrait:flex--col">
+    <div class="w--1/2 portrait:w--full w--min-0">{scope}</div><div class="w--1/2 portrait:w--full w--min-0">{field('Work through', 'card_patterns', 'patterns', 2)}</div>
   </div>
+  <div class="divider w--full"></div>
+  {inline('Watch for:', 'p.watch_for', 2)}'''
+    elif suffix == 'hh':
+        content = heading + brief + inline('Constraint:', 'p.constraint', 1)
+    elif suffix == 'hv':
+        content = (
+            heading + brief + '<div class="border--h w--full"></div>'
+            + ''.join(
+                inline(*item)
+                for item in [
+                    ('Who:', 'p.primary_user'),
+                    ('Goal:', 'p.business_goal'),
+                    ('Constraint:', 'p.constraint'),
+                    ('Produce:', 'card_scope_short'),
+                ]
+            )
+            + f'<p class="hidden lg:block {kicker_class}">Full-screen layout adds patterns + guidance.</p>'
+        )
+    else:
+        content = (
+            heading + brief
+            + f'<p class="hidden lg:block {kicker_class}">Use full-screen layout for the complete drill.</p>'
+        )
+    pad = 'p--4'
+    gap = 'gap--small lg:gap--large' if full else 'gap--small'
+    if suffix == 'q':
+        title_bar = '<div class="title_bar"><span class="title">Design Drill Deck</span></div>'
+    else:
+        title_bar = (
+            "{% assign title_instance = display_date | date: '%b %-d' %}"
+            '<div class="title_bar"><span class="title">Design Drill Deck</span>'
+            '{% if title_instance != blank %}<span class="instance">{{ title_instance }}</span>{% endif %}'
+            '</div>'
+        )
+    return f'''<!-- Native Framework brief: essential instructions are rendered on the device. -->
+<div class="layout layout--col flex--stretch-x flex--top {gap} {pad} text--black text--left">
+{{% if feed_empty or p == blank %}}
+  <p class="{kicker_class}">Design Drill Deck</p>
+  <h1 class="{title} text--bold m--0 w--full">No prompts loaded.</h1>
+  <p class="{body}">The daily deck is empty or did not arrive. It will retry on the next refresh.</p>
+{{% else %}}
+  <p class="{kicker_class}">{kicker_text}</p>
+  {content}
 {{% endif %}}
-</article>
-<div class="title_bar ddd-footer">
-  <span class="title">Design Drill Deck</span>{date}
 </div>
+{title_bar}
 '''
 
 
@@ -58,6 +128,7 @@ def build():
     visuals = json.loads((ROOT / 'assets/visuals.json').read_text(encoding='utf-8'))
     art = '{% capture card_art %}{% case p.visual_key %}'
     for key, svg in visuals.items():
+        svg = re.sub(r'\s(width|height)="\d+"', '', svg, count=2)
         svg = svg.replace('<svg ', '<svg class="w--full h--auto" ', 1)
         art += '{% when "' + key + '" %}' + svg
     art += '{% endcase %}{% endcapture %}\n'
@@ -65,6 +136,27 @@ def build():
     shared += '''{% assign card_title = p.display_title | default: p.problem %}
 {% assign card_brief = p.display_brief | default: p.problem %}
 {% assign card_compact = p.compact_brief | default: card_brief %}
+{% assign card_patterns = p.required_patterns | slice: 0, pattern_limit | join: ' · ' %}
+{% assign card_scope = level_profile.scope_note %}
+{% case difficulty %}
+{% when 'beginner' %}{% assign card_scope_short = 'Main path, key screen, one recovery state.' %}
+{% when 'advanced' %}{% assign card_scope_short = 'System states, risks, accessibility + measurement.' %}
+{% else %}{% assign card_scope_short = 'Main flow, two edge cases + one success metric.' %}
+{% endcase %}
+{% if p.mode == 'Everyday UX' or p.mode == 'Dark Patterns' %}
+  {% case difficulty %}
+  {% when 'beginner' %}{% assign card_scope = 'Describe one observation and sketch an alternative.' %}
+  {% when 'advanced' %}{% assign card_scope = 'Compare alternatives, examine tradeoffs, and explain how to measure the improvement.' %}
+  {% else %}{% assign card_scope = 'Explain the user impact, sketch an alternative, and propose a way to test it.' %}
+  {% endcase %}
+  {% assign card_scope_short = card_scope %}
+{% endif %}
+{% comment %}
+card_style maps p.render_layout from the daily feed onto CSS hooks:
+  visual — illustrated brief; the SVG sits beside the copy on full.
+  poster — type-only; used when the prompt sets render_layout: poster
+           or when visual_key has no matching SVG (blank card_art).
+{% endcomment %}
 {% assign card_style = p.render_layout | default: 'visual' %}
 {% assign stripped_art = card_art | strip %}
 {% if stripped_art == blank %}{% assign card_style = 'poster' %}{% endif %}

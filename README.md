@@ -1,6 +1,6 @@
 # Design Drill Deck
 
-**Local redesign preview (September 2026):** 54 curated exercises, eight reusable illustrations, readable Visual Brief/Poster layouts, and optional capped API generation. Start with [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md). This redesign has not been pushed or installed on the live device. The original implementation notes below describe the earlier release.
+**Local redesign preview (September 2026):** 54 curated exercises, eight reusable illustrations, grouped context and practice instructions on the device, and optional capped API generation. Start with [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md). This redesign has not been pushed or installed on the live device. The original implementation notes below describe the earlier release.
 
 A TRMNL plugin that shows one realistic product-design interview drill per day. The 42-prompt bank spans Core UX, AI-Integrated Interfaces, Dashboard/Data UX, Accessibility, Enterprise UX, UX Engineering, and Information Architecture.
 
@@ -50,10 +50,11 @@ TRMNL's normal playlist, mashup, display schedule, and device refresh controls r
 
 ## CI/CD
 
-Two GitHub Actions workflows are included:
+Three GitHub Actions workflows are included:
 
 - `.github/workflows/ci.yml` runs on pushes and pull requests. It validates the prompt schema, generated feed, TRMNL settings, layouts, and shuffle behavior.
-- `.github/workflows/publish-daily.yml` runs at 12:05 AM in `America/Chicago`, on pushes to `main`, and manually. It generates the current feed and deploys it to GitHub Pages without making a daily repository commit.
+- `.github/workflows/trmnl.yml` pushes rebuilt markup to the live private plugin on every `main` commit that touches `src/` (requires `TRMNL_API_KEY`).
+- `.github/workflows/publish-daily.yml` is manual. It generates the current feed and deploys it to GitHub Pages without making a daily repository commit.
 
 Production data flow:
 
@@ -112,16 +113,13 @@ GitHub may disable scheduled workflows in public repositories after extended ina
 
 ## Installing in TRMNL
 
-The daily JSON feed is published from GitHub Pages. The Liquid markup must also be pasted into the private plugin (Pages does not update device layouts).
+The daily JSON feed is published from GitHub Pages. Markup (the four views + Shared) is pushed to private plugin `472554` by GitHub Actions — no ZIP import on each change.
 
 1. Confirm `https://Tanzeel159.github.io/design-drill-deck/daily.json` returns JSON.
-2. In TRMNL, open the private plugin (or create one) and set:
-   - Strategy: `Polling`
-   - Polling URL: `https://Tanzeel159.github.io/design-drill-deck/daily.json`
-   - Refresh interval: `60` minutes
-3. Paste `src/shared.liquid` into **Shared**. TRMNL prepends this file to every view.
-4. Paste the four views: `full.liquid`, `half_horizontal.liquid`, `half_vertical.liquid`, `quadrant.liquid`.
-5. Copy `src/settings.yml` into the plugin form (focus area, practice level, prompt order). The form now includes Everyday UX and Dark Patterns.
-6. Save, force a refresh, and check OG plus TRMNL X portrait.
+2. In the GitHub repo, open **Settings → Secrets and variables → Actions** and add `TRMNL_API_KEY` (from [your TRMNL API key](https://trmnl.com/account)).
+3. Push to `main` (or run **Push plugin to TRMNL** from the Actions tab). The workflow rebuilds layouts and runs `trmnlp push --force`.
+4. In TRMNL, force a plugin refresh, then check OG and TRMNL X portrait.
 
-A packed copy of those six files is built locally as `dist/design-drill-deck-trmnl.zip` (gitignored). Custom-field help: [plugin form builder](https://help.trmnl.com/en/articles/10513740-custom-plugin-form-builder#h_02dd8f84a9).
+ZIP import remains a fallback: `npm run export:trmnl` writes `design-drill-deck-trmnl.zip`, then **Plugins → Private Plugins → Import new**. Prefer GitHub push so you do not create a second plugin.
+
+Custom-field help: [plugin form builder](https://help.trmnl.com/en/articles/10513740-custom-plugin-form-builder#h_02dd8f84a9). ZIP format: [importing and exporting private plugins](https://help.trmnl.com/en/articles/10542599-importing-and-exporting-private-plugins). `trmnlp` docs: [usetrmnl/trmnlp](https://github.com/usetrmnl/trmnlp).

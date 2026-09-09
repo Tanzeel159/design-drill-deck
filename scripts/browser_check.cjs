@@ -29,8 +29,16 @@ async function run({input, screenshots=false}={}){
   const devices=await page.evaluate(()=>Object.keys(deckStudio.devices));
   for(const card of cards){
     let variant='visual',checks=[];
-    for(const device of devices){
-      const result=await page.evaluate(async({device,card})=>await deckStudio.renderCard(device,card),{device,card});
+    for(const device of devices)for(const level of ['beginner','intermediate','advanced']){
+      const result=await page.evaluate(async({device,card,level})=>{
+        const r=await deckStudio.renderCard(device,card,level);
+        const text=document.querySelector('.layout')?.innerText||'';
+        const need=(label)=> { if(!text.includes(label)) r.errors.push(`Missing ${label}`); };
+        if(device==='og-half-horizontal') need('Constraint:');
+        else if(device==='og-half-vertical') ['Who:','Goal:','Constraint:','Produce:'].forEach(need);
+        else if(['og-full','x-landscape','x-portrait'].includes(device)) ['Who it is for','Goal','Constraint','Your task','Work through'].forEach(need);
+        return {...r,level};
+      },{device,card,level});
       if(result.variant==='Poster'&&device.startsWith('x-')||result.variant==='Poster'&&device==='og-full')variant='poster';
       checks.push(result);
     }
@@ -48,11 +56,11 @@ async function run({input, screenshots=false}={}){
     }
     const unknown={...cards[0],visual_key:'unknown'};
     const fallback=await page.evaluate(p=>deckStudio.renderCard('og-full',p),unknown);
-    if(fallback.variant!=='Poster'||fallback.errors.length)errors.push('Unknown visual fallback failed');
+    if(fallback.variant!=='Device brief'||fallback.errors.length)errors.push('Unknown visual must retain a complete device brief');
   }
   if(screenshots){
     fs.mkdirSync(path.join(ROOT,'qa'),{recursive:true});
-    for(const id of ['ddd-012','ddd-043','ddd-049']){
+    for(const id of ['ddd-002','ddd-012','ddd-043','ddd-049']){
       await page.goto(`http://127.0.0.1:${server.address().port}/preview/?prompt=${id}`);
       await page.waitForFunction(()=>document.body.dataset.previewReady==='true');
       await page.screenshot({path:path.join(ROOT,`qa/${id}-studio.png`)});
@@ -64,7 +72,7 @@ async function run({input, screenshots=false}={}){
       await page.screenshot({path:path.join(ROOT,`qa/${device}.png`)});
     }
   }
-  return {results,errors,checked:results.length*devices.length,passed:!errors.length&&results.every(r=>r.accepted)};
+  return {results,errors,checked:results.reduce((n,r)=>n+r.checks.length,0),passed:!errors.length&&results.every(r=>r.accepted)};
  }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
 }
 function deckIsFull(device){return ['og-full','x-landscape','x-portrait'].includes(device);}

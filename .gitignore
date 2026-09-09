@@ -11,6 +11,7 @@ node_modules/
 .runtime/
 qa/
 dist/
+design-drill-deck-trmnl.zip
 preview/vendor/plugins.css
 preview/vendor/plugins.js
 preview/vendor/liquid.js

@@ -1,0 +1,41 @@
+# Uploads src/ markup to the private plugin on TRMNL.
+# Add repository secret TRMNL_API_KEY (Settings → Secrets and variables → Actions).
+name: Push plugin to TRMNL
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/**
+      - assets/visuals.json
+      - scripts/build_layouts.py
+      - .github/workflows/trmnl.yml
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Assemble TRMNL layouts
+        run: python scripts/build_layouts.py
+
+      - name: Push markup to TRMNL
+        env:
+          TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
+        run: |
+          if [ -z "$TRMNL_API_KEY" ]; then
+            echo "Add TRMNL_API_KEY as a repository secret (Settings → Secrets and variables → Actions)."
+            exit 1
+          fi
+          docker run --rm --pull=always \
+            -e TRMNL_API_KEY \
+            -v "$PWD:/plugin" \
+            trmnl/trmnlp push --force

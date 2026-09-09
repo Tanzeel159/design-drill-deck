@@ -16,7 +16,7 @@ python scripts/serve.py --port 4173
 
 Open http://127.0.0.1:4173/preview/. The server binds only to loopback and serves an allowlist of public assets. It never serves `.env`, `.runtime`, or Git files.
 
-Use the category, prompt, practice-level, source, and device selectors. **Actual pixels · 100%** enables native-size inspection; scroll for large X screens. **Read full brief** opens the complete exercise. The compact card intentionally omits the old dense checklist.
+Use the category, prompt, practice-level, source, and device selectors. **Actual pixels · 100%** enables native-size inspection; scroll for large X screens. **Read full brief** opens the expanded scenario and discussion guidance. The full device card is a usable exercise: illustrated challenge, user/goal/constraint row, task and pattern row, and a separate watch-for note. Dotted dividers separate the rows, including the divider below task/patterns. Half layouts retain the essential instructions; the quadrant is explicitly a teaser with a full-screen hint.
 
 Examples:
 
@@ -61,7 +61,7 @@ If a process is forcibly terminated, a `.runtime/*.lock` may remain. Only remove
 
 ## Design source and tests
 
-The matching editable designs are on [02 · Local implementation in Figma](https://www.figma.com/design/GdHCyZDIvAsd1p17ICo5ha?node-id=11-14), including the new categories, three mashups, and both X orientations. The kitchen wording is updated only in the concept gallery. Browser rendering remains the authority for exact text wrapping.
+The updated designs are on [02 · Local implementation in Figma](https://www.figma.com/design/GdHCyZDIvAsd1p17ICo5ha?node-id=21-17): nine screens, including the hotel example, new categories, three mashups, and both X orientations. Headings use reusable component instances. OG pixel text is vectorized for font fidelity; Inter text is editable. The concept gallery remains a record of the earlier directions. Browser rendering remains the authority for exact text wrapping and the platform title bar.
 
 Edit the native Framework class choices in `scripts/build_layouts.py`, selection in `src/selection.liquid`, and drawings in `assets/visuals.json`. Run `python scripts/build_layouts.py` to assemble Shared and the four views. Shared is prepended to each view, matching TRMNL's renderer. The exported markup contains no style attributes or embedded stylesheets. The former `src/card.css` is no longer used.
 
@@ -73,7 +73,9 @@ python scripts/validate_project.py
 npm run test:layout
 ```
 
-The browser gate checks every curated card at six device configurations, empty states, unknown visuals, and Poster fallback. Screenshots are saved under ignored `qa/`. Windows uses installed Edge; other platforms need `npx playwright install chromium`. Set `DDD_BROWSER` to an executable path if needed; `DDD_NODE` can select Node for Python's render gate.
+The browser gate checks every curated card at six device configurations and all three practice levels (972 combinations), required device fields, empty states, and unknown visuals. Screenshots are saved under ignored `qa/`. Windows uses installed Edge; other platforms need `npx playwright install chromium`. Set `DDD_BROWSER` to an executable path if needed; `DDD_NODE` can select Node for Python's render gate.
+
+The September 8 brief redesign preserves native Framework fonts and illustrated category art. Inter headings and a larger summary establish hierarchy; compact TRMNL16 body text keeps supporting detail readable on OG. X uses native Inter throughout. `scripts/figma_snapshot.cjs` captures browser geometry for Figma; `scripts/figma_native_text.py` outlines the OG pixel text using optional FontTools installed under `qa/fonttools`. This avoids substituting a different font in Figma. These QA files are not included in the device export.
 
 Local review on 2026-09-08: 29 unit tests passed; project/schema validation passed; all 324 curated prompt/device combinations passed the browser fit gate. The nine-card mock batch passed validation and browser checks; rerunning the saved batch made zero requests. Native-device legibility still needs the later on-device review, and live API generation has not been exercised.
 
@@ -83,4 +85,4 @@ The manual-only generation workflow produces preview artifacts. It has no schedu
 
 Run `npm run export:trmnl` to rebuild the layouts, validate the six required files, and write `design-drill-deck-trmnl.zip` at the project root with a flat archive layout. After local approval, in TRMNL open **Plugins → Private Plugins → Import new** and select that ZIP. The export contains the current polling URL in `settings.yml`; it does not include `.runtime`, `.env`, the prompt bank, preview files, or credentials. Make layout changes in `scripts/build_layouts.py`; exporting regenerates the four view templates.
 
-All four views use the native Framework `title_bar` as a sibling of `layout`, with the standard patterned background and plugin name, without a footer icon. The date appears where space allows. Native fonts are bundled only for the local preview; TRMNL supplies them on the device.
+All four views include a Framework `.title_bar` sibling of `layout layout--col`, with the plugin name and (except quadrant) the date. Native fonts are bundled only for the local preview; TRMNL supplies them on the device.

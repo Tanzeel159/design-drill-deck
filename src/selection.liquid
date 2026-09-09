@@ -1,8 +1,29 @@
+{% comment %}
+Data source: settings.yml strategy `polling`, polling_url GET
+https://Tanzeel159.github.io/design-drill-deck/daily.json
+The JSON is already Liquid-shaped, so a serverless transform is optional
+(see src/transform.js). Top-level keys used here:
+  prompts, daily_picks, difficulty_levels, display_date, rotation_date,
+  default_difficulty, default_rotation_mode
+{% endcomment %}
 {% assign prompt_total = prompts | size %}
+{% comment %}
+feed_empty is the markup flag for a missing/failed deck. Do not assign
+p = prompts | first when the bank is empty: that can leave p as a non-blank
+empty object, so the views skip their empty state and render a blank screen.
+{% endcomment %}
+{% assign feed_empty = false %}
+{% if prompt_total == 0 %}{% assign feed_empty = true %}{% endif %}
 {% assign settings_values = trmnl.plugin_settings.custom_fields_values %}
-{% assign focus_area = settings_values.focus_area | default: "all" %}
-{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" %}
-{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" %}
+{% comment %}
+TRMNL stores select values lowercase (e.g. core_ux_flow). daily.json keys
+use the same lowercase slugs, so downcase keeps lookups aligned if a value
+arrives mixed-case.
+{% endcomment %}
+{% assign focus_area = settings_values.focus_area | default: "all" | strip | downcase %}
+{% if focus_area == "all_categories" %}{% assign focus_area = "all" %}{% endif %}
+{% assign difficulty = settings_values.difficulty | default: default_difficulty | default: "intermediate" | strip | downcase %}
+{% assign rotation_mode = settings_values.rotation_mode | default: default_rotation_mode | default: "smart_shuffle" | strip | downcase %}
 {% assign level_matches = difficulty_levels | where: "key", difficulty %}
 {% assign level_profile = level_matches | first %}
 {% assign pattern_limit = level_profile.pattern_limit | default: 4 %}
@@ -12,6 +33,14 @@
 {% if pick == blank and picks_for_focus.prompt_id != blank %}
   {% assign pick = picks_for_focus %}
 {% endif %}
+{% comment %}
+Pick priority when the requested path is missing or malformed:
+  1. daily_picks[rotation_mode][focus_area][difficulty]
+  2. that focus node itself, if it already has prompt_id (legacy shape)
+  3. daily_picks.smart_shuffle.all.intermediate
+  4. daily_picks.smart_shuffle.all (legacy unscoped node)
+  5. day-of-year modulo over prompts (last resort if the feed is empty)
+{% endcomment %}
 {% if pick == blank %}
   {% assign pick = daily_picks.smart_shuffle.all.intermediate | default: daily_picks.smart_shuffle.all %}
 {% endif %}
@@ -21,14 +50,28 @@
   {% assign drill_number = pick.drill_number | default: pick.position %}
   {% assign total = pick.pool_size %}
 {% else %}
-  {% assign day = "now" | date: "%j" | plus: 0 %}
-  {% assign legacy_idx = day | modulo: prompt_total %}
-  {% assign p = prompts[legacy_idx] %}
-  {% assign drill_number = legacy_idx | plus: 1 %}
-  {% assign total = prompt_total %}
+  {% comment %}
+  This branch only runs if daily.json is malformed or empty: no pick for the
+  requested mode/focus/difficulty, and the smart_shuffle.all fallbacks above
+  also failed. Day-of-year modulo over prompts keeps the screen from going blank
+  when the bank is present; if prompt_total is 0 the views show the empty state.
+  {% endcomment %}
+  {% if prompt_total > 0 %}
+    {% assign day = "now" | date: "%j" | plus: 0 %}
+    {% assign legacy_idx = day | modulo: prompt_total %}
+    {% assign p = prompts[legacy_idx] %}
+    {% assign drill_number = legacy_idx | plus: 1 %}
+    {% assign total = prompt_total %}
+  {% endif %}
 {% endif %}
-{% if p == blank %}
+{% if p == blank and prompt_total > 0 %}
   {% assign p = prompts | first %}
 {% endif %}
 {% assign display_date = display_date | default: rotation_date | default: "now" %}
-
+{% comment %}
+p.mode is the category label on every prompt in daily.json (generator-required).
+If a prompt omits it, use the selected focus_area scope label, then the slug.
+{% endcomment %}
+{% assign scope_matches = scopes | where: "key", focus_area %}
+{% assign scope_profile = scope_matches | first %}
+{% assign card_mode = p.mode | default: scope_profile.label | default: focus_area %}

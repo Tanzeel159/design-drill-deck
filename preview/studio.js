@@ -1,12 +1,24 @@
 /* The same renderer is used interactively and by the acceptance checks. */
-const engine = new liquidjs.Liquid();
+const TITLE_BAR = `<div class="title_bar"><span class="title">{{ title | default: "Design Drill Deck" }}</span>{% if instance != blank %}<span class="instance">{{ instance }}</span>{% endif %}</div>`;
+const engine = new liquidjs.Liquid({
+  fs: {
+    existsSync() { return true; },
+    async exists() { return true; },
+    readFileSync() { return TITLE_BAR; },
+    async readFile() { return TITLE_BAR; },
+    resolve(_from, file) { return String(file).replace(/\.liquid$/, ''); },
+    contains() { return true; },
+    dirname() { return ''; },
+    sep: '/'
+  }
+});
 const DEVICE_CONFIGS = {
-  'og-full': {label:'OG · Full screen',width:800,height:480,layout:'full',screenClass:'screen screen--og screen--1bit'},
+  'og-full': {label:'OG · Full screen',width:800,height:480,layout:'full',screenClass:'screen screen--og screen--md screen--1bit'},
   'x-landscape': {label:'X · Landscape',width:1872,height:1404,layout:'full',screenClass:'screen screen--v2 screen--lg screen--4bit'},
   'x-portrait': {label:'X · Portrait',width:1404,height:1872,layout:'full',screenClass:'screen screen--v2 screen--lg screen--portrait screen--4bit'},
-  'og-half-horizontal': {label:'OG · Half horizontal',width:800,height:480,layout:'half_horizontal',screenClass:'screen screen--og screen--1bit'},
-  'og-half-vertical': {label:'OG · Half vertical',width:800,height:480,layout:'half_vertical',screenClass:'screen screen--og screen--1bit'},
-  'og-quadrant': {label:'OG · Quadrant',width:800,height:480,layout:'quadrant',screenClass:'screen screen--og screen--1bit'}
+  'og-half-horizontal': {label:'OG · Half horizontal',width:800,height:480,layout:'half_horizontal',screenClass:'screen screen--og screen--md screen--1bit'},
+  'og-half-vertical': {label:'OG · Half vertical',width:800,height:480,layout:'half_vertical',screenClass:'screen screen--og screen--md screen--1bit'},
+  'og-quadrant': {label:'OG · Quadrant',width:800,height:480,layout:'quadrant',screenClass:'screen screen--og screen--md screen--1bit'}
 };
 const $ = id => document.getElementById(id);
 let templates = {}, shared = '', baseData, feed, renderEpoch = 0, renderQueue = Promise.resolve();
@@ -19,15 +31,13 @@ function deviceMarkup(c){
   return `<div class="${c.screenClass}"><div class="mashup mashup--${mashup}"><div class="mashup-cell">${active}</div>${Array.from({length:count-1},()=>`<div class="mashup-cell"><div class="view view--${c.layout}"><div class="placeholder-view">Another plugin</div></div></div>`).join('')}</div></div>`;
 }
 function auditCard(){
-  const root=document.querySelector('.ddd-card');if(!root)return ['Card did not render'];
+  const root=document.querySelector('.layout');if(!root)return ['Card did not render'];
   const bounds=root.getBoundingClientRect(),errors=[];
-  for(const el of root.querySelectorAll('.ddd-title,.ddd-brief,.ddd-kicker,.ddd-footer,.ddd-art')){
+  for(const el of root.querySelectorAll('h1,h2,p')){
     if(getComputedStyle(el).display==='none'||!el.getClientRects().length)continue;
     const r=el.getBoundingClientRect();
     if(r.left<bounds.left-1||r.top<bounds.top-1||r.right>bounds.right+1||r.bottom>bounds.bottom+1||el.scrollWidth>el.clientWidth+1)errors.push(`${el.className}: outside card`);
   }
-  const main=root.querySelector('.ddd-main'),copy=root.querySelector('.ddd-copy');
-  if(main&&copy){const m=main.getBoundingClientRect(),c=copy.getBoundingClientRect();if(c.top<m.top-1||c.bottom>m.bottom+1)errors.push('Copy exceeds main area');}
   const view=root.parentElement,footer=view.querySelector(':scope > .title_bar');
   if(!footer)errors.push('Native title bar missing');
   else{
@@ -48,18 +58,15 @@ async function renderCard(device,prompt,level='intermediate',forceLayout){
   data.prompts=prompt?[{...prompt,...(forceLayout?{render_layout:forceLayout}:{})}]:[];
   data.daily_picks={preview:{all:{[level]:{prompt_id:prompt?.id,drill_number:1,pool_size:data.prompts.length}}}};
   data.trmnl={plugin_settings:{custom_fields_values:{focus_area:'all',difficulty:level,rotation_mode:'preview'}}};
+  $('device-canvas').style.width=`${config.width}px`;
+  $('device-canvas').style.height=`${config.height}px`;
   $('device-zoom').style.transform='none';
   $('device-zoom').innerHTML=deviceMarkup(config);
   const view=$('active-view');view.innerHTML=await engine.parseAndRender(shared+templates[config.layout],data);
   await document.fonts.ready;
-  let root=view.querySelector('.ddd-card');
+  let root=view.querySelector('.layout');
   let errors=auditCard();
-  if(errors.length&&config.layout==='full'&&!forceLayout&&prompt){
-    data.prompts[0].render_layout='poster';
-    view.innerHTML=await engine.parseAndRender(shared+templates[config.layout],data);
-    await document.fonts.ready;root=view.querySelector('.ddd-card');errors=auditCard();
-  }
-  const variant=root.classList.contains('ddd-poster')?'Poster':'Visual Brief';
+  const variant=config.layout==='full'?'Device brief':config.layout==='quadrant'?'Prompt teaser':'Compact brief';
   return {errors,variant,device,promptId:prompt?.id||null};
 }
 function fitPreview(){
@@ -86,7 +93,7 @@ function fullBrief(p){
   for(const [label,key] of [['Who it is for','primary_user'],['Goal','business_goal'],['Constraint','constraint'],['Watch for','watch_for']]){block('h3',label);block('p',p[key]);}
   block('h3','Work through');const ul=block('ul','');for(const item of p.required_patterns.slice(0,level.pattern_limit)){const li=document.createElement('li');li.textContent=item;ul.append(li);}
   block('h3','Discuss');block('p',p.interview_focus);
-  const a=block('a','Link to this brief');a.href=`?prompt=${encodeURIComponent(p.id)}&source=${$('source-select').value}&brief=1`;
+  const a=block('a','Link to this brief');a.href=`?prompt=${encodeURIComponent(p.id)}&source=${$('source-select').value}&level=${$('difficulty-select').value}&brief=1`;
 }
 async function renderAll(){
   const epoch=++renderEpoch,p=selectedPrompt(),device=$('device-select').value;
@@ -94,7 +101,7 @@ async function renderAll(){
   const task=renderQueue.then(()=>epoch===renderEpoch?renderCard(device,p,level):null);
   renderQueue=task.catch(()=>{});
   const result=await task;if(!result||epoch!==renderEpoch)return;
-  $('device-label').textContent=DEVICE_CONFIGS[device].label;$('variant-label').textContent=DEVICE_CONFIGS[device].layout==='full'?result.variant:'Compact';
+  $('device-label').textContent=DEVICE_CONFIGS[device].label;$('variant-label').textContent=result.variant;
   $('selection-label').textContent=p?`${p.id} / ${p.display_title}`:'Empty-feed preview';
   $('fit-status').textContent=result.errors.length?result.errors.join(' · '):'Text fits at native size';$('fit-status').dataset.error=String(!!result.errors.length);
   const source=p?.provenance?.source||'curated';

@@ -51,6 +51,8 @@ def validate_settings() -> None:
         required_fragments = (
             "refresh_interval: 60",
             "daily.json",
+            "polling_url:",
+            "prompts, daily_picks, difficulty_levels, display_date",
             "keyname: focus_area",
             "keyname: difficulty",
             "keyname: rotation_mode",
@@ -65,6 +67,10 @@ def validate_settings() -> None:
     require(settings["strategy"] == "polling", "strategy must be polling")
     require(settings["refresh_interval"] == 60, "refresh_interval must be 60 minutes")
     require(settings["polling_url"].endswith("/daily.json"), "polling_url must use daily.json")
+    require(
+        "prompts, daily_picks, difficulty_levels, display_date" in source,
+        "settings.yml must document the polling JSON keys used by Liquid",
+    )
     fields = {
         field["keyname"]: field
         for field in settings.get("custom_fields", [])
@@ -73,6 +79,10 @@ def validate_settings() -> None:
     require("focus_area" in fields, "focus_area control is missing")
     require("difficulty" in fields, "difficulty control is missing")
     require("rotation_mode" in fields, "rotation_mode control is missing")
+    require(
+        bool(fields["focus_area"].get("help_text")),
+        "focus_area should explain the category list before the dropdown",
+    )
     require(
         fields["difficulty"].get("default") == "intermediate",
         "intermediate must be the default difficulty",
@@ -86,6 +96,13 @@ def validate_settings() -> None:
         for option in fields["focus_area"].get("options", [])
         if isinstance(option, dict) and option
     }
+    configured_scopes = {
+        "all" if key == "all_categories" else key for key in configured_scopes
+    }
+    require(
+        fields["focus_area"].get("default") in {"all", "all_categories"},
+        "focus_area default must match the All-categories option value",
+    )
     expected_scopes = set(build_pools(load_prompts()))
     require(
         configured_scopes == expected_scopes,
@@ -124,6 +141,29 @@ def validate_templates() -> None:
             "portrait:" in source,
             f"{path.name} must include a portrait adaptation",
         )
+        require(
+            "font--" not in source,
+            f"{path.name} must use title/value/label/description classes, not font-- aliases",
+        )
+        require(
+            "ddd-" not in path.read_text(encoding="utf-8")
+            and "data-card-id" not in path.read_text(encoding="utf-8"),
+            f"{path.name} must not use custom ddd-* classes or data-card-id",
+        )
+
+    selection = (ROOT / "src" / "selection.liquid").read_text(encoding="utf-8")
+    require("| downcase" in selection, "Select values must be lowercased before daily_picks lookup")
+    require("all_categories" in selection, "focus_area must accept Chef/platform all_categories alias")
+    require("prompt_total > 0" in selection, "Modulo fallback must guard against an empty prompt bank")
+    require("assign feed_empty" in selection, "Empty decks must set a feed_empty flag for markup")
+    require("polling_url" in selection, "Shared markup must document the polling_url data source")
+    require(
+        '<div class="title_bar">' in (ROOT / "src" / "full.liquid").read_text(encoding="utf-8"),
+        "full.liquid must inline a Framework title_bar sibling, not {% render %}",
+    )
+    transform = (ROOT / "src" / "transform.js").read_text(encoding="utf-8")
+    for key in ("prompts", "daily_picks", "difficulty_levels", "display_date"):
+        require(key in transform, f"transform.js must map {key!r}")
 
     preview = (ROOT / "preview" / "index.html").read_text(encoding="utf-8") + (ROOT / 'preview' / 'studio.js').read_text(encoding='utf-8')
     require("../data/daily.json" in preview, "Preview must load the generated daily feed")

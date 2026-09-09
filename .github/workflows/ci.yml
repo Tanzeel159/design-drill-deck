@@ -36,3 +36,6 @@ jobs:
 
       - name: Test a clean daily-feed build
         run: python scripts/generate_daily.py --date 2026-07-20 --output _site/daily.json
+
+      - name: Pack TRMNL import ZIP
+        run: python scripts/export_plugin.py --output _site/design-drill-deck-trmnl.zip
