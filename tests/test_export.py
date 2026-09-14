@@ -24,6 +24,8 @@ class PluginZipExportTests(unittest.TestCase):
         self.assertIn("default: all_categories", files["settings.yml"].decode("utf-8"))
         self.assertIn("All categories: all_categories", files["settings.yml"].decode("utf-8"))
         self.assertIn("lowercase category key", files["settings.yml"].decode("utf-8"))
+        self.assertIn("email_address:", files["settings.yml"].decode("utf-8"))
+        self.assertIn("github_url:", files["settings.yml"].decode("utf-8"))
         self.assertNotIn("ddd-", files["full.liquid"].decode("utf-8"))
 
     def test_zip_is_flat_and_importable(self) -> None:

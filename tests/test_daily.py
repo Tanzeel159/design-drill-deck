@@ -161,20 +161,43 @@ class TemplateQualityTests(unittest.TestCase):
             self.assertIn('class="title_bar"', source, layout)
             self.assertNotIn("{% render 'title_bar'", source, layout)
 
-    def test_half_horizontal_stays_to_three_fields(self) -> None:
+    def test_half_horizontal_keeps_og_to_three_fields(self) -> None:
         source = (self.source_dir / "half_horizontal.liquid").read_text(
             encoding="utf-8"
         )
         self.assertIn("data-clamp", source)
         self.assertIn("p.constraint", source)
-        self.assertNotIn("Produce:", source)
-        self.assertNotIn("p.business_goal", source)
-        self.assertNotIn("p.primary_user", source)
+        self.assertIn("hidden lg:flex", source)
+        self.assertIn("p.primary_user", source)
+        self.assertIn("p.business_goal", source)
+        self.assertIn("Produce:", source)
+        og_visible, _, lg_extra = source.partition("hidden lg:flex")
+        self.assertIn("Constraint:", og_visible)
+        self.assertNotIn("Produce:", og_visible)
+        self.assertNotIn("p.business_goal", og_visible)
+        self.assertNotIn("p.primary_user", og_visible)
+        self.assertIn("Produce:", lg_extra)
+        self.assertIn("p.business_goal", lg_extra)
+        self.assertIn("p.primary_user", lg_extra)
 
-    def test_quadrant_hint_is_large_screen_only(self) -> None:
+    def test_quadrant_adds_large_screen_only_fields(self) -> None:
         source = (self.source_dir / "quadrant.liquid").read_text(encoding="utf-8")
-        self.assertIn("hidden lg:block", source)
-        self.assertIn("complete drill", source)
+        self.assertIn("hidden lg:visible", source)
+        og_visible, _, lg_extra = source.partition("hidden lg:visible")
+        self.assertIn("card_title", og_visible)
+        self.assertIn("card_compact", og_visible)
+        self.assertNotIn("p.constraint", og_visible)
+        self.assertNotIn("p.primary_user", og_visible)
+        self.assertIn("p.constraint", lg_extra)
+        self.assertIn("p.primary_user", lg_extra)
+        self.assertIn("Produce:", lg_extra)
+        self.assertNotIn("Watch for:", lg_extra)
+
+    def test_author_bio_includes_a_contact_method(self) -> None:
+        settings = (self.source_dir / "settings.yml").read_text(encoding="utf-8")
+        self.assertIn("field_type: author_bio", settings)
+        self.assertIn("email_address:", settings)
+        self.assertIn("github_url:", settings)
 
     def test_full_inlines_title_bar_html(self) -> None:
         source = (self.source_dir / "full.liquid").read_text(encoding="utf-8")
@@ -183,6 +206,23 @@ class TemplateQualityTests(unittest.TestCase):
         self.assertIn('class="instance"', source)
         self.assertNotIn("{% render 'title_bar'", source)
         self.assertNotIn("sm:flex--col", source)
+        self.assertIn("lg:description--xxlarge", source)
+        self.assertIn("lg:title--base", source)
+        self.assertIn("lg:w--48", source)
+        self.assertIn("portrait:w--32", source)
+        self.assertIn("hidden lg:visible", source)
+        self.assertIn("lg:portrait:hidden", source)
+        self.assertIn("Discuss:", source)
+
+    def test_mashups_fill_large_screens_with_hidden_content(self) -> None:
+        for layout in ("half_horizontal", "half_vertical", "quadrant"):
+            source = (self.source_dir / f"{layout}.liquid").read_text(
+                encoding="utf-8"
+            )
+            self.assertTrue(
+                "hidden lg:visible" in source or "hidden lg:flex" in source,
+                layout,
+            )
 
     def test_select_values_are_lowercased(self) -> None:
         selection = (self.source_dir / "selection.liquid").read_text(

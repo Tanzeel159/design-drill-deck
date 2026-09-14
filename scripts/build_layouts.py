@@ -10,7 +10,7 @@ def native_view(suffix):
     full = suffix == 'full'
     # .label is nowrap inline-flex; wrapping copy must use description/title.
     kicker_class = 'description lg:description--large text--bold m--0 w--full'
-    field_label = 'title title--small text--bold m--0'
+    field_label = 'title title--small lg:title--base text--bold m--0'
     body = 'description description--large lg:description--xlarge m--0 w--full'
     icons = {
         'user': '<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',
@@ -44,10 +44,11 @@ def native_view(suffix):
     kicker_text = '{{ card_mode | escape }} · {{ level_profile.label | default: difficulty | capitalize | escape }}' if suffix in ('full', 'hv') else '{{ level_profile.label | default: difficulty | capitalize | escape }} practice'
     hh_clamp = ' data-clamp="2"' if suffix == 'hh' else ''
     heading = f'<h1 class="{title} text--bold m--0 w--full"{hh_clamp}>{{{{ card_title | escape }}}}</h1>'
-    brief_class = 'description description--xlarge m--0 w--full' if full else body
+    brief_class = 'description description--xlarge lg:description--xxlarge m--0 w--full' if full else body
     brief_key = 'card_brief' if full else 'card_compact'
     brief = f'<p class="{brief_class}"{hh_clamp}>{{{{ {brief_key} | escape }}}}</p>'
-    art = '{% if stripped_art != blank %}<div class="w--20 lg:w--40 flex-none">{{ card_art }}</div>{% endif %}'
+    art = '{% if stripped_art != blank %}<div class="w--20 lg:w--48 portrait:w--32 flex-none">{{ card_art }}</div>{% endif %}'
+    lg_only = 'hidden lg:visible'
     scope = field('Your task', 'card_scope_short', 'scope', 2)
     if full:
         context_items = [
@@ -63,17 +64,28 @@ def native_view(suffix):
                 f'<div class="flex flex--col flex--stretch-x w--1/3 portrait:w--full w--min-0">{field(*item, clamp=2)}</div>'
             )
         context = ''.join(context_parts)
-        content = f'''<div class="flex flex--row flex--left flex--center-y gap--large w--full portrait:flex--col">{art}<div class="flex flex--col flex--stretch-x gap--small flex-auto w--min-0">{heading}{brief}</div></div>
+        content = f'''<div class="flex flex--row flex--left flex--center-y gap--large lg:gap--xlarge w--full portrait:flex--col">{art}<div class="flex flex--col flex--stretch-x gap--small lg:gap--medium flex-auto w--min-0">{heading}{brief}</div></div>
   <div class="divider w--full"></div>
-  <div class="flex flex--row flex--left flex--top gap--medium w--full portrait:flex--col">{context}</div>
+  <div class="flex flex--row flex--left flex--top gap--medium lg:gap--large w--full portrait:flex--col">{context}</div>
   <div class="divider w--full"></div>
   <div class="flex flex--row flex--left flex--top gap--large w--full portrait:flex--col">
     <div class="w--1/2 portrait:w--full w--min-0">{scope}</div><div class="w--1/2 portrait:w--full w--min-0">{field('Work through', 'card_patterns', 'patterns', 2)}</div>
   </div>
   <div class="divider w--full"></div>
-  {inline('Watch for:', 'p.watch_for', 2)}'''
+  {inline('Watch for:', 'p.watch_for', 2)}
+  <div class="{lg_only} lg:portrait:hidden">{inline('Discuss:', 'p.interview_focus', 2)}</div>'''
     elif suffix == 'hh':
-        content = heading + brief + inline('Constraint:', 'p.constraint', 1)
+        content = (
+            heading + brief + inline('Constraint:', 'p.constraint', 1)
+            + '<div class="hidden lg:flex flex--row flex--left flex--top gap--large w--full">'
+            + '<div class="flex flex--col flex--stretch-x w--1/2 w--min-0">'
+            + inline('Who:', 'p.primary_user', 1)
+            + inline('Goal:', 'p.business_goal', 1)
+            + '</div><div class="flex flex--col flex--stretch-x w--1/2 w--min-0">'
+            + inline('Produce:', 'card_scope_short', 1)
+            + inline('Watch for:', 'p.watch_for', 1)
+            + '</div></div>'
+        )
     elif suffix == 'hv':
         content = (
             heading + brief + '<div class="border--h w--full"></div>'
@@ -86,15 +98,23 @@ def native_view(suffix):
                     ('Produce:', 'card_scope_short'),
                 ]
             )
-            + f'<p class="hidden lg:block {kicker_class}">Full-screen layout adds patterns + guidance.</p>'
+            + f'<div class="{lg_only} w--full">'
+            + inline('Work through:', 'card_patterns', 2)
+            + inline('Watch for:', 'p.watch_for', 1)
+            + inline('Discuss:', 'p.interview_focus', 2)
+            + '</div>'
         )
     else:
         content = (
             heading + brief
-            + f'<p class="hidden lg:block {kicker_class}">Use full-screen layout for the complete drill.</p>'
+            + f'<div class="{lg_only} w--full">'
+            + inline('Constraint:', 'p.constraint', 1)
+            + inline('Who:', 'p.primary_user', 1)
+            + inline('Produce:', 'card_scope_short', 1)
+            + '</div>'
         )
     pad = 'p--4'
-    gap = 'gap--small lg:gap--large' if full else 'gap--small'
+    gap = 'gap--small lg:gap--large' if full else 'gap--small lg:gap--medium'
     if suffix == 'q':
         title_bar = '<div class="title_bar"><span class="title">Design Drill Deck</span></div>'
     else:

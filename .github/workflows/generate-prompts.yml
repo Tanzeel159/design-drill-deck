@@ -1,16 +1,24 @@
-name: Preview generated prompt batch (manual only)
+name: Generate prompt batch
+
 on:
+  schedule:
+    # Monday 09:00 America/Chicago (14:00 UTC). One run may use the week's two-request cap.
+    - cron: "0 14 * * 1"
   workflow_dispatch:
     inputs:
       live:
-        description: Use the generation API instead of the offline fixture
+        description: Call gpt-5-mini and persist accepted cards into the daily feed
         type: boolean
         default: false
+
 permissions:
-  contents: read
+  contents: write
+  actions: write
+
 concurrency:
   group: prompt-generation-preview
   cancel-in-progress: false
+
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -31,10 +39,20 @@ jobs:
           path: .runtime
           key: generation-preview-${{ github.run_id }}
           restore-keys: generation-preview-
-      - name: Generate preview only
+      - name: Generate prompt batch
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python scripts/generate_prompts.py ${{ inputs.live && '--live' || '--mock' }}
+          RUN_LIVE: ${{ github.event_name == 'schedule' || inputs.live }}
+        run: |
+          if [ "$RUN_LIVE" = "true" ]; then
+            if [ -z "$OPENAI_API_KEY" ]; then
+              echo "Add OPENAI_API_KEY as a repository secret (Settings → Secrets and variables → Actions)."
+              exit 1
+            fi
+            python scripts/generate_prompts.py --live
+          else
+            python scripts/generate_prompts.py --mock
+          fi
       - name: Save budget and queue
         if: always()
         uses: actions/cache/save@v4
@@ -45,6 +63,31 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: generated-prompts-preview
-          path: .runtime/*.json
+          path: |
+            .runtime/*.json
+            data/generated.json
+            data/daily.json
           include-hidden-files: true
-      # Deliberately no schedule, commits, Pages deployment, or TRMNL update.
+      - name: Persist accepted prompts on the default branch
+        if: github.event_name == 'schedule' || inputs.live
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/generated.json data/daily.json
+          if git diff --cached --quiet; then
+            echo "No accepted generated prompts to persist."
+          else
+            git commit -m "Add accepted gpt-5-mini prompt batch."
+            git push
+          fi
+      - name: Publish daily feed to GitHub Pages
+        if: github.event_name == 'schedule' || inputs.live
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish-daily.yml',
+              ref: 'main'
+            });

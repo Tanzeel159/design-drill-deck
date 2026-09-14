@@ -40,7 +40,10 @@ custom_fields:
   name: About Design Drill Deck
   field_type: author_bio
   category: education,productivity
-  description: A focused product-design interview drill, refreshed once per day.
+  description: A focused product-design interview drill, refreshed once per day. Questions or issues? Email Tanzeel or open a GitHub issue.
+  email_address: tanzeel.ahmed1306@gmail.com
+  github_url: https://github.com/Tanzeel159/design-drill-deck
+  learn_more_url: https://tanzeelcrafts.tech
 - keyname: focus_area
   name: Focus area
   field_type: select

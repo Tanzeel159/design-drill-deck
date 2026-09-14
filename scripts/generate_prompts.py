@@ -14,7 +14,18 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.cards import CATEGORIES, TEXT_FIELDS, LIST_FIELDS, content_id, response_schema, validate_card
-from scripts.generate_daily import load_prompts, resolve_date
+from scripts.generate_daily import (
+    DEFAULT_GENERATED,
+    DEFAULT_OUTPUT,
+    DEFAULT_SOURCE,
+    build_payload,
+    load_generated,
+    load_prompts,
+    persist_generated_bank,
+    resolve_date,
+    serialize,
+    source_digest,
+)
 from scripts.local_state import JsonStateStore
 
 MODEL = 'gpt-5-mini'
@@ -193,7 +204,7 @@ def main():
     key = load_local_key() if args.live else ''
     if args.live and not key:
         print('No OPENAI_API_KEY configured. No request made; the offline deck remains available.')
-        return 0
+        return 1
     store = JsonStateStore(ROOT / '.runtime' / ('mock-state.json' if args.mock else 'state.json'))
     if args.mock:
         fixture = json.loads((ROOT / 'tests/fixtures/generation.json').read_text(encoding='utf-8'))
@@ -202,6 +213,23 @@ def main():
         transport = lambda body: request_openai(body, key)
     with store.locked():
         report = generate(store, load_prompts(), resolve_date(None), transport, mock=args.mock)
+        if args.live:
+            added = persist_generated_bank(store.read()['generated'])
+            report['persisted'] = added
+            if added or load_generated():
+                generated = load_generated()
+                digest_paths = [DEFAULT_SOURCE]
+                if generated:
+                    digest_paths.append(DEFAULT_GENERATED)
+                day = resolve_date(None)
+                DEFAULT_OUTPUT.write_text(
+                    serialize(build_payload(
+                        load_prompts(), day, source_digest(*digest_paths), generated
+                    )),
+                    encoding='utf-8',
+                    newline='\n',
+                )
+                report['feed'] = str(DEFAULT_OUTPUT)
     print(json.dumps(report, indent=2))
     return 0
 

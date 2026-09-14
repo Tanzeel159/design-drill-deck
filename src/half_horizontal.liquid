@@ -1,12 +1,12 @@
 <!-- Native Framework brief: essential instructions are rendered on the device. -->
-<div class="layout layout--col flex--stretch-x flex--top gap--small p--4 text--black text--left">
+<div class="layout layout--col flex--stretch-x flex--top gap--small lg:gap--medium p--4 text--black text--left">
 {% if feed_empty or p == blank %}
   <p class="description lg:description--large text--bold m--0 w--full">Design Drill Deck</p>
   <h1 class="title title--large lg:title--xlarge portrait:title--large text--bold m--0 w--full">No prompts loaded.</h1>
   <p class="description description--large lg:description--xlarge m--0 w--full">The daily deck is empty or did not arrive. It will retry on the next refresh.</p>
 {% else %}
   <p class="description lg:description--large text--bold m--0 w--full">{{ level_profile.label | default: difficulty | capitalize | escape }} practice</p>
-  <h1 class="title title--large lg:title--xlarge portrait:title--large text--bold m--0 w--full" data-clamp="2">{{ card_title | escape }}</h1><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2">{{ card_compact | escape }}</p><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Constraint:</strong> {{ p.constraint | escape }}</p>
+  <h1 class="title title--large lg:title--xlarge portrait:title--large text--bold m--0 w--full" data-clamp="2">{{ card_title | escape }}</h1><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2">{{ card_compact | escape }}</p><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Constraint:</strong> {{ p.constraint | escape }}</p><div class="hidden lg:flex flex--row flex--left flex--top gap--large w--full"><div class="flex flex--col flex--stretch-x w--1/2 w--min-0"><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Who:</strong> {{ p.primary_user | escape }}</p><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Goal:</strong> {{ p.business_goal | escape }}</p></div><div class="flex flex--col flex--stretch-x w--1/2 w--min-0"><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Produce:</strong> {{ card_scope_short | escape }}</p><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="1"><strong>Watch for:</strong> {{ p.watch_for | escape }}</p></div></div>
 {% endif %}
 </div>
 {% assign title_instance = display_date | date: '%b %-d' %}<div class="title_bar"><span class="title">Design Drill Deck</span>{% if title_instance != blank %}<span class="instance">{{ title_instance }}</span>{% endif %}</div>

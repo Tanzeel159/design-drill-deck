@@ -6,7 +6,17 @@ import tempfile
 import unittest
 
 from scripts.cards import validate_card, content_id
-from scripts.generate_daily import load_prompts
+from scripts.generate_daily import (
+    ANCHOR_DATE,
+    ANCHOR_PROMPT_ID,
+    DEFAULT_SOURCE,
+    build_payload,
+    generated_pick_id,
+    load_generated,
+    load_prompts,
+    persist_generated_bank,
+    source_digest,
+)
 from scripts.generate_prompts import generate, make_request, parse_response, reserve_request
 from scripts.local_state import JsonStateStore, MemoryStateStore, empty_state
 from scripts.rotation import build_local_payload, next_pick
@@ -192,6 +202,63 @@ class PersistentRotationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 JsonStateStore(path).read()
             self.assertEqual(path.read_text(), '{broken')
+
+
+class GeneratedFeedTests(unittest.TestCase):
+    def generated_card(self, index=0, generated_at='2026-09-09', **overrides):
+        card = copy.deepcopy(FIXTURE['prompts'][index])
+        card.update(id=overrides.pop('id', f'gen-{index + 1:03}'),
+                    provenance={'source': 'generated', 'model': 'gpt-5-mini',
+                                'generated_at': generated_at, 'batch': 'live-2026-W37'})
+        card.update(overrides)
+        return card
+
+    def test_empty_generated_payload_matches_curated_feed(self):
+        prompts = load_prompts()
+        digest = source_digest(DEFAULT_SOURCE)
+        self.assertEqual(
+            build_payload(prompts, TODAY, digest),
+            build_payload(prompts, TODAY, digest, []),
+        )
+
+    def test_generated_window_does_not_shift_the_curated_calendar(self):
+        card = self.generated_card()
+        self.assertIsNone(generated_pick_id([card], date(2026, 9, 8)))
+        self.assertEqual(generated_pick_id([card], date(2026, 9, 9)), 'gen-001')
+        self.assertIsNone(generated_pick_id([card], date(2026, 9, 10)))
+
+    def test_payload_selects_generated_then_returns_to_curated(self):
+        prompts = load_prompts()
+        card = self.generated_card()
+        live = build_payload(prompts, date(2026, 9, 9), 'digest', [card])
+        pick = live['daily_picks']['smart_shuffle']['core_ux_flow']['intermediate']
+        self.assertEqual(pick['prompt_id'], 'gen-001')
+        self.assertEqual(pick['source'], 'generated')
+        self.assertEqual(live['prompts'][-1]['id'], 'gen-001')
+        later = build_payload(prompts, date(2026, 9, 10), 'digest', [card])
+        curated = build_payload(prompts, date(2026, 9, 10), 'digest')
+        later_pick = later['daily_picks']['smart_shuffle']['core_ux_flow']['intermediate']
+        curated_pick = curated['daily_picks']['smart_shuffle']['core_ux_flow']['intermediate']
+        self.assertEqual(later_pick['prompt_id'], curated_pick['prompt_id'])
+        self.assertEqual(later_pick['source'], 'curated')
+
+    def test_later_generated_cards_do_not_change_the_anchor_day(self):
+        prompts = load_prompts()
+        payload = build_payload(prompts, ANCHOR_DATE, 'digest', [self.generated_card()])
+        self.assertEqual(
+            payload['daily_picks']['smart_shuffle']['all']['intermediate']['prompt_id'],
+            ANCHOR_PROMPT_ID,
+        )
+
+    def test_persist_skips_mock_cards_and_duplicates(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'generated.json'
+            live = self.generated_card()
+            mock = self.generated_card(1, id='mock-001')
+            mock['provenance'] = {'source': 'mock'}
+            self.assertEqual(persist_generated_bank([mock, live], path), 1)
+            self.assertEqual(persist_generated_bank([live], path), 0)
+            self.assertEqual([card['id'] for card in load_generated(path)], ['gen-001'])
 
 
 if __name__ == '__main__':

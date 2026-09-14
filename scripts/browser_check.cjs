@@ -35,8 +35,12 @@ async function run({input, screenshots=false}={}){
         const text=document.querySelector('.layout')?.innerText||'';
         const need=(label)=> { if(!text.includes(label)) r.errors.push(`Missing ${label}`); };
         if(device==='og-half-horizontal') need('Constraint:');
+        else if(device==='x-half-horizontal') ['Constraint:','Who:','Goal:','Produce:','Watch for:'].forEach(need);
         else if(device==='og-half-vertical') ['Who:','Goal:','Constraint:','Produce:'].forEach(need);
-        else if(['og-full','x-landscape','x-portrait'].includes(device)) ['Who it is for','Goal','Constraint','Your task','Work through'].forEach(need);
+        else if(device==='x-half-vertical') ['Who:','Goal:','Constraint:','Produce:','Work through:','Watch for:','Discuss:'].forEach(need);
+        else if(device==='x-quadrant') ['Constraint:','Who:','Produce:'].forEach(need);
+        else if(device==='og-full'||device==='x-portrait') ['Who it is for','Goal','Constraint','Your task','Work through'].forEach(need);
+        else if(device==='x-landscape') ['Who it is for','Goal','Constraint','Your task','Work through','Discuss:'].forEach(need);
         return {...r,level};
       },{device,card,level});
       if(result.variant==='Poster'&&device.startsWith('x-')||result.variant==='Poster'&&device==='og-full')variant='poster';

@@ -21,6 +21,7 @@ from scripts.generate_daily import (
     ROOT,
     build_pools,
     build_payload,
+    load_generated,
     load_prompts,
     source_digest,
 )
@@ -36,11 +37,19 @@ def require(condition: bool, message: str) -> None:
 
 def validate_daily_feed() -> None:
     source_path = ROOT / "data" / "prompts.json"
+    generated_path = ROOT / "data" / "generated.json"
     daily_path = ROOT / "data" / "daily.json"
+    require(generated_path.is_file(), "data/generated.json is required")
     prompts = load_prompts(source_path)
+    generated = load_generated(generated_path)
     actual = json.loads(daily_path.read_text(encoding="utf-8"))
     rotation_date = date.fromisoformat(actual["rotation_date"])
-    expected = build_payload(prompts, rotation_date, source_digest(source_path))
+    digest_paths = [source_path]
+    if generated:
+        digest_paths.append(generated_path)
+    expected = build_payload(
+        prompts, rotation_date, source_digest(*digest_paths), generated
+    )
     require(actual == expected, "data/daily.json does not match the generator")
 
 
@@ -57,6 +66,7 @@ def validate_settings() -> None:
             "keyname: difficulty",
             "keyname: rotation_mode",
             "default: smart_shuffle",
+            "email_address:",
         )
         for fragment in required_fragments:
             require(fragment in source, f"settings.yml is missing {fragment!r}")
@@ -70,6 +80,17 @@ def validate_settings() -> None:
     require(
         "prompts, daily_picks, difficulty_levels, display_date" in source,
         "settings.yml must document the polling JSON keys used by Liquid",
+    )
+    bios = [
+        field
+        for field in settings.get("custom_fields", [])
+        if field.get("field_type") == "author_bio"
+    ]
+    require(bios, "author_bio is required so the plugin page can introduce the recipe")
+    bio = bios[0]
+    require(
+        bool(bio.get("email_address") or bio.get("github_url") or bio.get("learn_more_url")),
+        "author_bio must include a contact method (email_address, github_url, or learn_more_url)",
     )
     fields = {
         field["keyname"]: field
@@ -178,8 +199,15 @@ def validate_templates() -> None:
 
 
 def validate_workflows() -> None:
-    for name in ("ci.yml", "publish-daily.yml"):
+    for name in ("ci.yml", "publish-daily.yml", "generate-prompts.yml"):
         require((ROOT / ".github" / "workflows" / name).exists(), f"Missing {name}")
+    generate = (ROOT / ".github" / "workflows" / "generate-prompts.yml").read_text(
+        encoding="utf-8"
+    )
+    require("OPENAI_API_KEY" in generate, "generation workflow must use OPENAI_API_KEY")
+    require("generate_prompts.py" in generate, "generation workflow must run generate_prompts.py")
+    require("schedule:" in generate, "generation workflow must run on a weekly schedule")
+    require("--live" in generate, "scheduled generation must be able to run live")
 
 
 def main() -> int:

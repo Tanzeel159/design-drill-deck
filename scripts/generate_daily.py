@@ -8,7 +8,7 @@ import hashlib
 import json
 import re
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any, Iterable
 from zoneinfo import ZoneInfo
@@ -20,6 +20,7 @@ except ModuleNotFoundError:
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "data" / "prompts.json"
+DEFAULT_GENERATED = ROOT / "data" / "generated.json"
 DEFAULT_OUTPUT = ROOT / "data" / "daily.json"
 TIME_ZONE = "America/Chicago"
 ANCHOR_DATE = date(2026, 7, 20)
@@ -74,9 +75,17 @@ def slugify(value: str) -> str:
     return key
 
 
-def source_digest(path: Path) -> str:
-    text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+def source_digest(*paths: Path) -> str:
+    if len(paths) == 1:
+        text = paths[0].read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        return hashlib.sha256(text.encode("utf-8")).hexdigest()
+    hasher = hashlib.sha256()
+    for path in paths:
+        text = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        hasher.update(path.name.encode("utf-8") + b"\0")
+        hasher.update(text.encode("utf-8"))
+        hasher.update(b"\0")
+    return hasher.hexdigest()
 
 
 def load_prompts(path: Path = DEFAULT_SOURCE) -> list[dict[str, Any]]:
@@ -124,6 +133,89 @@ def load_prompts(path: Path = DEFAULT_SOURCE) -> list[dict[str, Any]]:
         )
         raise ValueError(f"Every category needs at least 3 prompts: {details}")
     return prompts
+
+
+def load_generated(path: Path = DEFAULT_GENERATED) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    prompts = payload.get("prompts")
+    if not isinstance(prompts, list):
+        raise ValueError("generated.json must contain a 'prompts' array")
+    seen_ids: set[str] = set()
+    for position, prompt in enumerate(prompts, start=1):
+        if not isinstance(prompt, dict):
+            raise ValueError(f"Generated prompt {position} must be an object")
+        validate_card(prompt)
+        prompt_id = prompt.get("id")
+        if not isinstance(prompt_id, str) or not prompt_id:
+            raise ValueError(f"Generated prompt {position} has an invalid id")
+        if prompt_id in seen_ids:
+            raise ValueError(f"Duplicate generated prompt id: {prompt_id}")
+        provenance = prompt.get("provenance")
+        if not isinstance(provenance, dict) or provenance.get("source") != "generated":
+            raise ValueError(f"{prompt_id} must have provenance.source generated")
+        seen_ids.add(prompt_id)
+    return prompts
+
+
+def generated_available_on(card: dict[str, Any], rotation_date: date) -> bool:
+    stamp = (card.get("provenance") or {}).get("generated_at")
+    if not stamp:
+        return True
+    return date.fromisoformat(stamp) <= rotation_date
+
+
+def generated_pick_id(
+    generated_cards: list[dict[str, Any]], rotation_date: date
+) -> str | None:
+    eligible = [card for card in generated_cards if generated_available_on(card, rotation_date)]
+    if not eligible:
+        return None
+    start = min(
+        date.fromisoformat(card["provenance"]["generated_at"])
+        if card.get("provenance", {}).get("generated_at")
+        else rotation_date
+        for card in eligible
+    )
+    shown: set[str] = set()
+    day = start
+    while day <= rotation_date:
+        remaining = [
+            card
+            for card in generated_cards
+            if generated_available_on(card, day) and card["id"] not in shown
+        ]
+        remaining.sort(
+            key=lambda card: (card.get("provenance", {}).get("generated_at", ""), card["id"])
+        )
+        if remaining:
+            shown.add(remaining[0]["id"])
+            if day == rotation_date:
+                return remaining[0]["id"]
+        day += timedelta(days=1)
+    return None
+
+
+def persist_generated_bank(cards: list[dict[str, Any]], path: Path = DEFAULT_GENERATED) -> int:
+    existing = load_generated(path) if path.exists() else []
+    known = {card["id"] for card in existing}
+    added = 0
+    for card in cards:
+        provenance = card.get("provenance") or {}
+        if provenance.get("source") != "generated" or card.get("id") in known:
+            continue
+        validate_card(card, existing)
+        existing.append(card)
+        known.add(card["id"])
+        added += 1
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps({"prompts": existing}, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return added
 
 
 def build_pools(
@@ -208,9 +300,15 @@ def build_pick(
 
 
 def build_payload(
-    prompts: list[dict[str, Any]], rotation_date: date, digest: str
+    prompts: list[dict[str, Any]],
+    rotation_date: date,
+    digest: str,
+    generated: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
+    generated = list(generated or [])
     pools = build_pools(prompts)
+    generated_pools = build_pools(generated)
+    combined_pools = build_pools(prompts + generated) if generated else pools
     picks: dict[str, dict[str, dict[str, dict[str, Any]]]] = {
         "smart_shuffle": {},
         "sequential": {},
@@ -219,18 +317,36 @@ def build_payload(
 
     for scope, scoped_prompts in pools.items():
         ids = [prompt["id"] for prompt in scoped_prompts]
+        combined_ids = [prompt["id"] for prompt in combined_pools[scope]]
         label = "All categories" if scope == "all" else scoped_prompts[0]["mode"]
-        scopes.append({"key": scope, "label": label, "count": len(ids)})
+        scopes.append({"key": scope, "label": label, "count": len(combined_ids)})
         for mode in picks:
             picks[mode][scope] = {}
             for level in DIFFICULTY_LEVELS:
                 level_key = level["key"]
-                picks[mode][scope][level_key] = build_pick(
+                pick = build_pick(
                     ids,
                     f"{scope}:{level_key}",
                     rotation_date,
                     mode,
                 )
+                generated_id = generated_pick_id(
+                    generated_pools.get(scope, []), rotation_date
+                )
+                if generated_id:
+                    pick = {
+                        "prompt_id": generated_id,
+                        "drill_number": combined_ids.index(generated_id) + 1,
+                        "position": 1,
+                        "pool_size": len(combined_ids),
+                        "cycle": 0,
+                        "source": "generated",
+                    }
+                elif generated:
+                    pick["drill_number"] = combined_ids.index(pick["prompt_id"]) + 1
+                    pick["pool_size"] = len(combined_ids)
+                    pick["source"] = "curated"
+                picks[mode][scope][level_key] = pick
 
     return {
         "schema_version": 1,
@@ -245,7 +361,7 @@ def build_payload(
         "difficulty_levels": [dict(level) for level in DIFFICULTY_LEVELS],
         "scopes": scopes,
         "daily_picks": picks,
-        "prompts": prompts,
+        "prompts": prompts + generated,
     }
 
 
@@ -263,6 +379,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--date", default="", help="Override date in YYYY-MM-DD format")
     parser.add_argument("--source", type=Path, default=DEFAULT_SOURCE)
+    parser.add_argument("--generated", type=Path, default=DEFAULT_GENERATED)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument(
         "--check",
@@ -276,8 +393,14 @@ def main() -> int:
     args = parse_args()
     try:
         prompts = load_prompts(args.source)
+        generated = load_generated(args.generated)
         rotation_date = resolve_date(args.date)
-        payload = build_payload(prompts, rotation_date, source_digest(args.source))
+        digest_paths = [args.source]
+        if generated:
+            digest_paths.append(args.generated)
+        payload = build_payload(
+            prompts, rotation_date, source_digest(*digest_paths), generated
+        )
         rendered = serialize(payload)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"error: {error}", file=sys.stderr)

@@ -8,7 +8,7 @@ from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.generate_daily import load_prompts, resolve_date
+from scripts.generate_daily import load_generated, load_prompts, resolve_date
 from scripts.local_state import JsonStateStore, MemoryStateStore
 from scripts.rotation import build_local_payload
 
@@ -37,6 +37,13 @@ class Handler(SimpleHTTPRequestHandler):
                 else:
                     store = JsonStateStore(ROOT / '.runtime/state.json')
                     with store.locked():
+                        state = store.read()
+                        known = {card['id'] for card in state['generated']}
+                        for card in load_generated():
+                            if card['id'] not in known:
+                                state['generated'].append(card)
+                                known.add(card['id'])
+                        store.write(state)
                         payload = build_local_payload(cards, store, resolve_date(None), source)
                 data = json.dumps(payload, ensure_ascii=False).encode('utf-8')
                 self.send_response(200)

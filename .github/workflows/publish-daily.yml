@@ -45,6 +45,7 @@ jobs:
 
       - name: Build daily feed
         run: python scripts/generate_daily.py --date "${{ inputs.date }}" --output _site/daily.json
+        # Merges data/prompts.json with data/generated.json. The device never calls OpenAI.
 
       - name: Add feed landing page
         run: cp public/index.html _site/index.html

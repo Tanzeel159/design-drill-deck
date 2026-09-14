@@ -52,7 +52,7 @@ def validate_sources() -> dict[str, bytes]:
         files[name] = payload
 
     settings = files["settings.yml"].decode("utf-8")
-    for fragment in ("name:", "strategy: polling", "refresh_interval: 60", "daily.json"):
+    for fragment in ("name:", "strategy: polling", "refresh_interval: 60", "daily.json", "email_address:"):
         if fragment not in settings:
             raise SystemExit(f"settings.yml is missing {fragment!r}")
     if "custom_fields:" not in settings:

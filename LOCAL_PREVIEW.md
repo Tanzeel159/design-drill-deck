@@ -1,6 +1,6 @@
 # Local studio — no publishing
 
-The deck contains 54 curated exercises across nine categories, plus an optional saved queue of API-generated exercises. The API is never called by the browser or a device refresh.
+The deck contains 54 curated exercises across nine categories, plus an optional saved queue of API-generated exercises. The API is never called by the browser or a device refresh. Accepted live cards are stored in `data/generated.json` and merged into `data/daily.json` when the feed is built, so TRMNL can show them after **Publish daily prompt**.
 
 ## Start
 
@@ -43,11 +43,13 @@ For a real test, copy `.env.example` to `.env` and set `OPENAI_API_KEY`, or set 
 python scripts/generate_prompts.py --live
 ```
 
-No key means no request. Live mode uses `gpt-5-mini`, strict structured output, and one candidate per category. The key is never written to the feed or logs. Do not put it in settings.yml or daily.json.
+No key means no request. Live mode uses `gpt-5-mini`, strict structured output, and one candidate per category. Accepted cards are appended to `data/generated.json` and the local daily feed is rebuilt. The key is never written to the feed or logs. Do not put it in settings.yml or daily.json.
 
 Each ISO week allows two requests, with at most ten per calendar month. Requests are reserved on disk before sending; a timeout still counts because it may have been billed. Each request uses a conservative input byte ceiling below 8,000 tokens, including its schema/envelope, and a 12,000 output-token limit. No image generation, web tools, or extra model-based review runs. Limits apply to this local state file, not to unrelated usage on your API account. Retain `.runtime/state.json` to retain usage history.
 
-Missing keys, timeouts, rate limits, invalid responses, or failed rendering leave saved cards usable. A partial batch saves only accepted candidates. A completed same-week batch is not generated again. Authentication and model access must be configured in the provider account; live API behavior has not been verified without a key.
+Missing keys, timeouts, rate limits, invalid responses, or failed rendering leave saved cards usable. A partial batch saves only accepted candidates. A completed same-week batch is not generated again. Authentication and model access must be configured in the provider account.
+
+A generated card is selected for its category on the first days after `generated_at`, then the curated calendar continues unchanged. Historical dates such as 2026-07-20 still select `ddd-004`. The GitHub **Generate prompt batch** workflow runs live every Monday and can also be started by hand. Live runs need the `OPENAI_API_KEY` repository secret; they commit accepted cards and trigger **Publish daily prompt**. Do not put the key in `.env` in git, `settings.yml`, or `daily.json`.
 
 ## Selection and storage
 
@@ -79,7 +81,7 @@ The September 8 brief redesign preserves native Framework fonts and illustrated 
 
 Local review on 2026-09-08: 29 unit tests passed; project/schema validation passed; all 324 curated prompt/device combinations passed the browser fit gate. The nine-card mock batch passed validation and browser checks; rerunning the saved batch made zero requests. Native-device legibility still needs the later on-device review, and live API generation has not been exercised.
 
-The manual-only generation workflow produces preview artifacts. It has no schedule or deployment step. Its cache is a preview convenience, not durable production accounting; production activation must replace it with durable state. No workflow has been dispatched, no commits pushed, and no live TRMNL configuration changed as part of this local build.
+The generation workflow runs live every Monday, persists accepted cards to `data/generated.json`, and then triggers **Publish daily prompt**. It does not push TRMNL markup. Live runs require the `OPENAI_API_KEY` repository secret.
 
 ## Export for TRMNL
 

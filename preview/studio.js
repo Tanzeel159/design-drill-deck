@@ -18,7 +18,10 @@ const DEVICE_CONFIGS = {
   'x-portrait': {label:'X · Portrait',width:1404,height:1872,layout:'full',screenClass:'screen screen--v2 screen--lg screen--portrait screen--4bit'},
   'og-half-horizontal': {label:'OG · Half horizontal',width:800,height:480,layout:'half_horizontal',screenClass:'screen screen--og screen--md screen--1bit'},
   'og-half-vertical': {label:'OG · Half vertical',width:800,height:480,layout:'half_vertical',screenClass:'screen screen--og screen--md screen--1bit'},
-  'og-quadrant': {label:'OG · Quadrant',width:800,height:480,layout:'quadrant',screenClass:'screen screen--og screen--md screen--1bit'}
+  'og-quadrant': {label:'OG · Quadrant',width:800,height:480,layout:'quadrant',screenClass:'screen screen--og screen--md screen--1bit'},
+  'x-half-horizontal': {label:'X · Half horizontal',width:1872,height:1404,layout:'half_horizontal',screenClass:'screen screen--v2 screen--lg screen--4bit'},
+  'x-half-vertical': {label:'X · Half vertical',width:1872,height:1404,layout:'half_vertical',screenClass:'screen screen--v2 screen--lg screen--4bit'},
+  'x-quadrant': {label:'X · Quadrant',width:1872,height:1404,layout:'quadrant',screenClass:'screen screen--v2 screen--lg screen--4bit'}
 };
 const $ = id => document.getElementById(id);
 let templates = {}, shared = '', baseData, feed, renderEpoch = 0, renderQueue = Promise.resolve();

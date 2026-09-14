@@ -8,7 +8,7 @@ For design decisions, review history, and current recipe status, see [`PROJECT.m
 
 ## Prompt source
 
-Prompts are fetched from a version-controlled file, [`data/prompts.json`](data/prompts.json). There is no third-party prompt API and no generative model in the delivery path. This keeps each drill reviewable, stable, and available even when an external service changes.
+Prompts are fetched from a version-controlled file, [`data/prompts.json`](data/prompts.json). There is no third-party prompt API and no generative model in the delivery path. Optional `gpt-5-mini` batches are compiled into [`data/generated.json`](data/generated.json) and merged when the daily feed is built, so a drill can still be reviewed, versioned, and shown if OpenAI is down.
 
 To evolve the bank:
 
@@ -54,7 +54,8 @@ Three GitHub Actions workflows are included:
 
 - `.github/workflows/ci.yml` runs on pushes and pull requests. It validates the prompt schema, generated feed, TRMNL settings, layouts, and shuffle behavior.
 - `.github/workflows/trmnl.yml` pushes rebuilt markup to the live private plugin on every `main` commit that touches `src/` (requires `TRMNL_API_KEY`).
-- `.github/workflows/publish-daily.yml` is manual. It generates the current feed and deploys it to GitHub Pages without making a daily repository commit.
+- `.github/workflows/generate-prompts.yml` runs weekly (Monday) and can be started by hand. Live runs need the `OPENAI_API_KEY` repository secret; they append accepted cards to `data/generated.json` and trigger a Pages publish. Manual runs default to `--mock` unless you check **live**.
+- `.github/workflows/publish-daily.yml` generates the current feed and deploys it to GitHub Pages. It is still runnable by hand, and live generation triggers it after a successful batch.
 
 Production data flow:
 
@@ -67,6 +68,7 @@ The JSON response changes once per calendar day, allowing TRMNL to detect new co
 ## Repository structure
 
 - `data/prompts.json` — editable prompt bank.
+- `data/generated.json` — accepted `gpt-5-mini` cards merged into the daily feed; the device never calls OpenAI.
 - `data/daily.json` — generated local-preview fixture; do not edit by hand.
 - `scripts/generate_daily.py` — deterministic daily-feed generator.
 - `scripts/validate_project.py` — project and configuration checks.
