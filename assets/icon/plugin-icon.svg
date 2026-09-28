@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="#E56F53" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Radial cards  7, matching the source logo -->
+  <rect x="18.559" y="4.409" width="4.6" height="3" rx="0.7" transform="rotate(25.71 20.859 5.909)" />
+  <rect x="24.619" y="12.008" width="4.6" height="3" rx="0.7" transform="rotate(77.14 26.919 13.508)" />
+  <rect x="22.457" y="21.483" width="4.6" height="3" rx="0.7" transform="rotate(128.57 24.757 22.983)" />
+  <rect x="13.700" y="25.700" width="4.6" height="3" rx="0.7" transform="rotate(180 16 27.2)" />
+  <rect x="4.943" y="21.483" width="4.6" height="3" rx="0.7" transform="rotate(231.43 7.243 22.983)" />
+  <rect x="2.781" y="12.008" width="4.6" height="3" rx="0.7" transform="rotate(282.86 5.081 13.508)" />
+  <rect x="8.841" y="4.409" width="4.6" height="3" rx="0.7" transform="rotate(334.29 11.141 5.909)" />
+  <!-- Fountain pen nib, point up -->
+  <path d="M16 10.15 L19.4 20.05 Q16 18.95 12.6 20.05 Z" />
+  <circle cx="16" cy="14.55" r="1.15" />
+  <line x1="16" y1="13.4" x2="16" y2="10.15" />
+</svg>

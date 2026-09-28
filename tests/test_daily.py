@@ -182,8 +182,9 @@ class TemplateQualityTests(unittest.TestCase):
 
     def test_quadrant_adds_large_screen_only_fields(self) -> None:
         source = (self.source_dir / "quadrant.liquid").read_text(encoding="utf-8")
-        self.assertIn("hidden lg:visible", source)
-        og_visible, _, lg_extra = source.partition("hidden lg:visible")
+        self.assertIn("hidden lg:flex", source)
+        self.assertIn('data-clamp-lg-portrait="2"', source)
+        og_visible, _, lg_extra = source.partition("hidden lg:flex")
         self.assertIn("card_title", og_visible)
         self.assertIn("card_compact", og_visible)
         self.assertNotIn("p.constraint", og_visible)

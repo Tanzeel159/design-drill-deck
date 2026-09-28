@@ -21,7 +21,10 @@ const DEVICE_CONFIGS = {
   'og-quadrant': {label:'OG · Quadrant',width:800,height:480,layout:'quadrant',screenClass:'screen screen--og screen--md screen--1bit'},
   'x-half-horizontal': {label:'X · Half horizontal',width:1872,height:1404,layout:'half_horizontal',screenClass:'screen screen--v2 screen--lg screen--4bit'},
   'x-half-vertical': {label:'X · Half vertical',width:1872,height:1404,layout:'half_vertical',screenClass:'screen screen--v2 screen--lg screen--4bit'},
-  'x-quadrant': {label:'X · Quadrant',width:1872,height:1404,layout:'quadrant',screenClass:'screen screen--v2 screen--lg screen--4bit'}
+  'x-quadrant': {label:'X · Quadrant',width:1872,height:1404,layout:'quadrant',screenClass:'screen screen--v2 screen--lg screen--4bit'},
+  'x-portrait-half-horizontal': {label:'X · Portrait half horizontal',width:1404,height:1872,layout:'half_horizontal',screenClass:'screen screen--v2 screen--lg screen--portrait screen--4bit'},
+  'x-portrait-half-vertical': {label:'X · Portrait half vertical',width:1404,height:1872,layout:'half_vertical',screenClass:'screen screen--v2 screen--lg screen--portrait screen--4bit'},
+  'x-portrait-quadrant': {label:'X · Portrait quadrant',width:1404,height:1872,layout:'quadrant',screenClass:'screen screen--v2 screen--lg screen--portrait screen--4bit'}
 };
 const $ = id => document.getElementById(id);
 let templates = {}, shared = '', baseData, feed, renderEpoch = 0, renderQueue = Promise.resolve();
@@ -36,7 +39,7 @@ function deviceMarkup(c){
 function auditCard(){
   const root=document.querySelector('.layout');if(!root)return ['Card did not render'];
   const bounds=root.getBoundingClientRect(),errors=[];
-  for(const el of root.querySelectorAll('h1,h2,p')){
+  for(const el of root.querySelectorAll('h1,h2,p,[data-clamp]')){
     if(getComputedStyle(el).display==='none'||!el.getClientRects().length)continue;
     const r=el.getBoundingClientRect();
     if(r.left<bounds.left-1||r.top<bounds.top-1||r.right>bounds.right+1||r.bottom>bounds.bottom+1||el.scrollWidth>el.clientWidth+1)errors.push(`${el.className}: outside card`);
@@ -67,6 +70,7 @@ async function renderCard(device,prompt,level='intermediate',forceLayout){
   $('device-zoom').innerHTML=deviceMarkup(config);
   const view=$('active-view');view.innerHTML=await engine.parseAndRender(shared+templates[config.layout],data);
   await document.fonts.ready;
+  if(window.terminalize)await window.terminalize();
   let root=view.querySelector('.layout');
   let errors=auditCard();
   const variant=config.layout==='full'?'Device brief':config.layout==='quadrant'?'Prompt teaser':'Compact brief';

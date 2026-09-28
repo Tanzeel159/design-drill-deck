@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "rotation_date": "2026-09-08",
-  "display_date": "2026-09-08T12:00:00",
+  "rotation_date": "2026-09-28",
+  "display_date": "2026-09-28T12:00:00",
   "timezone": "America/Chicago",
   "anchor_date": "2026-07-20",
   "source_sha256": "308b868c118a437ed8c6a19493e5aa30cf18fb711624e29095edc7e2a12c4334",
@@ -86,464 +86,464 @@
     "smart_shuffle": {
       "all": {
         "beginner": {
-          "prompt_id": "ddd-048",
-          "drill_number": 48,
-          "position": 51,
+          "prompt_id": "ddd-003",
+          "drill_number": 3,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         },
         "intermediate": {
-          "prompt_id": "ddd-001",
-          "drill_number": 1,
-          "position": 51,
+          "prompt_id": "ddd-041",
+          "drill_number": 41,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         },
         "advanced": {
-          "prompt_id": "ddd-032",
-          "drill_number": 32,
-          "position": 51,
+          "prompt_id": "ddd-051",
+          "drill_number": 51,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         }
       },
       "core_ux_flow": {
         "beginner": {
-          "prompt_id": "ddd-001",
-          "drill_number": 1,
-          "position": 3,
+          "prompt_id": "ddd-024",
+          "drill_number": 6,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-002",
-          "drill_number": 2,
-          "position": 3,
-          "pool_size": 6,
-          "cycle": 8
-        },
-        "advanced": {
           "prompt_id": "ddd-023",
           "drill_number": 5,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
+        },
+        "advanced": {
+          "prompt_id": "ddd-022",
+          "drill_number": 4,
+          "position": 5,
+          "pool_size": 6,
+          "cycle": 11
         }
       },
       "ai_integrated_interface": {
         "beginner": {
           "prompt_id": "ddd-006",
           "drill_number": 3,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-005",
-          "drill_number": 2,
-          "position": 3,
+          "prompt_id": "ddd-006",
+          "drill_number": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-025",
-          "drill_number": 4,
-          "position": 3,
+          "prompt_id": "ddd-027",
+          "drill_number": 6,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "dashboard_data_ux": {
         "beginner": {
-          "prompt_id": "ddd-007",
-          "drill_number": 1,
-          "position": 3,
+          "prompt_id": "ddd-028",
+          "drill_number": 4,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-030",
-          "drill_number": 6,
-          "position": 3,
+          "prompt_id": "ddd-009",
+          "drill_number": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-029",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-009",
+          "drill_number": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "accessibility_challenge": {
         "beginner": {
-          "prompt_id": "ddd-032",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-033",
+          "drill_number": 6,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
           "prompt_id": "ddd-033",
           "drill_number": 6,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
           "prompt_id": "ddd-012",
           "drill_number": 3,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "enterprise_ux": {
         "beginner": {
-          "prompt_id": "ddd-035",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-013",
+          "drill_number": 1,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-036",
-          "drill_number": 6,
-          "position": 3,
+          "prompt_id": "ddd-034",
+          "drill_number": 4,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-036",
-          "drill_number": 6,
-          "position": 3,
+          "prompt_id": "ddd-035",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "ux_engineering": {
         "beginner": {
           "prompt_id": "ddd-018",
           "drill_number": 3,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-038",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-017",
+          "drill_number": 2,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-018",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-038",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "information_architecture": {
         "beginner": {
-          "prompt_id": "ddd-042",
-          "drill_number": 6,
-          "position": 3,
-          "pool_size": 6,
-          "cycle": 8
-        },
-        "intermediate": {
-          "prompt_id": "ddd-019",
-          "drill_number": 1,
-          "position": 3,
-          "pool_size": 6,
-          "cycle": 8
-        },
-        "advanced": {
           "prompt_id": "ddd-040",
           "drill_number": 4,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
+        },
+        "intermediate": {
+          "prompt_id": "ddd-020",
+          "drill_number": 2,
+          "position": 5,
+          "pool_size": 6,
+          "cycle": 11
+        },
+        "advanced": {
+          "prompt_id": "ddd-042",
+          "drill_number": 6,
+          "position": 5,
+          "pool_size": 6,
+          "cycle": 11
         }
       },
       "everyday_ux": {
         "beginner": {
-          "prompt_id": "ddd-048",
-          "drill_number": 6,
-          "position": 3,
+          "prompt_id": "ddd-044",
+          "drill_number": 2,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-046",
-          "drill_number": 4,
-          "position": 3,
+          "prompt_id": "ddd-045",
+          "drill_number": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
           "prompt_id": "ddd-044",
           "drill_number": 2,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "dark_patterns": {
         "beginner": {
-          "prompt_id": "ddd-053",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-049",
+          "drill_number": 1,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
           "prompt_id": "ddd-049",
           "drill_number": 1,
-          "position": 3,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-053",
-          "drill_number": 5,
-          "position": 3,
+          "prompt_id": "ddd-054",
+          "drill_number": 6,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       }
     },
     "sequential": {
       "all": {
         "beginner": {
-          "prompt_id": "ddd-054",
-          "drill_number": 54,
-          "position": 51,
+          "prompt_id": "ddd-020",
+          "drill_number": 20,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         },
         "intermediate": {
-          "prompt_id": "ddd-054",
-          "drill_number": 54,
-          "position": 51,
+          "prompt_id": "ddd-020",
+          "drill_number": 20,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         },
         "advanced": {
-          "prompt_id": "ddd-054",
-          "drill_number": 54,
-          "position": 51,
+          "prompt_id": "ddd-020",
+          "drill_number": 20,
+          "position": 17,
           "pool_size": 54,
-          "cycle": 0
+          "cycle": 1
         }
       },
       "core_ux_flow": {
         "beginner": {
-          "prompt_id": "ddd-003",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-023",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-003",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-023",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-003",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-023",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "ai_integrated_interface": {
         "beginner": {
-          "prompt_id": "ddd-006",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-026",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-006",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-026",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-006",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-026",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "dashboard_data_ux": {
         "beginner": {
-          "prompt_id": "ddd-009",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-029",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-009",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-029",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-009",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-029",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "accessibility_challenge": {
         "beginner": {
-          "prompt_id": "ddd-012",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-032",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-012",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-032",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-012",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-032",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "enterprise_ux": {
         "beginner": {
-          "prompt_id": "ddd-015",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-035",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-015",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-035",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-015",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-035",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "ux_engineering": {
         "beginner": {
-          "prompt_id": "ddd-018",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-038",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-018",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-038",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-018",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-038",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "information_architecture": {
         "beginner": {
-          "prompt_id": "ddd-021",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-041",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-021",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-041",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-021",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-041",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "everyday_ux": {
         "beginner": {
-          "prompt_id": "ddd-045",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-047",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-045",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-047",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-045",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-047",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       },
       "dark_patterns": {
         "beginner": {
-          "prompt_id": "ddd-051",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-053",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "intermediate": {
-          "prompt_id": "ddd-051",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-053",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         },
         "advanced": {
-          "prompt_id": "ddd-051",
-          "drill_number": 3,
-          "position": 3,
+          "prompt_id": "ddd-053",
+          "drill_number": 5,
+          "position": 5,
           "pool_size": 6,
-          "cycle": 8
+          "cycle": 11
         }
       }
     }

@@ -14,8 +14,8 @@
     <div class="w--1/2 portrait:w--full w--min-0"><div class="flex flex--col flex--stretch-x gap--xsmall w--full w--min-0"><div class="flex flex--row flex--left flex--center-y gap--small w--full"><h2 class="title title--small lg:title--base text--bold m--0">Your task</h2></div><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2">{{ card_scope_short | escape }}</p></div></div><div class="w--1/2 portrait:w--full w--min-0"><div class="flex flex--col flex--stretch-x gap--xsmall w--full w--min-0"><div class="flex flex--row flex--left flex--center-y gap--small w--full"><h2 class="title title--small lg:title--base text--bold m--0">Work through</h2></div><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2">{{ card_patterns | escape }}</p></div></div>
   </div>
   <div class="divider w--full"></div>
-  <p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2"><strong>Watch for:</strong> {{ p.watch_for | escape }}</p>
-  <div class="hidden lg:visible lg:portrait:hidden"><p class="description description--large lg:description--xlarge m--0 w--full" data-clamp="2"><strong>Discuss:</strong> {{ p.interview_focus | escape }}</p></div>
+  <div class="flex flex--row flex--left flex--top m--0 w--full"><span class="text text--base lg:text--large text--bold flex-none">Watch for:</span><span class="description description--large lg:description--xlarge flex-auto w--min-0" data-clamp="2">{{ p.watch_for | escape }}</span></div>
+  <div class="hidden lg:visible lg:portrait:hidden w--full"><div class="flex flex--row flex--left flex--top m--0 w--full"><span class="text text--base lg:text--large text--bold flex-none">Discuss:</span><span class="description description--large lg:description--xlarge flex-auto w--min-0" data-clamp="2">{{ p.interview_focus | escape }}</span></div></div>
 {% endif %}
 </div>
 {% assign title_instance = display_date | date: '%b %-d' %}<div class="title_bar"><span class="title">Design Drill Deck</span>{% if title_instance != blank %}<span class="instance">{{ title_instance }}</span>{% endif %}</div>

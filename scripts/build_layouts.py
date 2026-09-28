@@ -33,11 +33,17 @@ def native_view(suffix):
             f'<p class="{body}"{clamp_attr}>{{{{ {value} | escape }}}}</p></div>'
         )
 
-    def inline(name, value, clamp=None):
+    def inline(name, value, clamp=None, clamp_lg_portrait=None):
+        # A <strong> inside .description loses its weight and confuses data-clamp,
+        # so the label and value are separate flex items.
         clamp_attr = f' data-clamp="{clamp}"' if clamp else ''
+        if clamp_lg_portrait:
+            clamp_attr += f' data-clamp-lg-portrait="{clamp_lg_portrait}"'
         return (
-            f'<p class="{body}"{clamp_attr}><strong>{name}</strong> '
-            f'{{{{ {value} | escape }}}}</p>'
+            f'<div class="flex flex--row flex--left flex--top m--0 w--full">'
+            f'<span class="text text--base lg:text--large text--bold flex-none">{name}</span>'
+            f'<span class="description description--large lg:description--xlarge flex-auto w--min-0"{clamp_attr}>'
+            f'{{{{ {value} | escape }}}}</span></div>'
         )
 
     title = 'title title--xlarge lg:title--xxlarge portrait:title--xlarge' if full else 'title title--large lg:title--xlarge portrait:title--large'
@@ -49,6 +55,7 @@ def native_view(suffix):
     brief = f'<p class="{brief_class}"{hh_clamp}>{{{{ {brief_key} | escape }}}}</p>'
     art = '{% if stripped_art != blank %}<div class="w--20 lg:w--48 portrait:w--32 flex-none">{{ card_art }}</div>{% endif %}'
     lg_only = 'hidden lg:visible'
+    lg_group = 'hidden lg:flex flex--col flex--stretch-x gap--medium w--full'
     scope = field('Your task', 'card_scope_short', 'scope', 2)
     if full:
         context_items = [
@@ -73,18 +80,20 @@ def native_view(suffix):
   </div>
   <div class="divider w--full"></div>
   {inline('Watch for:', 'p.watch_for', 2)}
-  <div class="{lg_only} lg:portrait:hidden">{inline('Discuss:', 'p.interview_focus', 2)}</div>'''
+  <div class="{lg_only} lg:portrait:hidden w--full">{inline('Discuss:', 'p.interview_focus', 2)}</div>'''
     elif suffix == 'hh':
+        # Fixed grid tracks give data-clamp a stable width; flex columns resize with their text.
         content = (
             heading + brief + inline('Constraint:', 'p.constraint', 1)
-            + '<div class="hidden lg:flex flex--row flex--left flex--top gap--large w--full">'
-            + '<div class="flex flex--col flex--stretch-x w--1/2 w--min-0">'
+            + f'<div class="{lg_group}">'
+            + '<div class="grid grid--cols-2 lg:portrait:grid--cols-1 gap--large lg:portrait:gap--medium w--full">'
+            + '<div class="flex flex--col flex--stretch-x gap--medium w--min-0">'
             + inline('Who:', 'p.primary_user', 1)
             + inline('Goal:', 'p.business_goal', 1)
-            + '</div><div class="flex flex--col flex--stretch-x w--1/2 w--min-0">'
+            + '</div><div class="flex flex--col flex--stretch-x gap--medium w--min-0">'
             + inline('Produce:', 'card_scope_short', 1)
             + inline('Watch for:', 'p.watch_for', 1)
-            + '</div></div>'
+            + '</div></div></div>'
         )
     elif suffix == 'hv':
         content = (
@@ -98,7 +107,7 @@ def native_view(suffix):
                     ('Produce:', 'card_scope_short'),
                 ]
             )
-            + f'<div class="{lg_only} w--full">'
+            + f'<div class="{lg_group}">'
             + inline('Work through:', 'card_patterns', 2)
             + inline('Watch for:', 'p.watch_for', 1)
             + inline('Discuss:', 'p.interview_focus', 2)
@@ -107,10 +116,10 @@ def native_view(suffix):
     else:
         content = (
             heading + brief
-            + f'<div class="{lg_only} w--full">'
-            + inline('Constraint:', 'p.constraint', 1)
-            + inline('Who:', 'p.primary_user', 1)
-            + inline('Produce:', 'card_scope_short', 1)
+            + f'<div class="{lg_group}">'
+            + inline('Constraint:', 'p.constraint', 1, 2)
+            + inline('Who:', 'p.primary_user', 1, 2)
+            + inline('Produce:', 'card_scope_short', 1, 2)
             + '</div>'
         )
     pad = 'p--4'

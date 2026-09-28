@@ -75,7 +75,7 @@ python scripts/validate_project.py
 npm run test:layout
 ```
 
-The browser gate checks every curated card at six device configurations and all three practice levels (972 combinations), required device fields, empty states, and unknown visuals. Screenshots are saved under ignored `qa/`. Windows uses installed Edge; other platforms need `npx playwright install chromium`. Set `DDD_BROWSER` to an executable path if needed; `DDD_NODE` can select Node for Python's render gate.
+The browser gate checks every curated card at twelve device configurations, including X portrait mashups, and all three practice levels (1,944 combinations). The preview runs the Framework's `terminalize()`, so `data-clamp` and `data-clamp-lg-portrait` apply as on the device, required device fields, empty states, and unknown visuals. Screenshots are saved under ignored `qa/`. Windows uses installed Edge; other platforms need `npx playwright install chromium`. Set `DDD_BROWSER` to an executable path if needed; `DDD_NODE` can select Node for Python's render gate.
 
 The September 8 brief redesign preserves native Framework fonts and illustrated category art. Inter headings and a larger summary establish hierarchy; compact TRMNL16 body text keeps supporting detail readable on OG. X uses native Inter throughout. `scripts/figma_snapshot.cjs` captures browser geometry for Figma; `scripts/figma_native_text.py` outlines the OG pixel text using optional FontTools installed under `qa/fonttools`. This avoids substituting a different font in Figma. These QA files are not included in the device export.
 

@@ -34,6 +34,7 @@ async function run({input, screenshots=false}={}){
         const r=await deckStudio.renderCard(device,card,level);
         const text=document.querySelector('.layout')?.innerText||'';
         const need=(label)=> { if(!text.includes(label)) r.errors.push(`Missing ${label}`); };
+        device=device.replace(/^x-portrait-/,'x-');
         if(device==='og-half-horizontal') need('Constraint:');
         else if(device==='x-half-horizontal') ['Constraint:','Who:','Goal:','Produce:','Watch for:'].forEach(need);
         else if(device==='og-half-vertical') ['Who:','Goal:','Constraint:','Produce:'].forEach(need);
